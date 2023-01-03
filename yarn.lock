@@ -1584,6 +1584,16 @@
   resolved "https://registry.yarnpkg.com/@nicolo-ribaudo/chokidar-2/-/chokidar-2-2.1.8-no-fsevents.3.tgz#323d72dd25103d0c4fbdce89dadf574a787b1f9b"
   integrity sha512-s88O1aVtXftvp5bCPB7WnmXc5IwOZZ7YPuwNPt+GtOOXpPvad1LfbmjYv+qII7zP6RU2QGnqve27dnLycEnyEQ==
 
+"@payloadcms/plugin-nested-docs@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@payloadcms/plugin-nested-docs/-/plugin-nested-docs-1.0.4.tgz#8a9933bbf0813839804be4fa20f9ddf401ed9bec"
+  integrity sha512-vjhk3fE/uRkUSNg0UuAv/NIEvDDMRcbEHSgxOo/MbmXOT2LFsh3fPq+Gq4+cL1H9s+FStiIkygigv7J5fgOZwA==
+
+"@payloadcms/plugin-seo@^1.0.9":
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/@payloadcms/plugin-seo/-/plugin-seo-1.0.9.tgz#77a047acd9937f267bb1d3d959840dc7e2e9743c"
+  integrity sha512-CmRXvdfL9/yPegjSjB/rt1cH7+OCqqqBPtcOv/WE9wkE31TO7xqisld07a4LlEZdECJVu4imNCaBxl+PmOlihw==
+
 "@payloadcms/plugin-stripe@^0.0.10":
   version "0.0.10"
   resolved "https://registry.yarnpkg.com/@payloadcms/plugin-stripe/-/plugin-stripe-0.0.10.tgz#5fca9daf11571df726e96e5e44e718534438dd33"

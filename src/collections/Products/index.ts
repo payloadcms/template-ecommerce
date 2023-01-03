@@ -1,23 +1,46 @@
 import { CollectionConfig } from 'payload/types';
 import { ProductSelect } from './ui/ProductSelect';
+import { slugField } from '../../fields/slug';
+import { hero } from '../../fields/hero';
+import { CallToAction } from '../../blocks/CallToAction';
+import { Content } from '../../blocks/Content';
+import { MediaBlock } from '../../blocks/Media';
 
 export const ProductFields: CollectionConfig['fields'] = [
   {
-    name: 'name',
+    name: 'title',
     type: 'text',
+    required: true,
   },
   {
     name: 'description',
     type: 'text',
   },
   {
-    name: 'categories',
-    type: 'relationship',
-    relationTo: 'categories',
-    hasMany: true,
-    admin: {
-      position: 'sidebar',
-    }
+    type: 'tabs',
+    tabs: [
+      {
+        label: 'Hero',
+        fields: [
+          hero,
+        ]
+      },
+      {
+        label: 'Content',
+        fields: [
+          {
+            name: 'layout',
+            type: 'blocks',
+            required: true,
+            blocks: [
+              CallToAction,
+              Content,
+              MediaBlock,
+            ]
+          }
+        ]
+      }
+    ],
   },
   {
     name: 'stripeProductID',
@@ -30,12 +53,22 @@ export const ProductFields: CollectionConfig['fields'] = [
       }
     }
   },
+  {
+    name: 'categories',
+    type: 'relationship',
+    relationTo: 'categories',
+    hasMany: true,
+    admin: {
+      position: 'sidebar',
+    }
+  },
+  slugField(),
 ]
 
 const Products: CollectionConfig = {
   slug: 'products',
   admin: {
-    useAsTitle: 'name',
+    useAsTitle: 'title',
   },
   fields: ProductFields
 }

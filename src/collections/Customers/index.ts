@@ -13,6 +13,9 @@ export const CustomerFields: CollectionConfig['fields'] = [
     name: 'stripeCustomerID',
     label: 'Stripe Customer',
     type: 'text',
+    access: {
+
+    },
     admin: {
       position: 'sidebar',
       components: {
