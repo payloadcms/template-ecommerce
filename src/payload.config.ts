@@ -12,9 +12,13 @@ import { Footer } from './globals/Footer';
 import { Pages } from './collections/Pages';
 import { Media } from './collections/Media';
 import seo from '@payloadcms/plugin-seo';
+import { subscriptionCreatedOrUpdated } from './webhooks/subscriptionCreatedOrUpdated';
+import { subscriptionDeleted } from './webhooks/subscriptionDeleted';
+import { productUpdated } from './webhooks/productUpdated';
+import { priceUpdated } from './webhooks/priceUpdated';
 
 export default buildConfig({
-  serverURL: 'http://localhost:3000',
+  serverURL: 'http://localhost:8000',
   admin: {
     user: Admins.slug,
   },
@@ -40,6 +44,14 @@ export default buildConfig({
   plugins: [
     stripePlugin({
       stripeSecretKey: process.env.STRIPE_SECRET_KEY,
+      webhooks: {
+        'customer.subscription.created': subscriptionCreatedOrUpdated,
+        'customer.subscription.updated': subscriptionCreatedOrUpdated,
+        'customer.subscription.deleted': subscriptionDeleted,
+        'product.created': productUpdated,
+        'product.updated': productUpdated,
+        'price.updated': priceUpdated,
+      }
     }),
     nestedDocs({
       collections: ['categories']

@@ -1,14 +1,15 @@
-# Payload Commerce Boilerplate
+# Payload E-Commerce Boilerplate
 
 A boilerplate for [Payload CMS](https://github.com/payloadcms/payload) to power your online store. The front-end boilerplate for this repo can be found [here](https://github.com/payloadcms/commerce-example-website).
 
 Core features:
 
 - Pre-configured Payload config
-- Authentication-enabled
-- Access control configure
-- Dynamic page builder
-- Stripe enabled using the official [Payload Stripe Plugin](https://github.com/payloadcms/plugin-stripe)
+- Customer authentication
+- Secure collection-level access control
+- Optional [paywall](#paywall) to gate access to product assets
+- Dynamic layout builder for products and pages
+- Stripe configured using the official [Payload Stripe Plugin](https://github.com/payloadcms/plugin-stripe)
 - SEO enabled using the official [Payload SEO Plugin](https://github.com/payloadcms/plugin-seo)
 
 ## How it works
@@ -21,7 +22,7 @@ This come pre-configured with the following `collections`:
 
 - `Products`
 
-  Each product is linked to Stripe via a select field that is dynamically populated in the products sidebar. This field fetches all available products in the background and displays them for you to select. Once set, product prices are automatically synced between Stripe and Payload. Products are also page-builder enabled, meaning you can generate dynamic pages for each product using layout-building blocks.
+  Each product is linked to Stripe via a select field that is dynamically populated in the products sidebar. This field fetches all available products in the background and displays them for you to select. Once set, product prices are automatically synced between Stripe and Payload, and can optionally [paywall their assets](#paywall). Products are also page-builder enabled, meaning you can generate dynamic pages for each product using layout-building blocks.
 
 - `Categories`
 
@@ -53,6 +54,21 @@ The following `globals` are also configured:
 
   Same as above but for the footer.
 
+## Paywall
+
+Products can optionally gate assets behind a paywall. This will require a subscription to that product before the assets are accessible. To do this, we add a `read` access control to a `gated-assets` field using the [`checkSubscriptions`](./src/collections/Products/access/checkSubscriptions.ts) hook, like this:
+
+```ts
+{
+  name: 'gatedAssets',
+  label: 'Gated Assets',
+  type: 'array',
+  access: {
+    read: checkSubscriptions,
+  },
+}
+```
+
 ## Stripe
 
 To integrate with Stripe, follow these steps:
@@ -61,6 +77,11 @@ To integrate with Stripe, follow these steps:
 1. Retrieve your Stripe Secret Key from the Stripe admin panel and paste it into your `env`:
    ```bash
    STRIPE_SECRET_KEY=
+   ```
+1. In another terminal, listen for webhooks:
+   ```bash
+   stripe login # follow the prompts
+   stripe listen --forward-to localhost:8000/stripe/webhooks
    ```
 
 See the official [Payload Stripe Plugin](https://github.com/payloadcms/plugin-stripe) for more details.
@@ -71,7 +92,7 @@ To spin up the boilerplate, follow these steps:
 
 1.  First clone the repo
 1.  Then, `cd YOUR_PROJECT_REPO && yarn && yarn && yarn dev`
-1.  Now open `http://localhost:3000/admin` in your browser
+1.  Now open `http://localhost:8000/admin` in your browser
 1.  Create your first admin user using the form on the page
 
 That's it! Changes made in `./src` will be reflected in your app.

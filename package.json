@@ -1,5 +1,5 @@
 {
-  "name": "commerce-boilerplate",
+  "name": "payload-ecommerce-boilerplate",
   "description": "Payload project created from ts-blank template",
   "version": "1.0.0",
   "main": "dist/server.js",

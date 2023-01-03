@@ -4,12 +4,10 @@ import payload from 'payload';
 require('dotenv').config();
 const app = express();
 
-// Redirect root to Admin panel
 app.get('/', (_, res) => {
   res.redirect('/admin');
 });
 
-// Initialize Payload
 payload.init({
   secret: process.env.PAYLOAD_SECRET,
   mongoURL: process.env.MONGODB_URI,
@@ -19,6 +17,4 @@ payload.init({
   },
 })
 
-// Add your own express routes here
-
-app.listen(3000);
+app.listen(8000);

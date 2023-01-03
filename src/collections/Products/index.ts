@@ -6,6 +6,7 @@ import { CallToAction } from '../../blocks/CallToAction';
 import { Content } from '../../blocks/Content';
 import { MediaBlock } from '../../blocks/Media';
 import { checkSubscriptions } from './access/checkSubscriptions';
+import { beforeProductChange } from './hooks/beforeChange';
 
 export const ProductFields: CollectionConfig['fields'] = [
   {
@@ -42,6 +43,30 @@ export const ProductFields: CollectionConfig['fields'] = [
         ]
       },
       {
+        label: 'Product Details',
+        fields: [
+          {
+            name: 'stripeProductID',
+            label: 'Stripe Product',
+            type: 'text',
+            admin: {
+              components: {
+                Field: ProductSelect
+              }
+            }
+          },
+          {
+            name: "priceJSON",
+            label: "Price JSON",
+            type: "textarea",
+            admin: {
+              readOnly: true,
+              rows: 10
+            }
+          },
+        ]
+      },
+      {
         label: 'Gated Assets',
         fields: [
           {
@@ -58,17 +83,6 @@ export const ProductFields: CollectionConfig['fields'] = [
     ],
   },
   {
-    name: 'stripeProductID',
-    label: 'Stripe Product',
-    type: 'text',
-    admin: {
-      position: 'sidebar',
-      components: {
-        Field: ProductSelect
-      }
-    }
-  },
-  {
     name: 'categories',
     type: 'relationship',
     relationTo: 'categories',
@@ -78,6 +92,16 @@ export const ProductFields: CollectionConfig['fields'] = [
     }
   },
   slugField(),
+  {
+    name: "skipSync",
+    label: "Skip Sync",
+    type: "checkbox",
+    admin: {
+      position: 'sidebar',
+      readOnly: true,
+      hidden: true,
+    }
+  },
 ]
 
 const Products: CollectionConfig = {
@@ -85,7 +109,10 @@ const Products: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
   },
-  fields: ProductFields
+  hooks: {
+    beforeChange: [beforeProductChange],
+  },
+  fields: ProductFields,
 }
 
 export default Products;
