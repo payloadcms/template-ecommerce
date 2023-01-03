@@ -5,6 +5,7 @@ import { hero } from '../../fields/hero';
 import { CallToAction } from '../../blocks/CallToAction';
 import { Content } from '../../blocks/Content';
 import { MediaBlock } from '../../blocks/Media';
+import { checkSubscriptions } from './access/checkSubscriptions';
 
 export const ProductFields: CollectionConfig['fields'] = [
   {
@@ -38,6 +39,20 @@ export const ProductFields: CollectionConfig['fields'] = [
               MediaBlock,
             ]
           }
+        ]
+      },
+      {
+        label: 'Gated Assets',
+        fields: [
+          {
+            name: 'gatedAssets',
+            label: 'Gated Assets',
+            type: 'array',
+            access: {
+              read: checkSubscriptions,
+            },
+            fields: []
+          },
         ]
       }
     ],
