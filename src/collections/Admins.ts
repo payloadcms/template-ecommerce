@@ -1,4 +1,5 @@
 import { CollectionConfig } from 'payload/types';
+import { admins } from '../access/admins';
 
 const Admins: CollectionConfig = {
   slug: 'admins',
@@ -6,13 +7,14 @@ const Admins: CollectionConfig = {
   admin: {
     useAsTitle: 'email',
   },
+  timestamps: true,
   access: {
-    read: () => true,
+    read: admins,
+    create: admins,
+    update: admins,
+    delete: admins,
   },
-  fields: [
-    // Email added by default
-    // Add more fields as needed
-  ],
+  fields: [],
 };
 
 export default Admins;

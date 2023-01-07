@@ -1,4 +1,4 @@
-import { Select, useFormFields, useWatchForm } from 'payload/components/forms'
+import { Select, useFormFields } from 'payload/components/forms'
 import * as React from 'react'
 import { TextField } from 'payload/dist/fields/config/types';
 import CopyToClipboard from 'payload/dist/admin/components/elements/CopyToClipboard';

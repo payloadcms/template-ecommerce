@@ -12,10 +12,15 @@ import { Footer } from './globals/Footer';
 import { Pages } from './collections/Pages';
 import { Media } from './collections/Media';
 import seo from '@payloadcms/plugin-seo';
-import { subscriptionCreatedOrUpdated } from './webhooks/subscriptionCreatedOrUpdated';
-import { subscriptionDeleted } from './webhooks/subscriptionDeleted';
-import { productUpdated } from './webhooks/productUpdated';
-import { priceUpdated } from './webhooks/priceUpdated';
+import { GenerateTitle } from '@payloadcms/plugin-seo/types';
+import { subscriptionCreatedOrUpdated } from './stripe/webhooks/subscriptionCreatedOrUpdated';
+import { subscriptionDeleted } from './stripe/webhooks/subscriptionDeleted';
+import { productUpdated } from './stripe/webhooks/productUpdated';
+import { priceUpdated } from './stripe/webhooks/priceUpdated';
+
+const generateTitle: GenerateTitle = () => {
+  return 'hi'
+}
 
 export default buildConfig({
   serverURL: 'http://localhost:8000',
@@ -61,6 +66,7 @@ export default buildConfig({
         'pages',
         'products'
       ],
+      generateTitle,
       uploadsCollection: 'media',
     })
   ]

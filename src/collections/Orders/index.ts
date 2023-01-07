@@ -1,7 +1,7 @@
 import { CollectionConfig } from 'payload/types';
 import { CustomerFields } from '../Customers';
 import { ProductFields } from '../Products';
-import { admins } from './access/admins';
+import { admins } from '../../access/admins';
 import { adminsAndOrderedBy } from './access/adminsAndOrderedBy';
 
 const Orders: CollectionConfig = {
@@ -19,6 +19,7 @@ const Orders: CollectionConfig = {
     update: admins,
     delete: admins,
   },
+  timestamps: true,
   fields: [
     {
       name: 'orderedBy',
@@ -33,7 +34,7 @@ const Orders: CollectionConfig = {
           relationTo: 'customers',
           hasMany: false,
         },
-        ...CustomerFields
+        ...CustomerFields // keep a static copy of these fields as they appear at the time of the order
       ]
     },
     {
@@ -49,7 +50,7 @@ const Orders: CollectionConfig = {
           relationTo: 'products',
           hasMany: false,
         },
-        ...ProductFields,
+        ...ProductFields, // keep a static copy of these fields as they appear at the time of the order
       ]
     }
   ],

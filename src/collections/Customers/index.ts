@@ -1,7 +1,7 @@
 import { CollectionConfig } from 'payload/types';
-import { admins } from './access/admins';
+import { admins } from '../../access/admins';
 import { adminsAndCustomer } from './access/adminsAndCustomer';
-import { anyone } from './access/anyone';
+import { anyone } from '../../access/anyone';
 import { CustomerSelect } from './ui/CustomerSelect';
 import { StripeLink } from './ui/StripeLink';
 
@@ -22,6 +22,41 @@ export const CustomerFields: CollectionConfig['fields'] = [
       components: {
         Field: CustomerSelect
       }
+    }
+  },
+  {
+    name: 'cart',
+    label: 'Cart',
+    type: 'array',
+    fields: [
+      {
+        name: 'product',
+        type: 'relationship',
+        relationTo: 'products',
+      },
+      {
+        name: 'quantity',
+        type: 'number',
+        admin: {
+          step: 1,
+        }
+      }
+    ]
+  },
+  {
+    name: 'cartCreatedOn',
+    label: 'Cart Created',
+    type: 'date',
+    admin: {
+      readOnly: true
+    }
+  },
+  {
+    name: 'cartLastModified',
+    label: 'Cart Last Modified',
+    type: 'date',
+    admin: {
+      readOnly: true
     }
   },
   {
@@ -108,6 +143,34 @@ export const CustomerFields: CollectionConfig['fields'] = [
             value: 'unpaid'
           }
         ],
+      },
+      {
+        name: 'createdOn',
+        label: 'Created On',
+        type: 'date',
+        admin: {
+          readOnly: true
+        }
+      },
+      {
+        name: 'lastModified',
+        label: 'Last Modified',
+        type: 'date',
+        admin: {
+          readOnly: true
+        }
+      },
+    ]
+  },
+  {
+    name: 'gated',
+    label: 'Gated',
+    type: 'array',
+    fields: [
+      {
+        name: 'file',
+        type: 'relationship',
+        relationTo: 'media',
       }
     ]
   },
@@ -139,7 +202,8 @@ const Customers: CollectionConfig = {
     delete: admins,
   },
   auth: true,
-  fields: CustomerFields
+  fields: CustomerFields,
+  timestamps: true,
 }
 
 export default Customers;
