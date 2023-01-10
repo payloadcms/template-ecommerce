@@ -7,6 +7,7 @@ import { Content } from '../../blocks/Content';
 import { MediaBlock } from '../../blocks/Media';
 import { checkSubscriptions } from './access/checkSubscriptions';
 import { beforeProductChange } from './hooks/beforeChange';
+import { admins } from '../../access/admins';
 
 export const ProductFields: CollectionConfig['fields'] = [
   {
@@ -108,6 +109,12 @@ const Products: CollectionConfig = {
   slug: 'products',
   admin: {
     useAsTitle: 'title',
+  },
+  access: {
+    read: () => true,
+    create: admins,
+    update: admins,
+    delete: admins
   },
   hooks: {
     beforeChange: [beforeProductChange],

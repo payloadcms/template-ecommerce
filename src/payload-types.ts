@@ -202,13 +202,27 @@ export interface Customer {
   id: string;
   name?: string;
   stripeCustomerID?: string;
+  cart: {
+    product?: string | Product;
+    quantity?: number;
+    id?: string;
+  }[];
+  cartCreatedOn?: string;
+  cartLastModified?: string;
   subscriptions: {
     stripeSubscriptionID?: string;
     stripeProductID?: string;
     product?: string | Product;
     status?: 'active' | 'canceled' | 'incomplete' | 'incomplete_expired' | 'past_due' | 'trialing' | 'unpaid';
+    createdOn?: string;
+    lastModified?: string;
     id?: string;
   }[];
+  gated: {
+    file?: string | Media;
+    id?: string;
+  }[];
+  skipSync?: boolean;
   email?: string;
   resetPasswordToken?: string;
   resetPasswordExpiration?: string;
@@ -340,12 +354,14 @@ export interface Product {
         blockType: 'mediaBlock';
       }
   )[];
+  stripeProductID?: string;
+  priceJSON?: string;
   gatedAssets: {
     id?: string;
   }[];
-  stripeProductID?: string;
   categories?: string[] | Category[];
   slug?: string;
+  skipSync?: boolean;
   meta: {
     title?: string;
     description?: string;
@@ -381,13 +397,27 @@ export interface Order {
     customer?: string | Customer;
     name?: string;
     stripeCustomerID?: string;
+    cart: {
+      product?: string | Product;
+      quantity?: number;
+      id?: string;
+    }[];
+    cartCreatedOn?: string;
+    cartLastModified?: string;
     subscriptions: {
       stripeSubscriptionID?: string;
       stripeProductID?: string;
       product?: string | Product;
       status?: 'active' | 'canceled' | 'incomplete' | 'incomplete_expired' | 'past_due' | 'trialing' | 'unpaid';
+      createdOn?: string;
+      lastModified?: string;
       id?: string;
     }[];
+    gated: {
+      file?: string | Media;
+      id?: string;
+    }[];
+    skipSync?: boolean;
   };
   products: {
     product?: string | Product;
@@ -508,12 +538,14 @@ export interface Order {
           blockType: 'mediaBlock';
         }
     )[];
+    stripeProductID?: string;
+    priceJSON?: string;
     gatedAssets: {
       id?: string;
     }[];
-    stripeProductID?: string;
     categories?: string[] | Category[];
     slug?: string;
+    skipSync?: boolean;
     id?: string;
   }[];
   createdAt: string;

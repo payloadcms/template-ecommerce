@@ -1,4 +1,5 @@
 import { CollectionConfig } from 'payload/types';
+import { admins } from '../../access/admins';
 import { CallToAction } from '../../blocks/CallToAction';
 import { Content } from '../../blocks/Content';
 import { MediaBlock } from '../../blocks/Media';
@@ -16,7 +17,10 @@ export const Pages: CollectionConfig = {
     drafts: true,
   },
   access: {
-    read: adminsOrPublished
+    read: adminsOrPublished,
+    update: admins,
+    create: admins,
+    delete: admins,
   },
   fields: [
     {

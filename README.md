@@ -7,9 +7,11 @@ Core features:
 - Pre-configured Payload config
 - Customer authentication
 - Stripe integration
-- [Shopping cart](#shopping-cart)
+- One-time purchases
 - [Subscriptions](#subscriptions)
 - [Gated content](#gated-content)
+- [Shopping cart](#shopping-cart)
+- [Checkout sessions](#checkout-sessions)
 - Dynamic layout builder for products and pages
 - SEO enabled using the official [Payload SEO Plugin](https://github.com/payloadcms/plugin-seo)
 
@@ -70,6 +72,20 @@ Logged in customers have their cart saved to their profile as they shop. This wa
 }
 ```
 
+## Same as above but for checkout
+
+Logged in customers have their cart saved to their profile as they shop. This way they can come back to their cart at any time and continue shopping. When not logged in, the cart to local storage then synced to Payload next time they log in.
+
+````ts
+{
+  name: 'cart',
+  label: 'Shopping Cart',
+  type: 'array',
+  fields: [
+    // products and quantities
+  ]
+}
+
 ## Subscriptions
 
 Subscriptions are managed by saving an array of products and product statuses to the customer's profile. As they subscribe to products and process payment over time, this list of subscriptions is kept up-to-date. This way, access control can use the active subscriptions as needed to determine if a customer has access to gated content.
@@ -83,7 +99,7 @@ Subscriptions are managed by saving an array of products and product statuses to
     // products and statuses
   ]
 }
-```
+````
 
 ## Gated Content
 
