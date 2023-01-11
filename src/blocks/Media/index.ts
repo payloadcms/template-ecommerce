@@ -31,14 +31,5 @@ export const MediaBlock: Block = {
       relationTo: 'media',
       required: true,
     },
-    {
-      name: 'caption',
-      type: 'richText',
-      admin: {
-        elements: [
-          'link',
-        ]
-      }
-    }
   ]
 }

@@ -44,38 +44,44 @@ export const UserFields: CollectionConfig['fields'] = [
   },
   {
     name: 'cart',
-    label: 'Cart',
-    type: 'array',
+    type: 'group',
     fields: [
       {
-        name: 'product',
-        type: 'relationship',
-        relationTo: 'products',
+        name: 'items',
+        label: 'Items',
+        type: 'array',
+        fields: [
+          {
+            name: 'product',
+            type: 'relationship',
+            relationTo: 'products',
+          },
+          {
+            name: 'quantity',
+            type: 'number',
+            admin: {
+              step: 1,
+            }
+          }
+        ]
       },
       {
-        name: 'quantity',
-        type: 'number',
+        name: 'createdOn',
+        label: 'Cart Created',
+        type: 'date',
         admin: {
-          step: 1,
+          readOnly: true
         }
-      }
-    ]
-  },
-  {
-    name: 'cartCreatedOn',
-    label: 'Cart Created',
-    type: 'date',
-    admin: {
-      readOnly: true
-    }
-  },
-  {
-    name: 'cartLastModified',
-    label: 'Cart Last Modified',
-    type: 'date',
-    admin: {
-      readOnly: true
-    }
+      },
+      {
+        name: 'lastModified',
+        label: 'Cart Last Modified',
+        type: 'date',
+        admin: {
+          readOnly: true
+        }
+      },
+    ],
   },
   {
     name: 'subscriptions',

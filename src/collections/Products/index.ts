@@ -109,6 +109,14 @@ const Products: CollectionConfig = {
   slug: 'products',
   admin: {
     useAsTitle: 'title',
+    defaultColumns: [
+      'title',
+      'stripeProductID',
+      '_status'
+    ]
+  },
+  versions: {
+    drafts: true
   },
   access: {
     read: () => true,

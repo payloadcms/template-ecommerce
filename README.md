@@ -30,7 +30,7 @@ This come pre-configured with the following `collections`:
 
 - `Categories`
 
-  A taxonomy used to group products together. Categories can be nested, i.e. "Shirts > Red". See [Payload Nested Docs Plugin](https://github.com/payloadcms/plugin-nested-docs) for more details.
+  A taxonomy used to group products together. Categories can be nested inside of one another, for example "Shirts > Red". See [Payload Nested Docs Plugin](https://github.com/payloadcms/plugin-nested-docs) for more details.
 
 - `Orders`
 
@@ -142,4 +142,10 @@ To spin up the boilerplate, follow these steps:
 1.  Now open `http://localhost:8000/admin` in your browser
 1.  Create your first admin user using the form on the page
 
-That's it! Changes made in `./src` will be reflected in your app.
+That's it! Changes made in `./src` will be reflected in your app. You can optionally seed the database with a few products and pages, more details on that [here](#seed).
+
+### Seed
+
+To seed the database with a few products and pages you can run `yarn seed`.
+
+> Warning: seeding the database is destructive because it drops your current database to populate a fresh one from the seed template.
