@@ -6,22 +6,23 @@ Core features:
 
 - Pre-configured Payload config
 - Customer authentication
+- Role-based access control
 - Stripe integration
 - One-time purchases
 - [Subscriptions](#subscriptions)
-- [Gated content](#gated-content)
+- [Paywall](#paywall)
 - [Shopping cart](#shopping-cart)
 - [Checkout sessions](#checkout-sessions)
-- Dynamic layout builder for products and pages
-- SEO enabled using the official [Payload SEO Plugin](https://github.com/payloadcms/plugin-seo)
+- Page and product layout builder
+- SEO enabled
 
 ## How it works
 
 This come pre-configured with the following `collections`:
 
-- `Customers`
+- `Users`
 
-  Customers can authenticate on your front-end, create shopping carts, and place orders. Customers can also
+  Users encompass both admins and customers based on the value of their `roles` field. Customers can authenticate on your front-end to create shopping carts and place orders. Only admins can access your admin panel to manage your store.
 
 - `Products`
 
@@ -42,10 +43,6 @@ This come pre-configured with the following `collections`:
 - `Media`
 
   An uploads-enabled collection used by products and pages.
-
-- `Admins`
-
-  Admins can access Payload's admin panel and manage your store.
 
 The following `globals` are also configured:
 
@@ -88,7 +85,7 @@ Logged in customers have their cart saved to their profile as they shop. This wa
 
 ## Subscriptions
 
-Subscriptions are managed by saving an array of products and product statuses to the customer's profile. As they subscribe to products and process payment over time, this list of subscriptions is kept up-to-date. This way, access control can use the active subscriptions as needed to determine if a customer has access to gated content.
+Subscriptions are managed by saving an array of products and product statuses to the customer's profile. As they subscribe to products and process payment over time, this list of subscriptions is kept up-to-date. This way, access control can use the active subscriptions as needed to determine if a customer has access to gated content. See [Paywall](#paywall) for more details.
 
 ```ts
 {
@@ -101,14 +98,14 @@ Subscriptions are managed by saving an array of products and product statuses to
 }
 ````
 
-## Gated Content
+## Paywall
 
-Products can optionally gate assets behind a paywall. This will require a subscription to that product before its assets are accessible. To do this, we add a `read` access control to a `gated` field using the [`checkSubscriptions`](./src/collections/Products/access/checkSubscriptions.ts) hook, like this:
+Products can have gated content and assets behind a paywall. This will require a subscription to that product before these resources are accessible. To do this, we add a `read` access control to a `paywall` field using the [`checkSubscriptions`](./src/collections/Products/access/checkSubscriptions.ts) hook, like this:
 
 ```ts
 {
-  name: 'gated',
-  label: 'Gated',
+  name: 'paywall',
+  label: 'Paywall',
   type: 'array',
   access: {
     read: checkSubscriptions,

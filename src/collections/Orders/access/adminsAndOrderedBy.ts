@@ -1,15 +1,14 @@
 import { Access } from "payload/config";
+import checkRole from "../../Users/checkRole";
 
 export const adminsAndOrderedBy: Access = ({ req: { user } }) => {
   if (user) {
-    if (user.collection === 'admins') {
+    if (checkRole(['admin'], user)) {
       return true;
     }
 
-    if (user.collection === 'customers' && user.stripeCustomerID) {
-      return {
-        'orderedBy.stripeCustomerID': user.stripeCustomerID,
-      }
+    return {
+      'orderedBy.user.id': user.id,
     }
   }
 

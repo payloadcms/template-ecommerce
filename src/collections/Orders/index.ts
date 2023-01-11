@@ -1,5 +1,5 @@
 import { CollectionConfig } from 'payload/types';
-import { CustomerFields } from '../Customers';
+import { UserFields } from '../Users';
 import { ProductFields } from '../Products';
 import { admins } from '../../access/admins';
 import { adminsAndOrderedBy } from './access/adminsAndOrderedBy';
@@ -29,12 +29,12 @@ const Orders: CollectionConfig = {
       },
       fields: [
         {
-          name: 'customer',
+          name: 'user',
           type: 'relationship',
-          relationTo: 'customers',
+          relationTo: 'users',
           hasMany: false,
         },
-        ...CustomerFields // keep a static copy of these fields as they appear at the time of the order
+        ...UserFields // keep a static copy of these fields as they appear at the time of the order
       ]
     },
     {

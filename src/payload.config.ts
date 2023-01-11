@@ -1,7 +1,6 @@
 import { buildConfig } from 'payload/config';
 import path from 'path';
-import Admins from './collections/Admins';
-import Customers from './collections/Customers';
+import Users from './collections/Users';
 import Products from './collections/Products';
 import Orders from './collections/Orders';
 import Categories from './collections/Categories';
@@ -27,7 +26,7 @@ const mockModulePath = path.resolve(__dirname, './emptyModuleMock.js')
 export default buildConfig({
   serverURL: 'http://localhost:8000',
   admin: {
-    user: Admins.slug,
+    user: Users.slug,
     webpack: config => ({
       ...config,
       resolve: {
@@ -42,13 +41,12 @@ export default buildConfig({
     }),
   },
   collections: [
-    Customers,
+    Users,
     Products,
     Categories,
     Orders,
     Pages,
     Media,
-    Admins,
   ],
   globals: [
     Header,
@@ -60,6 +58,12 @@ export default buildConfig({
   graphQL: {
     schemaOutputFile: path.resolve(__dirname, 'generated-schema.graphql'),
   },
+  cors: [
+    process.env.PAYLOAD_PUBLIC_APP_URL || ''
+  ],
+  csrf: [
+    process.env.PAYLOAD_PUBLIC_APP_URL || ''
+  ],
   plugins: [
     stripePlugin({
       stripeSecretKey: process.env.STRIPE_SECRET_KEY,

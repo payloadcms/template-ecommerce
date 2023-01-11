@@ -68,11 +68,11 @@ export const ProductFields: CollectionConfig['fields'] = [
         ]
       },
       {
-        label: 'Gated Assets',
+        label: 'Paywall',
         fields: [
           {
-            name: 'gatedAssets',
-            label: 'Gated Assets',
+            name: 'paywall',
+            label: 'Paywall',
             type: 'array',
             access: {
               read: checkSubscriptions,

@@ -196,11 +196,12 @@ export interface Footer {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "customers".
+ * via the `definition` "users".
  */
-export interface Customer {
+export interface User {
   id: string;
   name?: string;
+  roles?: ('admin' | 'customer')[];
   stripeCustomerID?: string;
   cart: {
     product?: string | Product;
@@ -216,10 +217,6 @@ export interface Customer {
     status?: 'active' | 'canceled' | 'incomplete' | 'incomplete_expired' | 'past_due' | 'trialing' | 'unpaid';
     createdOn?: string;
     lastModified?: string;
-    id?: string;
-  }[];
-  gated: {
-    file?: string | Media;
     id?: string;
   }[];
   skipSync?: boolean;
@@ -356,7 +353,7 @@ export interface Product {
   )[];
   stripeProductID?: string;
   priceJSON?: string;
-  gatedAssets: {
+  paywall: {
     id?: string;
   }[];
   categories?: string[] | Category[];
@@ -394,8 +391,9 @@ export interface Category {
 export interface Order {
   id: string;
   orderedBy: {
-    customer?: string | Customer;
+    user?: string | User;
     name?: string;
+    roles?: ('admin' | 'customer')[];
     stripeCustomerID?: string;
     cart: {
       product?: string | Product;
@@ -411,10 +409,6 @@ export interface Order {
       status?: 'active' | 'canceled' | 'incomplete' | 'incomplete_expired' | 'past_due' | 'trialing' | 'unpaid';
       createdOn?: string;
       lastModified?: string;
-      id?: string;
-    }[];
-    gated: {
-      file?: string | Media;
       id?: string;
     }[];
     skipSync?: boolean;
@@ -540,7 +534,7 @@ export interface Order {
     )[];
     stripeProductID?: string;
     priceJSON?: string;
-    gatedAssets: {
+    paywall: {
       id?: string;
     }[];
     categories?: string[] | Category[];
@@ -548,20 +542,6 @@ export interface Order {
     skipSync?: boolean;
     id?: string;
   }[];
-  createdAt: string;
-  updatedAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "admins".
- */
-export interface Admin {
-  id: string;
-  email?: string;
-  resetPasswordToken?: string;
-  resetPasswordExpiration?: string;
-  loginAttempts?: number;
-  lockUntil?: string;
   createdAt: string;
   updatedAt: string;
 }

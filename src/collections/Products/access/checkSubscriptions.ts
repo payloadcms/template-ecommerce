@@ -1,10 +1,9 @@
-import type { Payload } from 'payload'
 import type { FieldAccess } from 'payload/types'
-import { Customer, Product } from '../../../payload-types'
+import { User, Product } from '../../../payload-types'
 
-type Subscriptions = Customer['subscriptions']
+type Subscriptions = User['subscriptions']
 
-const isUserSubscribedToProduct = ({ user, stripeProductID }: { user: Customer; stripeProductID: string }): boolean => {
+const isUserSubscribedToProduct = ({ user, stripeProductID }: { user: User; stripeProductID: string }): boolean => {
   if (!stripeProductID) return true
 
   const subscriptions: Subscriptions = user?.subscriptions

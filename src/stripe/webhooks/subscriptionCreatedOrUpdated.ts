@@ -48,20 +48,20 @@ export const subscriptionCreatedOrUpdated = async (args) => {
   try {
     if (logs) payload.logger.info(`- Looking up existing Payload customer with Stripe ID: ${customerStripeID}.`);
 
-    const customerReq: any = await payload.find({
-      collection: 'customers',
+    const usersReq: any = await payload.find({
+      collection: 'users',
       depth: 0,
       where: {
         stripeID: customerStripeID
       }
     })
 
-    const foundCustomer = customerReq.docs[0];
+    const foundUser = usersReq.docs[0];
 
-    if (foundCustomer) {
+    if (foundUser) {
       if (logs) payload.logger.info(`- Found existing customer, now updating.`);
 
-      const subscriptions = foundCustomer.subscriptions || [];
+      const subscriptions = foundUser.subscriptions || [];
       const indexOfSubscription = subscriptions.findIndex(({ stripeSubscriptionID }) => stripeSubscriptionID === eventID);
 
       if (indexOfSubscription > -1) {
@@ -75,7 +75,7 @@ export const subscriptionCreatedOrUpdated = async (args) => {
         };
       } else {
         if (logs) payload.logger.info(`- This is a new subscription, now adding.`);
-        
+
         // create new subscription
         subscriptions.push({
           stripeSubscriptionID: eventID,
@@ -87,8 +87,8 @@ export const subscriptionCreatedOrUpdated = async (args) => {
 
       try {
         await payload.update({
-          collection: 'customers',
-          id: foundCustomer.id,
+          collection: 'users',
+          id: foundUser.id,
           data: {
             subscriptions,
             skipSync: true
@@ -100,9 +100,9 @@ export const subscriptionCreatedOrUpdated = async (args) => {
         payload.logger.error(`- Error updating subscription: ${error}`);
       }
     } else {
-      if (logs) payload.logger.info(`- No existing customer found, cannot update subscription.`);
+      if (logs) payload.logger.info(`- No existing user found, cannot update subscription.`);
     }
   } catch (error) {
-    new APIError(`Error looking up customer with Stripe ID: '${customerStripeID}': ${error?.message}`);
+    new APIError(`Error looking up user with Stripe ID: '${customerStripeID}': ${error?.message}`);
   }
 };

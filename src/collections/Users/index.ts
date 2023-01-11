@@ -1,14 +1,32 @@
 import { CollectionConfig } from 'payload/types';
 import { admins } from '../../access/admins';
-import { adminsAndCustomer } from './access/adminsAndCustomer';
 import { anyone } from '../../access/anyone';
+import adminsAndUser from './access/adminsAndUser';
+import checkRole from './checkRole';
+import { afterChange } from './hooks/afterChange';
+import { beforeValidate } from './hooks/beforeValidate';
 import { CustomerSelect } from './ui/CustomerSelect';
 import { StripeLink } from './ui/StripeLink';
 
-export const CustomerFields: CollectionConfig['fields'] = [
+export const UserFields: CollectionConfig['fields'] = [
   {
     name: 'name',
     type: 'text',
+  },
+  {
+    name: 'roles',
+    type: 'select',
+    hasMany: true,
+    options: [
+      {
+        label: 'admin',
+        value: 'admin'
+      },
+      {
+        label: 'customer',
+        value: 'customer'
+      }
+    ]
   },
   {
     name: 'stripeCustomerID',
@@ -163,18 +181,6 @@ export const CustomerFields: CollectionConfig['fields'] = [
     ]
   },
   {
-    name: 'gated',
-    label: 'Gated',
-    type: 'array',
-    fields: [
-      {
-        name: 'file',
-        type: 'relationship',
-        relationTo: 'media',
-      }
-    ]
-  },
-  {
     name: "skipSync",
     label: "Skip Sync",
     type: "checkbox",
@@ -186,8 +192,8 @@ export const CustomerFields: CollectionConfig['fields'] = [
   },
 ]
 
-const Customers: CollectionConfig = {
-  slug: 'customers',
+const Users: CollectionConfig = {
+  slug: 'users',
   admin: {
     useAsTitle: 'name',
     defaultColumns: [
@@ -196,14 +202,25 @@ const Customers: CollectionConfig = {
     ],
   },
   access: {
-    read: adminsAndCustomer,
+    read: adminsAndUser,
     create: anyone,
-    update: adminsAndCustomer,
+    update: adminsAndUser,
     delete: admins,
+    admin: ({ req: { user }}) => {
+      return checkRole(['admin'], user)
+    }
+  },
+  hooks: {
+    beforeValidate: [
+      beforeValidate // protect the `roles` field in the create hook
+    ],
+    afterChange: [
+      afterChange // auto login customers in when they create new accounts
+    ],
   },
   auth: true,
-  fields: CustomerFields,
+  fields: UserFields,
   timestamps: true,
 }
 
-export default Customers;
+export default Users;

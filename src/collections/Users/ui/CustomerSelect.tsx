@@ -7,45 +7,53 @@ export const CustomerSelect: React.FC<TextField> = (props) => {
   const { name, label } = props
   const [options, setOptions] = React.useState([])
 
-  const { value: stripeCustomerID } = useFormFields(([fields]) => fields[name]);
-  
+  const { value: stripeCustomerID } = useFormFields(([fields]) => fields[name]) || {};
+
   React.useEffect(() => {
     const getStripeCustomers = async () => {
-      const customersFetch = await fetch('/api/stripe/rest', {
-        method: 'post',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          stripeMethod: 'customers.list',
-          stripeArgs: [{
-            limit: 100,
-          }]
-        }),
-      })
-
-      const res = await customersFetch.json()
-      
-      const { data } = res
-
-      if ('data' in data) {
-        const fetchedCustomers = data.data.reduce(
-          (acc, item) => {
-            acc.push({
-              label: item.name,
-              value: item.id,
-            })
-            return acc
+      try {
+        const customersFetch = await fetch('/api/stripe/rest', {
+          method: 'post',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
           },
-          [
-            {
-              label: 'Select a customer',
-              value: '',
+          body: JSON.stringify({
+            stripeMethod: 'customers.list',
+            stripeArgs: [{
+              limit: 100,
+            }]
+          }),
+        })
+
+        const res = await customersFetch.json()
+
+        const { data } = res
+
+        if (!data) {
+          throw new Error('No data returned from Stripe')
+        }
+
+        if ('data' in data) {
+          const fetchedCustomers = data.data.reduce(
+            (acc, item) => {
+              acc.push({
+                label: item.name,
+                value: item.id,
+              })
+              return acc
             },
-          ],
-        )
-        setOptions(fetchedCustomers)
+            [
+              {
+                label: 'Select a customer',
+                value: '',
+              },
+            ],
+          )
+          setOptions(fetchedCustomers)
+        }
+      } catch (error) {
+        console.error(error)
       }
     }
 
@@ -59,7 +67,7 @@ export const CustomerSelect: React.FC<TextField> = (props) => {
       <p style={{marginBottom: '0'}}>
         {typeof label === 'string' ? label : 'Customer'}
       </p>
-      <p 
+      <p
         style={{
           marginBottom: '0.75rem',
           color: 'var(--theme-elevation-400)'
@@ -76,8 +84,8 @@ export const CustomerSelect: React.FC<TextField> = (props) => {
           </a>
         {'.'}
       </p>
-      <Select 
-        {...props} 
+      <Select
+        {...props}
         label=""
         options={options}
       />
