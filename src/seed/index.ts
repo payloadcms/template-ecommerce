@@ -11,6 +11,7 @@ import { earingsImage } from './earings-image';
 import { product4 } from './product-4';
 import { product5 } from './product-5';
 import { product6 } from './product-6';
+import { cartPage } from './cart-page';
 
 export const seed = async (payload: Payload) => {
   await payload.create({
@@ -131,14 +132,19 @@ export const seed = async (payload: Payload) => {
     data: shopPageJSON,
   })
 
-  const homepageJSON = JSON.parse(JSON.stringify(home)
-    .replace(/{{SHIRTS_IMAGE}}/g, shirtDoc.id)
-    .replace(/{{SHOP_PAGE_ID}}/g, shopPageID)
-  );
-
   await payload.create({
     collection: 'pages',
-    data: homepageJSON,
+    data: JSON.parse(JSON.stringify(home)
+      .replace(/{{SHIRTS_IMAGE}}/g, shirtDoc.id)
+      .replace(/{{SHOP_PAGE_ID}}/g, shopPageID),
+    )
+  })
+
+  await payload.updateGlobal({
+    slug: 'cart',
+    data: JSON.parse(JSON.stringify(cartPage)
+      .replace(/{{SHOP_PAGE_ID}}/g, shopPageID),
+    )
   })
 
   await payload.updateGlobal({

@@ -1,20 +1,5 @@
 export const product2 = {
   "title": "Scented Candle",
-  "hero": {
-    "type": "highImpact",
-    "richText": [
-      {
-        "children": [
-          {
-            "text": "Scented Candle"
-          }
-        ],
-        "type": "h1"
-      },
-    ],
-    "links": [],
-    "media": "{{CANDLES_IMAGE}}"
-  },
   "layout": [
     {
       "contentBackgroundColor": "white",

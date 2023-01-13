@@ -33,6 +33,7 @@ export interface Header {
 export interface Page {
   id: string;
   title: string;
+  publishedDate?: string;
   hero: {
     type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
     richText: {
@@ -229,6 +230,7 @@ export interface Category {
 export interface Product {
   id: string;
   title: string;
+  publishedDate?: string;
   description?: string;
   hero: {
     type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
@@ -412,6 +414,157 @@ export interface Footer {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "cart".
+ */
+export interface Cart {
+  id: string;
+  shopPage?: string | Page;
+  hero: {
+    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
+    richText: {
+      [k: string]: unknown;
+    }[];
+    links: {
+      link: {
+        type?: 'reference' | 'custom';
+        newTab?: boolean;
+        reference: {
+          value: string | Page;
+          relationTo: 'pages';
+        };
+        url: string;
+        label: string;
+        appearance?: 'default' | 'primary' | 'secondary';
+      };
+      id?: string;
+    }[];
+    media: string | Media;
+  };
+  layout: (
+    | {
+        ctaBackgroundColor?: 'white' | 'black';
+        richText: {
+          [k: string]: unknown;
+        }[];
+        links: {
+          link: {
+            type?: 'reference' | 'custom';
+            newTab?: boolean;
+            reference: {
+              value: string | Page;
+              relationTo: 'pages';
+            };
+            url: string;
+            label: string;
+            appearance?: 'primary' | 'secondary';
+          };
+          id?: string;
+        }[];
+        id?: string;
+        blockName?: string;
+        blockType: 'cta';
+      }
+    | {
+        contentBackgroundColor?: 'white' | 'black';
+        layout?: 'oneColumn' | 'twoThirdsOneThird' | 'halfAndHalf' | 'threeColumns';
+        columnOne: {
+          richText: {
+            [k: string]: unknown;
+          }[];
+          enableLink?: boolean;
+          link: {
+            type?: 'reference' | 'custom';
+            newTab?: boolean;
+            reference: {
+              value: string | Page;
+              relationTo: 'pages';
+            };
+            url: string;
+            label: string;
+            appearance?: 'default' | 'primary' | 'secondary';
+          };
+        };
+        columnTwo: {
+          richText: {
+            [k: string]: unknown;
+          }[];
+          enableLink?: boolean;
+          link: {
+            type?: 'reference' | 'custom';
+            newTab?: boolean;
+            reference: {
+              value: string | Page;
+              relationTo: 'pages';
+            };
+            url: string;
+            label: string;
+            appearance?: 'default' | 'primary' | 'secondary';
+          };
+        };
+        columnThree: {
+          richText: {
+            [k: string]: unknown;
+          }[];
+          enableLink?: boolean;
+          link: {
+            type?: 'reference' | 'custom';
+            newTab?: boolean;
+            reference: {
+              value: string | Page;
+              relationTo: 'pages';
+            };
+            url: string;
+            label: string;
+            appearance?: 'default' | 'primary' | 'secondary';
+          };
+        };
+        id?: string;
+        blockName?: string;
+        blockType: 'content';
+      }
+    | {
+        mediaBlockBackgroundColor?: 'white' | 'black';
+        position?: 'default' | 'fullscreen';
+        media: string | Media;
+        id?: string;
+        blockName?: string;
+        blockType: 'mediaBlock';
+      }
+    | {
+        introContent: {
+          [k: string]: unknown;
+        }[];
+        populateBy?: 'collection' | 'selection';
+        relationTo?: 'products';
+        categories?: string[] | Category[];
+        limit?: number;
+        selectedDocs?:
+          | {
+              value: string;
+              relationTo: 'products';
+            }[]
+          | {
+              value: Product;
+              relationTo: 'products';
+            }[];
+        populatedDocs?:
+          | {
+              value: string;
+              relationTo: 'products';
+            }[]
+          | {
+              value: Product;
+              relationTo: 'products';
+            }[];
+        populatedDocsTotal?: number;
+        id?: string;
+        blockName?: string;
+        blockType: 'archive';
+      }
+  )[];
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -480,6 +633,7 @@ export interface Order {
   products: {
     product?: string | Product;
     title: string;
+    publishedDate?: string;
     description?: string;
     hero: {
       type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';

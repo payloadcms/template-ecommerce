@@ -16,6 +16,7 @@ import { subscriptionCreatedOrUpdated } from './stripe/webhooks/subscriptionCrea
 import { subscriptionDeleted } from './stripe/webhooks/subscriptionDeleted';
 import { productUpdated } from './stripe/webhooks/productUpdated';
 import { priceUpdated } from './stripe/webhooks/priceUpdated';
+import { Cart } from './globals/Cart';
 
 const generateTitle: GenerateTitle = () => {
   return 'hi'
@@ -50,7 +51,8 @@ export default buildConfig({
   ],
   globals: [
     Header,
-    Footer
+    Footer,
+    Cart
   ],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),

@@ -1,15 +1,5 @@
 export const product5 = {
   "title": "Online Coaching",
-  "hero": {
-    "type": "none",
-    "richText": [
-      {
-        "text": " "
-      },
-    ],
-    "links": [],
-    "media": ""
-  },
   "layout": [
     {
       "contentBackgroundColor": "white",

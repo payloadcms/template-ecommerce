@@ -1,15 +1,5 @@
 export const product4 = {
   "title": "E-Book",
-  "hero": {
-    "type": "none",
-    "richText": [
-      {
-        "text": " "
-      },
-    ],
-    "links": [],
-    "media": ""
-  },
   "layout": [
     {
       "contentBackgroundColor": "white",

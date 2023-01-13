@@ -1,20 +1,5 @@
 export const product3 = {
   "title": "Gold Earings",
-  "hero": {
-    "type": "highImpact",
-    "richText": [
-      {
-        "children": [
-          {
-            "text": "Gold Earings"
-          }
-        ],
-        "type": "h1"
-      },
-    ],
-    "links": [],
-    "media": "{{EARINGS_IMAGE}}"
-  },
   "layout": [
     {
       "contentBackgroundColor": "white",

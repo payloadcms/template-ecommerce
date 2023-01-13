@@ -1,15 +1,5 @@
 export const product6 = {
   "title": "Advanced Content",
-  "hero": {
-    "type": "none",
-    "richText": [
-      {
-        "text": " "
-      },
-    ],
-    "links": [],
-    "media": ""
-  },
   "layout": [
     {
       "contentBackgroundColor": "white",

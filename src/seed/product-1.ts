@@ -1,20 +1,5 @@
 export const product1 = {
   "title": "Cotton T-Shirt",
-  "hero": {
-    "type": "highImpact",
-    "richText": [
-      {
-        "children": [
-          {
-            "text": "Cotton T-Shirt"
-          }
-        ],
-        "type": "h1"
-      },
-    ],
-    "links": [],
-    "media": "{{SHIRTS_IMAGE}}"
-  },
   "layout": [
     {
       "contentBackgroundColor": "white",

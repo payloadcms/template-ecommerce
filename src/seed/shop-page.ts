@@ -38,7 +38,7 @@ export const shopPage = {
           type: "p",
           children: [
             {
-              text: "The products below are displayed in an \"Archive\" layout building block which is an extremely powerful way to display docs on a page. It can be configured in the CMS to auto-populate by collection, filter by category, limit, and much more. Results are hydrated on the front-end."
+              text: "The products below are displayed in an \"Archive\" layout building block which is an extremely powerful way to display docs on a page. It can be configured in the CMS to auto-populate by collection, filter by category, limit results, and much more."
             }
           ]
         }

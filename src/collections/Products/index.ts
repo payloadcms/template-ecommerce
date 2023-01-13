@@ -26,18 +26,8 @@ export const ProductFields: CollectionConfig['fields'] = [
     },
   },
   {
-    name: 'description',
-    type: 'text',
-  },
-  {
     type: 'tabs',
     tabs: [
-      {
-        label: 'Hero',
-        fields: [
-          hero,
-        ]
-      },
       {
         label: 'Content',
         fields: [
