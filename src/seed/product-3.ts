@@ -1,19 +1,19 @@
-export const product1 = {
-  "title": "Cotton T-Shirt",
+export const product3 = {
+  "title": "Gold Earings",
   "hero": {
     "type": "highImpact",
     "richText": [
       {
         "children": [
           {
-            "text": "Cotton T-Shirt"
+            "text": "Gold Earings"
           }
         ],
         "type": "h1"
       },
     ],
     "links": [],
-    "media": "{{SHIRTS_IMAGE}}"
+    "media": "{{EARINGS_IMAGE}}"
   },
   "layout": [
     {
@@ -49,11 +49,11 @@ export const product1 = {
       "blockType": "content"
     },
   ],
-  "slug": "cotton-t",
+  "slug": "gold-earings",
   "_status": "published",
   "meta": {
-    "title": "Cotton T-Shirt",
+    "title": "Gold Earings",
     "description": "One-time purchase for a physical product",
-    "image": "{{SHIRTS_IMAGE}}"
+    "image": "{{EARINGS_IMAGE}}"
   }
 }

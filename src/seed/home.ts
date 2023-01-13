@@ -6,7 +6,7 @@ export const home = {
       {
         "children": [
           {
-            "text": "E-Commerce Store with Payload+Next.js"
+            "text": "E-Commerce Store with Payload + Next.js"
           }
         ],
         "type": "h1"
@@ -34,7 +34,18 @@ export const home = {
         "type": "large-body"
       },
     ],
-    "links": [],
+    "links": [
+      {
+        link: {
+          type: 'reference',
+          reference: {
+            relationTo: 'pages',
+            value: "{{SHOP_PAGE_ID}}"
+          },
+          label: 'Shop now',
+        }
+      },
+    ],
     "media": "{{SHIRTS_IMAGE}}"
   },
   "layout": [
@@ -144,7 +155,7 @@ export const home = {
               "text": "Shop now"
             }
           ],
-          "type": "h2"
+          "type": "h4"
         },
         {
           "children": [
@@ -180,7 +191,7 @@ export const home = {
   "_status": "published",
   "meta": {
     "title": "Store ABC",
-    "description": "E-Commerce Store with Payload+Next.js",
+    "description": "E-Commerce Store with Payload + Next.js",
     "image": "{{SHIRTS_IMAGE}}"
   }
 }

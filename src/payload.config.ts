@@ -59,7 +59,7 @@ export default buildConfig({
     schemaOutputFile: path.resolve(__dirname, 'generated-schema.graphql'),
   },
   cors: [
-    process.env.PAYLOAD_PUBLIC_APP_URL || ''
+    process.env.PAYLOAD_PUBLIC_APP_URL || '*'
   ],
   csrf: [
     process.env.PAYLOAD_PUBLIC_APP_URL || ''

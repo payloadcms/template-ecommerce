@@ -1,19 +1,14 @@
-export const product1 = {
-  "title": "Cotton T-Shirt",
+export const product6 = {
+  "title": "Advanced Content",
   "hero": {
-    "type": "highImpact",
+    "type": "none",
     "richText": [
       {
-        "children": [
-          {
-            "text": "Cotton T-Shirt"
-          }
-        ],
-        "type": "h1"
+        "text": " "
       },
     ],
     "links": [],
-    "media": "{{SHIRTS_IMAGE}}"
+    "media": ""
   },
   "layout": [
     {
@@ -24,7 +19,7 @@ export const product1 = {
           {
             "children": [
               {
-                "text": "Here is a one-column content block."
+                "text": "Advanced Content"
               }
             ],
             "type": "h3"
@@ -49,11 +44,10 @@ export const product1 = {
       "blockType": "content"
     },
   ],
-  "slug": "cotton-t",
+  "slug": "Advanced Content",
   "_status": "published",
   "meta": {
-    "title": "Cotton T-Shirt",
-    "description": "One-time purchase for a physical product",
-    "image": "{{SHIRTS_IMAGE}}"
+    "title": "Advanced Content",
+    "description": "Subscription to a digital asset"
   }
 }

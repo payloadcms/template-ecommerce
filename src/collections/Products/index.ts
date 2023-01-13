@@ -8,12 +8,22 @@ import { MediaBlock } from '../../blocks/Media';
 import { checkSubscriptions } from './access/checkSubscriptions';
 import { beforeProductChange } from './hooks/beforeChange';
 import { admins } from '../../access/admins';
+import { Archive } from '../../blocks/Archive';
+import { populateArchiveBlock } from '../../hooks/populateArchiveBlock';
+import { populatePublishedDate } from '../../hooks/populatePublishedDate';
 
 export const ProductFields: CollectionConfig['fields'] = [
   {
     name: 'title',
     type: 'text',
     required: true,
+  },
+  {
+    name: 'publishedDate',
+    type: 'date',
+    admin: {
+      position: 'sidebar',
+    },
   },
   {
     name: 'description',
@@ -39,6 +49,7 @@ export const ProductFields: CollectionConfig['fields'] = [
               CallToAction,
               Content,
               MediaBlock,
+              Archive
             ]
           }
         ]
@@ -115,6 +126,15 @@ const Products: CollectionConfig = {
       '_status'
     ]
   },
+  hooks: {
+    beforeChange: [
+      populatePublishedDate,
+      beforeProductChange,
+    ],
+    afterRead: [
+      populateArchiveBlock
+    ],
+  },
   versions: {
     drafts: true
   },
@@ -123,9 +143,6 @@ const Products: CollectionConfig = {
     create: admins,
     update: admins,
     delete: admins
-  },
-  hooks: {
-    beforeChange: [beforeProductChange],
   },
   fields: ProductFields,
 }

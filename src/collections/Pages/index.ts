@@ -1,10 +1,13 @@
 import { CollectionConfig } from 'payload/types';
 import { admins } from '../../access/admins';
+import { Archive } from '../../blocks/Archive';
 import { CallToAction } from '../../blocks/CallToAction';
 import { Content } from '../../blocks/Content';
 import { MediaBlock } from '../../blocks/Media';
 import { hero } from '../../fields/hero';
 import { slugField } from '../../fields/slug';
+import { populateArchiveBlock } from '../../hooks/populateArchiveBlock';
+import { populatePublishedDate } from '../../hooks/populatePublishedDate';
 import { adminsOrPublished } from './access/adminsOrPublished';
 
 export const Pages: CollectionConfig = {
@@ -12,6 +15,14 @@ export const Pages: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'slug', 'updatedAt'],
+  },
+  hooks: {
+    beforeChange: [
+      populatePublishedDate
+    ],
+    afterRead: [
+      populateArchiveBlock
+    ]
   },
   versions: {
     drafts: true,
@@ -27,6 +38,13 @@ export const Pages: CollectionConfig = {
       name: 'title',
       type: 'text',
       required: true,
+    },
+    {
+      name: 'publishedDate',
+      type: 'date',
+      admin: {
+        position: 'sidebar',
+      },
     },
     {
       type: 'tabs',
@@ -48,6 +66,7 @@ export const Pages: CollectionConfig = {
                 CallToAction,
                 Content,
                 MediaBlock,
+                Archive
               ]
             }
           ]

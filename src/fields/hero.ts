@@ -17,6 +17,10 @@ export const hero: Field = {
       defaultValue: 'lowImpact',
       options: [
         {
+          label: 'None',
+          value: 'none',
+        },
+        {
           label: 'High Impact',
           value: 'highImpact',
         },

@@ -1,19 +1,19 @@
-export const product1 = {
-  "title": "Cotton T-Shirt",
+export const product2 = {
+  "title": "Scented Candle",
   "hero": {
     "type": "highImpact",
     "richText": [
       {
         "children": [
           {
-            "text": "Cotton T-Shirt"
+            "text": "Scented Candle"
           }
         ],
         "type": "h1"
       },
     ],
     "links": [],
-    "media": "{{SHIRTS_IMAGE}}"
+    "media": "{{CANDLES_IMAGE}}"
   },
   "layout": [
     {
@@ -49,11 +49,11 @@ export const product1 = {
       "blockType": "content"
     },
   ],
-  "slug": "cotton-t",
+  "slug": "scented-candle",
   "_status": "published",
   "meta": {
-    "title": "Cotton T-Shirt",
+    "title": "Scented Candle",
     "description": "One-time purchase for a physical product",
-    "image": "{{SHIRTS_IMAGE}}"
+    "image": "{{CANDLES_IMAGE}}"
   }
 }
