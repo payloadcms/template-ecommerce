@@ -66,11 +66,6 @@ export const ProductFields: CollectionConfig['fields'] = [
               rows: 10
             }
           },
-        ]
-      },
-      {
-        label: 'Paywall',
-        fields: [
           {
             name: 'paywall',
             label: 'Paywall',
@@ -81,7 +76,7 @@ export const ProductFields: CollectionConfig['fields'] = [
             fields: []
           },
         ]
-      }
+      },
     ],
   },
   {

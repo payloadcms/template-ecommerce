@@ -81,8 +81,8 @@ export interface Page {
       }
     | {
         contentBackgroundColor?: 'white' | 'black';
-        layout?: 'oneColumn' | 'twoThirdsOneThird' | 'halfAndHalf' | 'threeColumns';
-        columnOne: {
+        columns: {
+          size?: 'oneThird' | 'half' | 'twoThirds' | 'full';
           richText: {
             [k: string]: unknown;
           }[];
@@ -98,41 +98,8 @@ export interface Page {
             label: string;
             appearance?: 'default' | 'primary' | 'secondary';
           };
-        };
-        columnTwo: {
-          richText: {
-            [k: string]: unknown;
-          }[];
-          enableLink?: boolean;
-          link: {
-            type?: 'reference' | 'custom';
-            newTab?: boolean;
-            reference: {
-              value: string | Page;
-              relationTo: 'pages';
-            };
-            url: string;
-            label: string;
-            appearance?: 'default' | 'primary' | 'secondary';
-          };
-        };
-        columnThree: {
-          richText: {
-            [k: string]: unknown;
-          }[];
-          enableLink?: boolean;
-          link: {
-            type?: 'reference' | 'custom';
-            newTab?: boolean;
-            reference: {
-              value: string | Page;
-              relationTo: 'pages';
-            };
-            url: string;
-            label: string;
-            appearance?: 'default' | 'primary' | 'secondary';
-          };
-        };
+          id?: string;
+        }[];
         id?: string;
         blockName?: string;
         blockType: 'content';
@@ -231,28 +198,6 @@ export interface Product {
   id: string;
   title: string;
   publishedDate?: string;
-  description?: string;
-  hero: {
-    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
-    richText: {
-      [k: string]: unknown;
-    }[];
-    links: {
-      link: {
-        type?: 'reference' | 'custom';
-        newTab?: boolean;
-        reference: {
-          value: string | Page;
-          relationTo: 'pages';
-        };
-        url: string;
-        label: string;
-        appearance?: 'default' | 'primary' | 'secondary';
-      };
-      id?: string;
-    }[];
-    media: string | Media;
-  };
   layout: (
     | {
         ctaBackgroundColor?: 'white' | 'black';
@@ -279,8 +224,8 @@ export interface Product {
       }
     | {
         contentBackgroundColor?: 'white' | 'black';
-        layout?: 'oneColumn' | 'twoThirdsOneThird' | 'halfAndHalf' | 'threeColumns';
-        columnOne: {
+        columns: {
+          size?: 'oneThird' | 'half' | 'twoThirds' | 'full';
           richText: {
             [k: string]: unknown;
           }[];
@@ -296,41 +241,8 @@ export interface Product {
             label: string;
             appearance?: 'default' | 'primary' | 'secondary';
           };
-        };
-        columnTwo: {
-          richText: {
-            [k: string]: unknown;
-          }[];
-          enableLink?: boolean;
-          link: {
-            type?: 'reference' | 'custom';
-            newTab?: boolean;
-            reference: {
-              value: string | Page;
-              relationTo: 'pages';
-            };
-            url: string;
-            label: string;
-            appearance?: 'default' | 'primary' | 'secondary';
-          };
-        };
-        columnThree: {
-          richText: {
-            [k: string]: unknown;
-          }[];
-          enableLink?: boolean;
-          link: {
-            type?: 'reference' | 'custom';
-            newTab?: boolean;
-            reference: {
-              value: string | Page;
-              relationTo: 'pages';
-            };
-            url: string;
-            label: string;
-            appearance?: 'default' | 'primary' | 'secondary';
-          };
-        };
+          id?: string;
+        }[];
         id?: string;
         blockName?: string;
         blockType: 'content';
@@ -414,9 +326,9 @@ export interface Footer {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "cart".
+ * via the `definition` "cart-page".
  */
-export interface Cart {
+export interface CartPage {
   id: string;
   shopPage?: string | Page;
   hero: {
@@ -466,8 +378,8 @@ export interface Cart {
       }
     | {
         contentBackgroundColor?: 'white' | 'black';
-        layout?: 'oneColumn' | 'twoThirdsOneThird' | 'halfAndHalf' | 'threeColumns';
-        columnOne: {
+        columns: {
+          size?: 'oneThird' | 'half' | 'twoThirds' | 'full';
           richText: {
             [k: string]: unknown;
           }[];
@@ -483,41 +395,8 @@ export interface Cart {
             label: string;
             appearance?: 'default' | 'primary' | 'secondary';
           };
-        };
-        columnTwo: {
-          richText: {
-            [k: string]: unknown;
-          }[];
-          enableLink?: boolean;
-          link: {
-            type?: 'reference' | 'custom';
-            newTab?: boolean;
-            reference: {
-              value: string | Page;
-              relationTo: 'pages';
-            };
-            url: string;
-            label: string;
-            appearance?: 'default' | 'primary' | 'secondary';
-          };
-        };
-        columnThree: {
-          richText: {
-            [k: string]: unknown;
-          }[];
-          enableLink?: boolean;
-          link: {
-            type?: 'reference' | 'custom';
-            newTab?: boolean;
-            reference: {
-              value: string | Page;
-              relationTo: 'pages';
-            };
-            url: string;
-            label: string;
-            appearance?: 'default' | 'primary' | 'secondary';
-          };
-        };
+          id?: string;
+        }[];
         id?: string;
         blockName?: string;
         blockType: 'content';
@@ -634,28 +513,6 @@ export interface Order {
     product?: string | Product;
     title: string;
     publishedDate?: string;
-    description?: string;
-    hero: {
-      type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
-      richText: {
-        [k: string]: unknown;
-      }[];
-      links: {
-        link: {
-          type?: 'reference' | 'custom';
-          newTab?: boolean;
-          reference: {
-            value: string | Page;
-            relationTo: 'pages';
-          };
-          url: string;
-          label: string;
-          appearance?: 'default' | 'primary' | 'secondary';
-        };
-        id?: string;
-      }[];
-      media: string | Media;
-    };
     layout: (
       | {
           ctaBackgroundColor?: 'white' | 'black';
@@ -682,8 +539,8 @@ export interface Order {
         }
       | {
           contentBackgroundColor?: 'white' | 'black';
-          layout?: 'oneColumn' | 'twoThirdsOneThird' | 'halfAndHalf' | 'threeColumns';
-          columnOne: {
+          columns: {
+            size?: 'oneThird' | 'half' | 'twoThirds' | 'full';
             richText: {
               [k: string]: unknown;
             }[];
@@ -699,41 +556,8 @@ export interface Order {
               label: string;
               appearance?: 'default' | 'primary' | 'secondary';
             };
-          };
-          columnTwo: {
-            richText: {
-              [k: string]: unknown;
-            }[];
-            enableLink?: boolean;
-            link: {
-              type?: 'reference' | 'custom';
-              newTab?: boolean;
-              reference: {
-                value: string | Page;
-                relationTo: 'pages';
-              };
-              url: string;
-              label: string;
-              appearance?: 'default' | 'primary' | 'secondary';
-            };
-          };
-          columnThree: {
-            richText: {
-              [k: string]: unknown;
-            }[];
-            enableLink?: boolean;
-            link: {
-              type?: 'reference' | 'custom';
-              newTab?: boolean;
-              reference: {
-                value: string | Page;
-                relationTo: 'pages';
-              };
-              url: string;
-              label: string;
-              appearance?: 'default' | 'primary' | 'secondary';
-            };
-          };
+            id?: string;
+          }[];
           id?: string;
           blockName?: string;
           blockType: 'content';

@@ -1,4 +1,6 @@
-export const home = {
+import { Page } from "../payload-types";
+
+export const home: Partial<Page> = {
   "title": "Home",
   "hero": {
     "type": "highImpact",
@@ -38,11 +40,13 @@ export const home = {
       {
         link: {
           type: 'reference',
+          appearance: 'primary',
           reference: {
             relationTo: 'pages',
             value: "{{SHOP_PAGE_ID}}"
           },
           label: 'Shop now',
+          url: ''
         }
       },
     ],
@@ -50,94 +54,185 @@ export const home = {
   },
   "layout": [
     {
+      "blockName": "Content Block",
+      "blockType": "content",
       "contentBackgroundColor": "white",
-      "layout": "oneColumn",
-      "columnOne": {
-        "richText": [
-          {
-            "children": [
-              {
-                "text": "Here is a one-column content block."
-              }
-            ],
-            "type": "h3"
-          },
-          {
-            "children": [
-              {
-                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
-              }
-            ]
+      "columns": [
+        {
+          "size": "oneThird",
+          "richText": [
+            {
+              "children": [
+                {
+                  "text": "Authentication"
+                }
+              ],
+              "type": "h3"
+            },
+            {
+              "children": [
+                {
+                  "text": "Customers can create an account and login to view their order history and more."
+                }
+              ]
+            }
+          ],
+          enableLink: false,
+          link: {
+            reference: {
+              value: '',
+              relationTo: 'pages'
+            },
+            url: '',
+            label: ''
           }
-        ],
-        "enableLink": true,
-        "link": {
-          "type": "custom",
-          "url": "https://payloadcms.com",
-          "label": "Go to Payload",
-          "appearance": "primary"
-        }
-      },
-      "blockName": "One column",
-      "blockType": "content"
-    },
-    {
-      "contentBackgroundColor": "white",
-      "layout": "halfAndHalf",
-      "columnOne": {
-        "richText": [
-          {
-            "children": [
-              {
-                "text": "Here is a two-column content block."
-              }
-            ],
-            "type": "h3"
-          },
-          {
-            "children": [
-              {
-                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
-              }
-            ]
+        },
+        {
+          "size": "oneThird",
+          "richText": [
+            {
+              "children": [
+                {
+                  "text": "Shopping cart"
+                }
+              ],
+              "type": "h3"
+            },
+            {
+              "children": [
+                {
+                  "text": "Shopping carts persist between sessions and can be accessed from any device."
+                }
+              ]
+            }
+          ],
+          enableLink: false,
+          link: {
+            reference: {
+              value: '',
+              relationTo: 'pages'
+            },
+            url: '',
+            label: ''
           }
-        ],
-        "enableLink": true,
-        "link": {
-          "type": "custom",
-          "url": "https://payloadcms.com",
-          "label": "Go to Payload",
-          "appearance": "default"
-        }
-      },
-      "columnTwo": {
-        "richText": [
-          {
-            "children": [
-              {
-                "text": "Here is a two-column content block."
-              }
-            ],
-            "type": "h3"
-          },
-          {
-            "children": [
-              {
-                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
-              }
-            ]
+        },
+        {
+          "size": "oneThird",
+          "richText": [
+            {
+              "children": [
+                {
+                  "text": "Page builder"
+                }
+              ],
+              "type": "h3"
+            },
+            {
+              "children": [
+                {
+                  "text": 'Custom page builder allows you to create any page or product layout imaginable.'
+                }
+              ]
+            }
+          ],
+          enableLink: false,
+          link: {
+            reference: {
+              value: '',
+              relationTo: 'pages'
+            },
+            url: '',
+            label: ''
           }
-        ],
-        "enableLink": true,
-        "link": {
-          "type": "custom",
-          "url": "https://payloadcms.com",
-          "label": "Go to Payload",
-          "appearance": "default"
-        }
-      },
-      "blockName": "Two column",
-      "blockType": "content"
+        },
+        {
+          "size": "oneThird",
+          "richText": [
+            {
+              "children": [
+                {
+                  "text": "Checkout workflow"
+                }
+              ],
+              "type": "h3"
+            },
+            {
+              "children": [
+                {
+                  "text": "Checkout and payment processing is completely handled by Stripe."
+                }
+              ]
+            }
+          ],
+          enableLink: false,
+          link: {
+            reference: {
+              value: '',
+              relationTo: 'pages'
+            },
+            url: '',
+            label: ''
+          }
+        },
+        {
+          "size": "oneThird",
+          "richText": [
+            {
+              "children": [
+                {
+                  "text": "SEO"
+                }
+              ],
+              "type": "h3"
+            },
+            {
+              "children": [
+                {
+                  "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
+                }
+              ]
+            }
+          ],
+          enableLink: false,
+          link: {
+            reference: {
+              value: '',
+              relationTo: 'pages'
+            },
+            url: '',
+            label: ''
+          }
+        },
+        {
+          "size": "oneThird",
+          "richText": [
+            {
+              "children": [
+                {
+                  "text": "Lorem ipsum"
+                }
+              ],
+              "type": "h3"
+            },
+            {
+              "children": [
+                {
+                  "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
+                }
+              ]
+            }
+          ],
+          enableLink: false,
+          link: {
+            reference: {
+              value: '',
+              relationTo: 'pages'
+            },
+            url: '',
+            label: ''
+          }
+        },
+      ]
     },
     {
       "mediaBlockBackgroundColor": "white",
@@ -160,7 +255,7 @@ export const home = {
         {
           "children": [
             {
-              "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
+              "text": "This is a custom layout building block configurable in the CMS."
             }
           ]
         }
@@ -169,19 +264,15 @@ export const home = {
         {
           "link": {
             "type": "custom",
-            "url": "https://payloadcms.com",
-            "label": "Go to Payload",
-            "appearance": "primary"
+            "url": "",
+            "label": "Shop now",
+            "appearance": "primary",
+            reference: {
+              value: "{{SHOP_PAGE_ID}}",
+              relationTo: 'pages'
+            }
           }
         },
-        {
-          "link": {
-            "type": "custom",
-            "url": "https://github.com/payloadcms/payload",
-            "label": "Go to GitHub",
-            "appearance": "secondary"
-          }
-        }
       ],
       "blockName": "CTA",
       "blockType": "cta"

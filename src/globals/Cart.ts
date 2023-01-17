@@ -5,8 +5,8 @@ import { Content } from "../blocks/Content";
 import { MediaBlock } from "../blocks/Media";
 import { hero } from "../fields/hero";
 
-export const Cart: GlobalConfig = {
-  slug: 'cart',
+export const CartPage: GlobalConfig = {
+  slug: 'cart-page',
   access: {
     read: () => true,
   },

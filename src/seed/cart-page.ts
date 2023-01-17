@@ -1,7 +1,11 @@
-export const cartPage = {
+import { CartPage } from "../payload-types";
+
+export const cartPage: Partial<CartPage> = {
   shopPage: "{{SHOP_PAGE_ID}}",
   hero: {
     type: "lowImpact",
+    links: [],
+    media: "",
     richText: [
       {
         type: "h1",
@@ -15,15 +19,8 @@ export const cartPage = {
         type: "p",
         children: [
           {
-            text: "This cart saves to local storage so you can continue shopping later, then when you authenticate with Payload, it syncs to your user profile "
+            text: "This cart saves to local storage so you can continue shopping later, then when you authenticate with Payload, it syncs to your user profile so you can continue shopping from any device. This hero and the content below the cart are completely dynamic and configured in the CMS."
           },
-          {
-            text: "so you can continue shopping from any device",
-            bold: true
-          },
-          {
-            text: ". This hero and the content below the cart are completely dynamic and configured in the CMS."
-          }
         ]
       }
     ],
@@ -32,18 +29,29 @@ export const cartPage = {
     {
       blockType: "content",
       "contentBackgroundColor": "white",
-      "layout": "oneColumn",
-      "columnOne": {
-        richText: [
-          {
-            "children": [
-              {
-                text: "This content is completely dynamic, you can render anything you'd like here. These are custom layout building block configured in the CMS."
-              }
-            ]
-          }
-        ]
-      }
+      "columns": [
+        {
+          size: 'twoThirds',
+          link: {
+            type: "reference",
+            url: '',
+            reference: {
+              relationTo: 'pages',
+              value: ''
+            },
+            label: ''
+          },
+          richText: [
+            {
+              "children": [
+                {
+                  text: "This is a custom layout building block configurable in the CMS—this can be anything you want. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                }
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       "ctaBackgroundColor": "white",
@@ -59,20 +67,21 @@ export const cartPage = {
         {
           "children": [
             {
-              "text": "This is a custom layout building block configured in the CMS."
+              "text": "This is a custom layout building block configurable in the CMS."
             }
           ]
         }
       ],
       "links": [
         {
-          "link": {
-            "type": "reference",
+          link: {
+            type: "reference",
+            url: '',
             reference: {
               relationTo: 'pages',
               value: "{{SHOP_PAGE_ID}}"
             },
-            "label": "Shop now",
+            "label": "Continue shopping",
             "appearance": "primary"
           }
         },

@@ -14,7 +14,8 @@ Core features:
 - [Shopping cart](#shopping-cart)
 - [Checkout sessions](#checkout-sessions)
 - Page and product layout builder
-- SEO enabled
+- SEO
+- Drafts and preview
 
 ## How it works
 
