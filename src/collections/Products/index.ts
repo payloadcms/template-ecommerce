@@ -1,7 +1,6 @@
 import { CollectionConfig } from 'payload/types';
 import { ProductSelect } from './ui/ProductSelect';
 import { slugField } from '../../fields/slug';
-import { hero } from '../../fields/hero';
 import { CallToAction } from '../../blocks/CallToAction';
 import { Content } from '../../blocks/Content';
 import { MediaBlock } from '../../blocks/Media';
@@ -11,6 +10,7 @@ import { admins } from '../../access/admins';
 import { Archive } from '../../blocks/Archive';
 import { populateArchiveBlock } from '../../hooks/populateArchiveBlock';
 import { populatePublishedDate } from '../../hooks/populatePublishedDate';
+import { deleteProductFromCarts } from './hooks/deleteProductFromCarts';
 
 export const ProductFields: CollectionConfig['fields'] = [
   {
@@ -118,6 +118,9 @@ const Products: CollectionConfig = {
     ],
     afterRead: [
       populateArchiveBlock
+    ],
+    afterDelete: [
+      deleteProductFromCarts
     ],
   },
   versions: {

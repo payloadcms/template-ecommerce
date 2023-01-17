@@ -2,7 +2,7 @@ import { CollectionConfig } from 'payload/types';
 import { admins } from '../../access/admins';
 import { anyone } from '../../access/anyone';
 import adminsAndUser from './access/adminsAndUser';
-import checkRole from './checkRole';
+import { checkRole } from './checkRole';
 import { afterChange } from './hooks/afterChange';
 import { beforeValidate } from './hooks/beforeValidate';
 import { CustomerSelect } from './ui/CustomerSelect';
@@ -47,49 +47,57 @@ export const UserFields: CollectionConfig['fields'] = [
     tabs: [
       {
         label: 'Cart',
-        fields:  [
+        fields: [
           {
-            name: 'items',
-            label: 'Items',
-            type: 'array',
-            fields: [
+            label: 'Cart',
+            name: 'cart',
+            type: 'group',
+            fields:  [
               {
-                name: 'product',
-                type: 'relationship',
-                relationTo: 'products',
+                name: 'items',
+                label: 'Items',
+                type: 'array',
+                fields: [
+                  {
+                    name: 'product',
+                    type: 'relationship',
+                    relationTo: 'products',
+                  },
+                  {
+                    name: 'quantity',
+                    type: 'number',
+                    admin: {
+                      step: 1,
+                    }
+                  },
+                ]
               },
               {
-                name: 'quantity',
-                type: 'number',
+                name: 'createdOn',
+                label: 'Created On',
+                type: 'date',
                 admin: {
-                  step: 1,
+                  readOnly: true
                 }
               },
-            ]
+              {
+                name: 'lastModified',
+                label: 'Last Modified',
+                type: 'date',
+                admin: {
+                  readOnly: true
+                }
+              },
+            ],
           },
-          {
-            name: 'createdOn',
-            label: 'Created On',
-            type: 'date',
-            admin: {
-              readOnly: true
-            }
-          },
-          {
-            name: 'lastModified',
-            label: 'Last Modified',
-            type: 'date',
-            admin: {
-              readOnly: true
-            }
-          },
-        ],
+        ]
       },
       {
         label: 'Subscriptions',
         fields: [
           {
-            name: 'Subscriptions',
+            name: 'subscriptions',
+            label: 'Subscriptions',
             type: 'array',
             admin: {
               description: 'All subscriptions are managed in Stripe and will be reflected here. Use the link in the sidebar go directly to this customer in Stripe to begin managing their subscriptions.',

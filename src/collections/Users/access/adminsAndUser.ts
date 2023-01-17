@@ -1,4 +1,4 @@
-import checkRole from '../checkRole';
+import { checkRole } from '../checkRole';
 
 const adminsAndUser = ({ req: { user } }) => {
   if (user) {

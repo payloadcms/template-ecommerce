@@ -4,8 +4,8 @@ import { home } from './home';
 import { shopPage } from './shop-page';
 import { product1 } from './product-1';
 import { shirtImage } from './shirt-image';
-import { product4 } from './product-2';
-import { product6 } from './product-3';
+import { product2 } from './product-2';
+import { product3 } from './product-3';
 import { cartPage } from './cart-page';
 
 export const seed = async (payload: Payload) => {
@@ -61,11 +61,11 @@ export const seed = async (payload: Payload) => {
     }),
     payload.create({
       collection: 'products',
-      data: JSON.parse(JSON.stringify({...product4, categories: [ebookCategory.id]})),
+      data: JSON.parse(JSON.stringify({...product2, categories: [ebookCategory.id]})),
     }),
     payload.create({
       collection: 'products',
-      data: JSON.parse(JSON.stringify({...product6, categories: [membersCategory.id]})),
+      data: JSON.parse(JSON.stringify({...product3, categories: [membersCategory.id]})),
     })
   ]);
 

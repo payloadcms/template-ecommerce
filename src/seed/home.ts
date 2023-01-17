@@ -263,7 +263,7 @@ export const home: Partial<Page> = {
       "links": [
         {
           "link": {
-            "type": "custom",
+            "type": "reference",
             "url": "",
             "label": "Shop now",
             "appearance": "primary",

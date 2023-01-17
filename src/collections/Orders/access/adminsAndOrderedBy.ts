@@ -1,5 +1,5 @@
 import { Access } from "payload/config";
-import checkRole from "../../Users/checkRole";
+import { checkRole } from "../../Users/checkRole";
 
 export const adminsAndOrderedBy: Access = ({ req: { user } }) => {
   if (user) {
