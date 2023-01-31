@@ -15,7 +15,7 @@ export const shopPage = {
         type: "p",
         children: [
           {
-            text: "This page displays all or some of the products of your store—ranging from goods and services to digital assets and subscriptions. Each product is complete with a dynamic page layout builder for a completely custom shopping experience."
+            text: "This page displays all or some of the products of your store—ranging from goods and services to digital assets and subscriptions. Each product is complete with a dynamic page layout builder for a completely custom shopping experience that you fully control from the CMS."
           }
         ]
       }
@@ -38,7 +38,7 @@ export const shopPage = {
           type: "p",
           children: [
             {
-              text: "The products below are displayed in an \"Archive\" layout building block which is an extremely powerful way to display docs on a page. It can be configured in the CMS to auto-populate by collection, filter by category, limit results, and much more."
+              text: "The products below are displayed in an \"Archive\" layout building block which is an extremely powerful way to display docs on a page. It can auto-populate by collection, filter by category, limit results, and much more—all configured in the CMS."
             }
           ]
         }

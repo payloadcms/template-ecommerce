@@ -4,7 +4,7 @@ import { slugField } from '../../fields/slug';
 import { CallToAction } from '../../blocks/CallToAction';
 import { Content } from '../../blocks/Content';
 import { MediaBlock } from '../../blocks/Media';
-import { checkSubscriptions } from './access/checkSubscriptions';
+import { checkUserPurchases } from './access/checkUserPurchases';
 import { beforeProductChange } from './hooks/beforeChange';
 import { admins } from '../../access/admins';
 import { Archive } from '../../blocks/Archive';
@@ -71,7 +71,7 @@ export const ProductFields: CollectionConfig['fields'] = [
             label: 'Paywall',
             type: 'array',
             access: {
-              read: checkSubscriptions,
+              read: checkUserPurchases,
             },
             fields: []
           },

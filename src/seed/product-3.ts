@@ -30,10 +30,11 @@ export const product3: Partial<Product> = {
       ]
     },
   ],
+  stripeProductID: "prod_NBPiSz1Vg6Ay0O",
   "slug": "Pro Membership",
   "_status": "published",
   "meta": {
     "title": "Pro Membership",
-    "description": "Subscription to a digital asset"
+    "description": "Recurring subscription to a digital asset"
   }
 }

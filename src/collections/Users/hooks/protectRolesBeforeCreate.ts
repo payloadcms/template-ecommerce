@@ -1,6 +1,7 @@
 import { BeforeValidateHook } from "payload/dist/collections/config/types";
+import { FieldHook } from "payload/types";
 
-export const beforeValidate: BeforeValidateHook = async ({ req, data, operation }) => {
+export const protectRolesBeforeCreate: FieldHook = async ({ req, data, operation }) => {
     if (operation === 'create') {
         if (req.user) {
             const sanitizedData = data;

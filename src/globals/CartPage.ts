@@ -12,12 +12,6 @@ export const CartPage: GlobalConfig = {
   },
   fields: [
     {
-      name: 'shopPage',
-      type: 'relationship',
-      relationTo: 'pages',
-      label: 'Shop page',
-    },
-    {
       type: 'tabs',
       tabs: [
         {

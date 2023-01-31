@@ -12,11 +12,11 @@ import { Pages } from './collections/Pages';
 import { Media } from './collections/Media';
 import seo from '@payloadcms/plugin-seo';
 import { GenerateTitle } from '@payloadcms/plugin-seo/types';
-import { subscriptionCreatedOrUpdated } from './stripe/webhooks/subscriptionCreatedOrUpdated';
-import { subscriptionDeleted } from './stripe/webhooks/subscriptionDeleted';
 import { productUpdated } from './stripe/webhooks/productUpdated';
 import { priceUpdated } from './stripe/webhooks/priceUpdated';
-import { CartPage } from './globals/Cart';
+import { CartPage } from './globals/CartPage';
+import { Settings } from './globals/Settings';
+import { invoiceCreatedOrUpdated } from './stripe/webhooks/invoiceCreatedOrUpdated';
 
 const generateTitle: GenerateTitle = () => {
   return 'hi'
@@ -35,6 +35,7 @@ export default buildConfig({
         alias: {
           ...config.resolve?.alias,
           [path.resolve(__dirname, 'collections/Products/hooks/beforeChange.ts')]: mockModulePath,
+          [path.resolve(__dirname, 'routes/checkout.ts')]: mockModulePath,
           stripe: mockModulePath,
           express: mockModulePath,
         },
@@ -50,6 +51,7 @@ export default buildConfig({
     Media,
   ],
   globals: [
+    Settings,
     Header,
     Footer,
     CartPage
@@ -61,18 +63,18 @@ export default buildConfig({
     schemaOutputFile: path.resolve(__dirname, 'generated-schema.graphql'),
   },
   cors: [
-    process.env.PAYLOAD_PUBLIC_APP_URL || '*'
-  ],
+    process.env.PAYLOAD_PUBLIC_APP_URL || '',
+    'https://checkout.stripe.com'
+  ].filter(Boolean),
   csrf: [
     process.env.PAYLOAD_PUBLIC_APP_URL || ''
-  ],
+  ].filter(Boolean),
   plugins: [
     stripePlugin({
       stripeSecretKey: process.env.STRIPE_SECRET_KEY,
       webhooks: {
-        'customer.subscription.created': subscriptionCreatedOrUpdated,
-        'customer.subscription.updated': subscriptionCreatedOrUpdated,
-        'customer.subscription.deleted': subscriptionDeleted,
+        'invoice.created': invoiceCreatedOrUpdated,
+        'invoice.updated': invoiceCreatedOrUpdated,
         'product.created': productUpdated,
         'product.updated': productUpdated,
         'price.updated': priceUpdated,

@@ -122,6 +122,35 @@ export const home: Partial<Page> = {
             {
               "children": [
                 {
+                  "text": "Checkout"
+                }
+              ],
+              "type": "h3"
+            },
+            {
+              "children": [
+                {
+                  "text": "Secure in-app checkout powered by Stripe so your customers never leave your site."
+                }
+              ]
+            }
+          ],
+          enableLink: false,
+          link: {
+            reference: {
+              value: '',
+              relationTo: 'pages'
+            },
+            url: '',
+            label: ''
+          }
+        },
+        {
+          "size": "oneThird",
+          "richText": [
+            {
+              "children": [
+                {
                   "text": "Page builder"
                 }
               ],
@@ -151,35 +180,6 @@ export const home: Partial<Page> = {
             {
               "children": [
                 {
-                  "text": "Checkout workflow"
-                }
-              ],
-              "type": "h3"
-            },
-            {
-              "children": [
-                {
-                  "text": "Checkout and payment processing is completely handled by Stripe."
-                }
-              ]
-            }
-          ],
-          enableLink: false,
-          link: {
-            reference: {
-              value: '',
-              relationTo: 'pages'
-            },
-            url: '',
-            label: ''
-          }
-        },
-        {
-          "size": "oneThird",
-          "richText": [
-            {
-              "children": [
-                {
                   "text": "SEO"
                 }
               ],
@@ -188,7 +188,7 @@ export const home: Partial<Page> = {
             {
               "children": [
                 {
-                  "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
+                  "text": "Editors have complete control over SEO data directly from the CMS."
                 }
               ]
             }

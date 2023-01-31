@@ -5436,6 +5436,14 @@ stripe@^10.2.0:
     "@types/node" ">=8.1.0"
     qs "^6.11.0"
 
+stripe@^11.6.0:
+  version "11.6.0"
+  resolved "https://registry.yarnpkg.com/stripe/-/stripe-11.6.0.tgz#4f1f79e5c43695f161b9073b0aab78a2c1bf7e9d"
+  integrity sha512-ht8S1l8CJJE3jtv2NM1mEQzZBkITYvb9uDpSeXYeNz9iJkFFgDU169htwOW00OdIESvFaIsGgWQatAE5dfOERQ==
+  dependencies:
+    "@types/node" ">=8.1.0"
+    qs "^6.11.0"
+
 strtok3@^6.2.4:
   version "6.3.0"
   resolved "https://registry.yarnpkg.com/strtok3/-/strtok3-6.3.0.tgz#358b80ffe6d5d5620e19a073aa78ce947a90f9a0"

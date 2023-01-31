@@ -1,15 +1,13 @@
 import { CollectionConfig } from 'payload/types';
-import { UserFields } from '../Users';
-import { ProductFields } from '../Products';
 import { admins } from '../../access/admins';
 import { adminsAndOrderedBy } from './access/adminsAndOrderedBy';
+import { syncUserPurchases } from './hooks/syncUserPurchases';
 
 const Orders: CollectionConfig = {
   slug: 'orders',
   admin: {
-    useAsTitle: 'product',
+    useAsTitle: 'createdAt',
     defaultColumns: [
-      'product',
       'createdAt',
     ]
   },
@@ -18,6 +16,11 @@ const Orders: CollectionConfig = {
     create: adminsAndOrderedBy,
     update: admins,
     delete: admins,
+  },
+  hooks: {
+    afterChange: [
+      syncUserPurchases
+    ]
   },
   timestamps: true,
   fields: [
@@ -34,7 +37,20 @@ const Orders: CollectionConfig = {
           relationTo: 'users',
           hasMany: false,
         },
-        ...UserFields // keep a static copy of these fields as they appear at the time of the order
+        // keep a static copy of these fields as they appear at the time of the order
+        {
+          name: 'name',
+          type: 'text',
+        },
+        {
+          name: 'email',
+          type: 'text',
+        },
+        {
+          name: 'stripeCustomerID',
+          label: 'Stripe Customer ID',
+          type: 'text',
+        }
       ]
     },
     {
@@ -50,9 +66,46 @@ const Orders: CollectionConfig = {
           relationTo: 'products',
           hasMany: false,
         },
-        ...ProductFields, // keep a static copy of these fields as they appear at the time of the order
+        // keep a static copy of these fields as they appear at the time of the order
+        {
+          name: 'title',
+          type: 'text',
+        },
+        {
+          name: 'priceJSON',
+          type: 'text',
+        },
+        {
+          name: 'stripeProductID',
+          label: 'Stripe Product ID',
+          type: 'text',
+          admin: {
+            readOnly: true,
+            position: 'sidebar',
+          }
+        },
+        {
+          name: 'quantity',
+          type: 'number',
+        },
       ]
-    }
+    },
+    {
+      name: 'stripeInvoiceID',
+      type: 'text',
+      admin: {
+        readOnly: true,
+        position: 'sidebar',
+      }
+    },
+    {
+      name: 'stripePaymentIntentID',
+      type: 'text',
+      admin: {
+        readOnly: true,
+        position: 'sidebar',
+      }
+    },
   ],
 }
 

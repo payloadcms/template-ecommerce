@@ -1,7 +1,6 @@
 import { CartPage } from "../payload-types";
 
 export const cartPage: Partial<CartPage> = {
-  shopPage: "{{SHOP_PAGE_ID}}",
   hero: {
     type: "lowImpact",
     links: [],

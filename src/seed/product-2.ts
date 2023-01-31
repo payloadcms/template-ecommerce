@@ -30,6 +30,7 @@ export const product2: Partial<Product> = {
       ]
     },
   ],
+  stripeProductID: "prod_NBPiXegr0QkVny",
   "slug": "ebook",
   "_status": "published",
   "meta": {

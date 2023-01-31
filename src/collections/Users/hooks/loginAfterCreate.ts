@@ -1,6 +1,6 @@
 import { AfterChangeHook } from "payload/dist/collections/config/types";
 
-export const afterChange: AfterChangeHook = async ({
+export const loginAfterCreate: AfterChangeHook = async ({
   doc,
   req,
   req: {

@@ -30,6 +30,7 @@ export const product1: Partial<Product> = {
       ]
     },
   ],
+  stripeProductID: "prod_NBPZCQwrQXcngM",
   "slug": "cotton-t",
   "_status": "published",
   "meta": {

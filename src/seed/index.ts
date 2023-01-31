@@ -13,6 +13,7 @@ export const seed = async (payload: Payload) => {
     collection: 'users',
     data: {
       email: 'dev@payloadcms.com',
+      name: 'Payload Dev',
       password: 'test',
       roles: ['admin']
     }
@@ -30,7 +31,7 @@ export const seed = async (payload: Payload) => {
 
   const [
     clothingCategory,
-    ebookCategory,
+    digitalCategory,
     membersCategory,
   ]= await Promise.all([
     payload.create({
@@ -42,13 +43,13 @@ export const seed = async (payload: Payload) => {
     payload.create({
       collection: 'categories',
       data: {
-        title: 'E-Book'
+        title: 'Digital'
       },
     }),
     payload.create({
       collection: 'categories',
       data: {
-        title: 'Members'
+        title: 'Members Only'
       },
     })
   ]);
@@ -61,7 +62,7 @@ export const seed = async (payload: Payload) => {
     }),
     payload.create({
       collection: 'products',
-      data: JSON.parse(JSON.stringify({...product2, categories: [ebookCategory.id]})),
+      data: JSON.parse(JSON.stringify({...product2, categories: [digitalCategory.id]})),
     }),
     payload.create({
       collection: 'products',
@@ -91,6 +92,13 @@ export const seed = async (payload: Payload) => {
     data: JSON.parse(JSON.stringify(cartPage)
       .replace(/{{SHOP_PAGE_ID}}/g, shopPageID),
     )
+  })
+
+  await payload.updateGlobal({
+    slug: 'settings',
+    data: {
+      shopPage: shopPageID
+    }
   })
 
   await payload.updateGlobal({
