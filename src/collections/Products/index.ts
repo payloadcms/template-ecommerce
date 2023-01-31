@@ -69,11 +69,16 @@ export const ProductFields: CollectionConfig['fields'] = [
           {
             name: 'paywall',
             label: 'Paywall',
-            type: 'array',
+            type: 'blocks',
             access: {
               read: checkUserPurchases,
             },
-            fields: []
+            blocks: [
+              CallToAction,
+              Content,
+              MediaBlock,
+              Archive
+            ]
           },
         ]
       },

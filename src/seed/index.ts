@@ -30,26 +30,26 @@ export const seed = async (payload: Payload) => {
   ])
 
   const [
-    clothingCategory,
-    digitalCategory,
-    membersCategory,
+    apparelCategory,
+    ebooksCategory,
+    coursesCategory,
   ]= await Promise.all([
     payload.create({
       collection: 'categories',
       data: {
-        title: 'Clothing'
+        title: 'Apparel'
       },
     }),
     payload.create({
       collection: 'categories',
       data: {
-        title: 'Digital'
+        title: 'E-books'
       },
     }),
     payload.create({
       collection: 'categories',
       data: {
-        title: 'Members Only'
+        title: 'Online courses'
       },
     })
   ]);
@@ -57,16 +57,16 @@ export const seed = async (payload: Payload) => {
   Promise.all([
     payload.create({
       collection: 'products',
-      data: JSON.parse(JSON.stringify({...product1, categories: [clothingCategory.id]})
+      data: JSON.parse(JSON.stringify({...product1, categories: [apparelCategory.id]})
         .replace(/{{SHIRTS_IMAGE}}/g, shirtDoc.id)),
     }),
     payload.create({
       collection: 'products',
-      data: JSON.parse(JSON.stringify({...product2, categories: [digitalCategory.id]})),
+      data: JSON.parse(JSON.stringify({...product2, categories: [ebooksCategory.id]})),
     }),
     payload.create({
       collection: 'products',
-      data: JSON.parse(JSON.stringify({...product3, categories: [membersCategory.id]})),
+      data: JSON.parse(JSON.stringify({...product3, categories: [coursesCategory.id]})),
     })
   ]);
 

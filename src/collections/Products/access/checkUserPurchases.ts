@@ -15,7 +15,7 @@ export const checkUserPurchases: FieldAccess<Product> = async ({ req: { user, pa
 
   if (fullUser && typeof fullUser === 'object') {
     const { purchases } = fullUser;
-    const hasPurchased = purchases.some((purchase) => doc.id === (typeof purchase === 'object' ? purchase.id : purchase))
+    const hasPurchased = purchases?.some((purchase) => doc.id === (typeof purchase === 'object' ? purchase.id : purchase))
     if (hasPurchased) {
       return true
     }

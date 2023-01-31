@@ -277,9 +277,95 @@ export interface Product {
   )[];
   stripeProductID?: string;
   priceJSON?: string;
-  paywall: {
-    id?: string;
-  }[];
+  paywall: (
+    | {
+        ctaBackgroundColor?: 'white' | 'black';
+        richText: {
+          [k: string]: unknown;
+        }[];
+        links: {
+          link: {
+            type?: 'reference' | 'custom';
+            newTab?: boolean;
+            reference: {
+              value: string | Page;
+              relationTo: 'pages';
+            };
+            url: string;
+            label: string;
+            appearance?: 'primary' | 'secondary';
+          };
+          id?: string;
+        }[];
+        id?: string;
+        blockName?: string;
+        blockType: 'cta';
+      }
+    | {
+        contentBackgroundColor?: 'white' | 'black';
+        columns: {
+          size?: 'oneThird' | 'half' | 'twoThirds' | 'full';
+          richText: {
+            [k: string]: unknown;
+          }[];
+          enableLink?: boolean;
+          link: {
+            type?: 'reference' | 'custom';
+            newTab?: boolean;
+            reference: {
+              value: string | Page;
+              relationTo: 'pages';
+            };
+            url: string;
+            label: string;
+            appearance?: 'default' | 'primary' | 'secondary';
+          };
+          id?: string;
+        }[];
+        id?: string;
+        blockName?: string;
+        blockType: 'content';
+      }
+    | {
+        mediaBlockBackgroundColor?: 'white' | 'black';
+        position?: 'default' | 'fullscreen';
+        media: string | Media;
+        id?: string;
+        blockName?: string;
+        blockType: 'mediaBlock';
+      }
+    | {
+        introContent: {
+          [k: string]: unknown;
+        }[];
+        populateBy?: 'collection' | 'selection';
+        relationTo?: 'products';
+        categories?: string[] | Category[];
+        limit?: number;
+        selectedDocs?:
+          | {
+              value: string;
+              relationTo: 'products';
+            }[]
+          | {
+              value: Product;
+              relationTo: 'products';
+            }[];
+        populatedDocs?:
+          | {
+              value: string;
+              relationTo: 'products';
+            }[]
+          | {
+              value: Product;
+              relationTo: 'products';
+            }[];
+        populatedDocsTotal?: number;
+        id?: string;
+        blockName?: string;
+        blockType: 'archive';
+      }
+  )[];
   categories?: string[] | Category[];
   slug?: string;
   skipSync?: boolean;

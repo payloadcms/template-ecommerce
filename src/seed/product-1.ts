@@ -2,6 +2,9 @@ import { Product } from "../payload-types";
 
 export const product1: Partial<Product> = {
   "title": "Cotton T-Shirt",
+  stripeProductID: "prod_NGzfjFJYMHIpN4",
+  "slug": "cotton-t",
+  "_status": "published",
   "layout": [
     {
       blockType: "content",
@@ -30,12 +33,9 @@ export const product1: Partial<Product> = {
       ]
     },
   ],
-  stripeProductID: "prod_NBPZCQwrQXcngM",
-  "slug": "cotton-t",
-  "_status": "published",
   "meta": {
     "title": "Cotton T-Shirt",
-    "description": "One-time purchase for a physical product",
+    "description": "One-time purchase for a product or service",
     "image": "{{SHIRTS_IMAGE}}"
   }
 }
