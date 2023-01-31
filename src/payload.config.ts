@@ -17,9 +17,10 @@ import { priceUpdated } from './stripe/webhooks/priceUpdated';
 import { CartPage } from './globals/CartPage';
 import { Settings } from './globals/Settings';
 import { invoiceCreatedOrUpdated } from './stripe/webhooks/invoiceCreatedOrUpdated';
+import { checkout } from './routes/checkout';
 
 const generateTitle: GenerateTitle = () => {
-  return 'hi'
+  return 'My Store'
 }
 
 const mockModulePath = path.resolve(__dirname, './emptyModuleMock.js')
@@ -69,6 +70,13 @@ export default buildConfig({
   csrf: [
     process.env.PAYLOAD_PUBLIC_APP_URL || ''
   ].filter(Boolean),
+  endpoints: [
+    {
+      path: '/checkout',
+      method: 'post',
+      handler: checkout
+    }
+  ],
   plugins: [
     stripePlugin({
       stripeSecretKey: process.env.STRIPE_SECRET_KEY,
