@@ -11,18 +11,26 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
 // To do this, we loop through the items in the cart and create a line-item in the invoice for each cart item
 // Once completed, we pass the `client_secret` of the PaymentIntent back to the client which can process the payment
 export const checkout: PayloadHandler = async (req, res) => {
-  try {
-    let stripeCustomerID = req.user?.stripeCustomerID;
+  const { user, payload } = req;
 
-    if (req.body?.cart?.items.length === 0) {
-      throw new Error('No items in cart');
-    }
+  const fullUser = await payload.findByID({
+    collection: 'users',
+    id: user?.id,
+  })
+
+  if (!fullUser) {
+    res.status(404).json({ error: 'User not found' });
+    return;
+  }
+
+  try {
+    let stripeCustomerID = fullUser?.stripeCustomerID;
 
     // lookup user in Stripe and create one if not found
     if (!stripeCustomerID) {
       const customer = await stripe.customers.create({
-        email: req.body?.user?.email,
-        name: req.body?.user?.name,
+        email: fullUser?.email,
+        name: fullUser?.name,
       })
       stripeCustomerID = customer.id;
     }
@@ -36,8 +44,14 @@ export const checkout: PayloadHandler = async (req, res) => {
       days_until_due: 30,
     });
 
+    const hasItems = fullUser?.cart?.items?.length > 0;
+
+    if (!hasItems) {
+      throw new Error('No items in cart');
+    }
+
     // for each item in cart, create an invoice item and send the invoice
-    await Promise.all(req.body?.cart?.items.map(
+    await Promise.all(fullUser?.cart?.items?.map(
       async (item: User['cart']['items'][0]) => {
       const { product } = item;
 
@@ -52,13 +66,14 @@ export const checkout: PayloadHandler = async (req, res) => {
       });
 
       if (prices.data.length === 0) {
-        throw new Error('No price found');
+        res.status(404).json({ error: 'There are no items in your cart to checkout with' });
+        return
       }
 
       const price = prices.data[0];
 
       // price.type === 'recurring' is a subscription, which uses the Subscriptions API
-      // that is out of scope for this example
+      // that is out of scope for this boilerplate
       if (price.type === 'one_time') {
         return await stripe.invoiceItems.create({
           customer: stripeCustomerID,

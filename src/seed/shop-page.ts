@@ -15,7 +15,7 @@ export const shopPage = {
         type: "p",
         children: [
           {
-            text: "This page displays all or some of the products of your store—ranging from goods and services to digital assets and subscriptions. Each product is complete with a dynamic page layout builder for a completely custom shopping experience that you fully control from the CMS."
+            text: "This page displays all or some of the products of your store—ranging from goods and services to digital assets and gated content. Each product is complete with a dynamic page layout builder for a completely custom shopping experience that you fully control from the CMS."
           }
         ]
       }

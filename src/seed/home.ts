@@ -2,6 +2,8 @@ import { Page } from "../payload-types";
 
 export const home: Partial<Page> = {
   "title": "Home",
+  "slug": "home",
+  "_status": "published",
   "hero": {
     "type": "highImpact",
     "richText": [
@@ -209,7 +211,7 @@ export const home: Partial<Page> = {
             {
               "children": [
                 {
-                  "text": "Lorem ipsum"
+                  "text": "CMS"
                 }
               ],
               "type": "h3"
@@ -217,7 +219,21 @@ export const home: Partial<Page> = {
             {
               "children": [
                 {
-                  "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
+                  "text": "Instant setup with "
+                },
+                {
+                  "type": "link",
+                  "linkType": "custom",
+                  url: 'https://github.com/payloadcms/ecommerce-example-cms',
+                  "newTab": true,
+                  "children": [
+                    {
+                      "text": "Payload CMS"
+                    }
+                  ]
+                },
+                {
+                  text: " tailored specifically for this front-end."
                 }
               ]
             }
@@ -237,7 +253,7 @@ export const home: Partial<Page> = {
     {
       "mediaBlockBackgroundColor": "white",
       "position": "default",
-      "media": "{{SHIRTS_IMAGE}}",
+      "media": "{{COURSE_IMAGE}}",
       "blockName": "Media Block",
       "blockType": "mediaBlock"
     },
@@ -278,8 +294,6 @@ export const home: Partial<Page> = {
       "blockType": "cta"
     }
   ],
-  "slug": "home",
-  "_status": "published",
   "meta": {
     "title": "Store ABC",
     "description": "E-Commerce Store with Payload + Next.js",

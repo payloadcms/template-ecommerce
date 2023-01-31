@@ -1,6 +1,9 @@
-import { CartPage } from "../payload-types";
+import { Page } from "../payload-types";
 
-export const cartPage: Partial<CartPage> = {
+export const cartPage: Partial<Page> = {
+  "title": "Cart",
+  "slug": "cart",
+  "_status": "published",
   hero: {
     type: "lowImpact",
     links: [],

@@ -95,7 +95,11 @@ Logged-in users can have their shopping carts saved to their profiles as they sh
 
 Payload itself handles no currency exchange. All payments are processed and billed using [Stripe](https://stripe.com). This means you must have your Stripe account via an API key (see the [Stripe](#stripe) section for how to do this). When you create a product in Payload, you must link it to a Stripe product using the pre-populated select field in the products sidebar. This field fetches all available products in the background and displays them for you to select. Once set, prices are automatically synced between Stripe and Payload. This means that if you change the price of a product in Stripe, it will automatically update in Payload. This is done by using the [Stripe Webhook](https://stripe.com/docs/webhooks) to listen for price updates and update the product in Payload, powered by the official [Payload Stripe Plugin](https://github.com/payloadcms/plugin-stripe).
 
-After completing checkout on your front-end, Stripe fires a webhook that Payload picks-up and uses to generate a record of the order.
+After completing checkout on your front-end, Stripe fires a webhook that Payload picks up and uses to generate a record of the order.
+
+## Checkout
+
+A custom endpoint is open at `/api/checkout` which initiates the checkout process. This endpoint creates a `PaymentIntent` with the items in the cart using the Stripe's Invoices API. An invoice is first drafted, then each item of your cart is appended as a line-item of that invoice, associated with its relative `stripeID`. We also lookup the original product price in Stripe and recalculate the total price of the invoice on the server for accuracy and security. Once completed, we pass the `client_secret` of the payment intent back to the client which can continue to process the payment.
 
 ## Paywall
 

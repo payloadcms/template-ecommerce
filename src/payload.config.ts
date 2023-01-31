@@ -14,7 +14,6 @@ import seo from '@payloadcms/plugin-seo';
 import { GenerateTitle } from '@payloadcms/plugin-seo/types';
 import { productUpdated } from './stripe/webhooks/productUpdated';
 import { priceUpdated } from './stripe/webhooks/priceUpdated';
-import { CartPage } from './globals/CartPage';
 import { Settings } from './globals/Settings';
 import { invoiceCreatedOrUpdated } from './stripe/webhooks/invoiceCreatedOrUpdated';
 import { checkout } from './routes/checkout';
@@ -54,8 +53,7 @@ export default buildConfig({
   globals: [
     Settings,
     Header,
-    Footer,
-    CartPage
+    Footer
   ],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
