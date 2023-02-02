@@ -92,7 +92,7 @@ export const checkout: PayloadHandler = async (req, res) => {
     // return the `client_secret` of the payment intent to the client
     res.send({ client_secret: paymentIntent.client_secret })
   } catch (error) {
-    console.error(error.message);
+    payload.logger.error(error.message);
     res.json({ error: error.message });
   }
 }

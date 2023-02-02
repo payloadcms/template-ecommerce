@@ -1,13 +1,21 @@
+import { StripeWebhookHandler } from "@payloadcms/plugin-stripe/dist/types";
+import Stripe from "stripe";
+
 const logs = false;
 
-export const priceUpdated = async (args) => {
+export const priceUpdated: StripeWebhookHandler<{
+  data: {
+    object: Stripe.Price;
+  }
+}> = async (args) => {
   const {
     event,
     payload,
     stripe
   } = args;
 
-  const stripeProductID = event.data.object.product;
+  const stripeProduct = event.data.object.product;
+  const stripeProductID = typeof stripeProduct === 'string' ? stripeProduct : stripeProduct.id;
 
   if (logs) payload.logger.info(`🪝 A price was created or updated in Stripe on product ID: ${stripeProductID}, syncing to Payload...`);
 
@@ -36,7 +44,7 @@ export const priceUpdated = async (args) => {
     payload.logger.error(`Error finding product ${error?.message}`);
   }
 
-  try { 
+  try {
     // find all stripe prices that are assigned to "payloadProductID"
     const stripePrices = await stripe.prices.list({
       product: stripeProductID,

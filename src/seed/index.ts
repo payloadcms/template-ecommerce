@@ -16,7 +16,8 @@ export const seed = async (payload: Payload) => {
       email: 'dev@payloadcms.com',
       name: 'Payload Dev',
       password: 'test',
-      roles: ['admin']
+      roles: ['admin'],
+      stripeCustomerID: 'cus_NHipnQo3MDPVkq'
     }
   });
 

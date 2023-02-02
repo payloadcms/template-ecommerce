@@ -8,16 +8,14 @@ export const checkUserPurchases: FieldAccess<Product> = async ({ req: { user, pa
     return false
   }
 
- const fullUser: User = await payload.findByID({
-    collection: 'users',
-    id: typeof user === 'object' ? user.id : user,
-  })
+  if (doc) {
+    const fullUser: User = await payload.findByID({
+      collection: 'users',
+      id: typeof user === 'object' ? user.id : user,
+    })
 
-  if (fullUser && typeof fullUser === 'object') {
-    const { purchases } = fullUser;
-    const hasPurchased = purchases?.some((purchase) => doc.id === (typeof purchase === 'object' ? purchase.id : purchase))
-    if (hasPurchased) {
-      return true
+    if (fullUser && typeof fullUser === 'object' && fullUser?.purchases?.length > 0) {
+      return fullUser.purchases?.some((purchase) => doc.id === (typeof purchase === 'object' ? purchase.id : purchase))
     }
   }
 

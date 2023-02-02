@@ -1,8 +1,14 @@
+import { StripeWebhookHandler } from "@payloadcms/plugin-stripe/dist/types";
+import Stripe from "stripe";
 import { Order } from "../../payload-types";
 
 const logs = true;
 
-export const invoiceCreatedOrUpdated = async (args) => {
+export const invoiceCreatedOrUpdated: StripeWebhookHandler<{
+  data: {
+    object: Stripe.Invoice;
+  }
+}> = async (args) => {
   const {
     event,
     payload,
@@ -11,17 +17,24 @@ export const invoiceCreatedOrUpdated = async (args) => {
 
   const {
     id: stripeInvoiceID,
-    payment_intent: stripePaymentIntentID,
-    items: invoiceItems,
-    customer: invoiceCustomerID
+    payment_intent,
+    lines: invoiceItems,
+    customer,
+    customer_email: invoiceCustomerEmail,
+    customer_name: invoiceCustomerName
   } = event.data.object;
+
+  const stripePaymentIntentID = typeof payment_intent === 'string' ? payment_intent : payment_intent?.id;
+  const invoiceCustomerID = typeof customer === 'string' ? customer : customer?.id;
 
   if (logs) payload.logger.info(`🪝 An invoice was created or updated in Stripe, syncing to Payload...`);
 
   let existingOrder: Order;
 
   if (stripeInvoiceID) {
-    existingOrder = await payload.find({
+    const {
+      docs: [order]
+    } = await payload.find({
       collection: 'orders',
       where: {
         stripeInvoiceID: {
@@ -29,6 +42,10 @@ export const invoiceCreatedOrUpdated = async (args) => {
         }
       }
     })
+
+    if (order) {
+      existingOrder = order;
+    }
   }
 
   const users = await payload.find({
@@ -57,36 +74,40 @@ export const invoiceCreatedOrUpdated = async (args) => {
 
         const [product] = productQuery.docs;
 
+        const stripeProductID = typeof item.price.product === 'string' ? item.price.product : item.price.product?.id;
+
         return {
-          product: product.id,
-          title: product.title,
-          priceJSON: product.priceJSON,
-          stripeProductID: product.stripeProductID,
+          product: product?.id || null,
+          title: product?.title || null,
+          priceJSON: JSON.stringify(item.price),
+          stripeProductID,
           quantity: item.quantity
         }
       }));
 
-      const orderData = {
+      const orderData: Partial<Order> = {
         stripeInvoiceID,
         stripePaymentIntentID,
-        createdBy: {
-          user: user.id,
-          name: user.name,
-          email: user.email,
-          stripeCustomerID: user.stripeCustomerID
+        orderedBy: {
+          user: user?.id || null,
+          name: invoiceCustomerName,
+          email: invoiceCustomerEmail,
+          stripeCustomerID: invoiceCustomerID
         },
         products: products,
       }
 
       if (existingOrder) {
-        // update order
+        if (logs) payload.logger.info(`🪝 Updating existing order...`);
+
         await payload.update({
           collection: 'orders',
           id: existingOrder.id,
           data: orderData
         });
       } else {
-        // create order
+        if (logs) payload.logger.info(`🪝 Creating new order...`);
+
         await payload.create({
           collection: 'orders',
           data: orderData

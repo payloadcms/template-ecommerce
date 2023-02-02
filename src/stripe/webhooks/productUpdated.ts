@@ -1,6 +1,13 @@
+import { StripeWebhookHandler } from "@payloadcms/plugin-stripe/dist/types";
+import Stripe from "stripe";
+
 const logs = false;
 
-export const productUpdated = async (args) => {
+export const productUpdated: StripeWebhookHandler<{
+  data: {
+    object: Stripe.Product;
+  }
+}> = async (args) => {
   const {
     event,
     payload,
@@ -42,7 +49,7 @@ export const productUpdated = async (args) => {
 
   let prices;
 
-  try { 
+  try {
     if (logs) payload.logger.info(`- Looking up all prices associated with this product...`);
 
     // find all stripe prices that are assigned to "payloadProductID"

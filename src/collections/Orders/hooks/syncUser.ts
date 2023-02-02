@@ -3,32 +3,47 @@ import { Order, User } from "../../../payload-types";
 
 // sync user purchases and delete their cart when they place an order
 
-export const syncUser: AfterChangeHook<Order> = async ({ req, doc, operation }) => {
-    if (operation === 'create') {
-        const { orderedBy, products } = doc;
-        const { user } = orderedBy;
+export const syncUser: AfterChangeHook<Order> = async ({
+  req,
+  doc,
+  operation
+ }) => {
+  const {payload} = req;
+  const { orderedBy, products } = doc;
+  const { user } = orderedBy;
 
-        const fullUser: User = await req.payload.findByID({
-          collection: 'users',
-          id: typeof user === 'object' ? user.id : user,
-        })
+  const orderedByID = typeof user === 'object' ? user.id : user;
 
-        if (fullUser && typeof fullUser === 'object') {
-          const { purchases } = fullUser;
+  if (!orderedByID) {
+    payload.logger.error('Error in `syncUser` hook: No user ID found on order');
+  }
 
-            await req.payload.update({
-              collection: 'users',
-              id: fullUser.id,
-              data: {
-                purchases: [
-                  ...purchases.map((purchase) => typeof purchase === 'object' ? purchase.id : purchase),
-                  ...products.map(({ product } ) => typeof product === 'object' ? product.id : product),
-                ],
-                cart: {
-                  items: []
-                }
-              }
-            });
+  const fullUser: User = await req.payload.findByID({
+    collection: 'users',
+    id: orderedByID
+  })
+
+  if (fullUser && typeof fullUser === 'object') {
+    const { purchases } = fullUser;
+
+    const allIDs = [
+      ...purchases?.map((purchase) => typeof purchase === 'object' ? purchase.id : purchase) || [],
+      ...products?.map(({ product } ) => typeof product === 'object' ? product.id : product) || [],
+    ]
+
+    const purchasedProductIDs = allIDs.filter((id, index) => allIDs.indexOf(id) === index);
+
+    await req.payload.update({
+      collection: 'users',
+      id: fullUser.id,
+      data: {
+        // let Payload API resolve any duplicate IDs
+        purchases: purchasedProductIDs,
+        // clear their cart
+        cart: {
+          items: []
         }
-    }
+      }
+    });
+  }
 }
