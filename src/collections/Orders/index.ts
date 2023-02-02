@@ -1,7 +1,7 @@
 import { CollectionConfig } from 'payload/types';
 import { admins } from '../../access/admins';
 import { adminsAndOrderedBy } from './access/adminsAndOrderedBy';
-import { syncUserPurchases } from './hooks/syncUserPurchases';
+import { syncUser } from './hooks/syncUser';
 
 const Orders: CollectionConfig = {
   slug: 'orders',
@@ -19,7 +19,7 @@ const Orders: CollectionConfig = {
   },
   hooks: {
     afterChange: [
-      syncUserPurchases
+      syncUser
     ]
   },
   timestamps: true,

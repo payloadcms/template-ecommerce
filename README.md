@@ -58,7 +58,7 @@ The Payload config is tailored to the needs of an e-commerce business. It is pre
 Basic role-based access control is setup using to determine what users can and cannot do based on their roles, which are:
 
 - `admin`: They can access the Payload admin panel to manage your store. They can see all data and make all operations.
-- `customer`: They cannot access the Payload admin panel and have a limited access basd on thier user (see below).
+- `customer`: They cannot access the Payload admin panel and have a limited access based on their user (see below).
 
 This applies to each collection in the following ways:
 

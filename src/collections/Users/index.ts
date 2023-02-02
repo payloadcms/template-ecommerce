@@ -71,28 +71,32 @@ export const UserFields: CollectionConfig['fields'] = [
           {
             name: 'quantity',
             type: 'number',
+            min: 1,
             admin: {
-              step: 1,
+              step: 1
             }
           },
         ]
       },
-      {
-        name: 'createdOn',
-        label: 'Created On',
-        type: 'date',
-        admin: {
-          readOnly: true
-        }
-      },
-      {
-        name: 'lastModified',
-        label: 'Last Modified',
-        type: 'date',
-        admin: {
-          readOnly: true
-        }
-      },
+      // If you wanted to maintain a 'created on'
+      // or 'last modified' date for the cart
+      // you could do so here:
+      // {
+      //   name: 'createdOn',
+      //   label: 'Created On',
+      //   type: 'date',
+      //   admin: {
+      //     readOnly: true
+      //   }
+      // },
+      // {
+      //   name: 'lastModified',
+      //   label: 'Last Modified',
+      //   type: 'date',
+      //   admin: {
+      //     readOnly: true
+      //   }
+      // },
     ],
   },
   {

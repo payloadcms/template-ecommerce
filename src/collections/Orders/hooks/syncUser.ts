@@ -1,7 +1,9 @@
 import { AfterChangeHook } from "payload/dist/collections/config/types";
 import { Order, User } from "../../../payload-types";
 
-export const syncUserPurchases: AfterChangeHook<Order> = async ({ req, doc, operation }) => {
+// sync user purchases and delete their cart when they place an order
+
+export const syncUser: AfterChangeHook<Order> = async ({ req, doc, operation }) => {
     if (operation === 'create') {
         const { orderedBy, products } = doc;
         const { user } = orderedBy;
@@ -21,7 +23,10 @@ export const syncUserPurchases: AfterChangeHook<Order> = async ({ req, doc, oper
                 purchases: [
                   ...purchases.map((purchase) => typeof purchase === 'object' ? purchase.id : purchase),
                   ...products.map(({ product } ) => typeof product === 'object' ? product.id : product),
-                ]
+                ],
+                cart: {
+                  items: []
+                }
               }
             });
         }
