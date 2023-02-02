@@ -434,8 +434,6 @@ export interface User {
       quantity?: number;
       id?: string;
     }[];
-    createdOn?: string;
-    lastModified?: string;
   };
   skipSync?: boolean;
   email?: string;
@@ -458,7 +456,7 @@ export interface Order {
     email?: string;
     stripeCustomerID?: string;
   };
-  products: {
+  items: {
     product?: string | Product;
     title?: string;
     priceJSON?: string;

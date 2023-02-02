@@ -54,7 +54,7 @@ const Orders: CollectionConfig = {
       ]
     },
     {
-      name: 'products',
+      name: 'items',
       type: 'array',
       admin: {
         readOnly: true,

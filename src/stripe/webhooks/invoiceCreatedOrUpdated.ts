@@ -62,7 +62,7 @@ export const invoiceCreatedOrUpdated: StripeWebhookHandler<{
   try {
     if (invoiceItems) {
       // find all payload products that are assigned to "stripeProductID"
-      const products = await Promise.all(invoiceItems.data.map(async (item) => {
+      const items = await Promise.all(invoiceItems.data.map(async (item) => {
         const productQuery = await payload.find({
           collection: 'products',
           where: {
@@ -94,7 +94,7 @@ export const invoiceCreatedOrUpdated: StripeWebhookHandler<{
           email: invoiceCustomerEmail,
           stripeCustomerID: invoiceCustomerID
         },
-        products: products,
+        items: items,
       }
 
       if (existingOrder) {

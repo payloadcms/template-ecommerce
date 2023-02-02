@@ -9,7 +9,7 @@ export const syncUser: AfterChangeHook<Order> = async ({
   operation
  }) => {
   const {payload} = req;
-  const { orderedBy, products } = doc;
+  const { orderedBy, items } = doc;
   const { user } = orderedBy;
 
   const orderedByID = typeof user === 'object' ? user.id : user;
@@ -28,7 +28,7 @@ export const syncUser: AfterChangeHook<Order> = async ({
 
     const allIDs = [
       ...purchases?.map((purchase) => typeof purchase === 'object' ? purchase.id : purchase) || [],
-      ...products?.map(({ product } ) => typeof product === 'object' ? product.id : product) || [],
+      ...items?.map(({ product } ) => typeof product === 'object' ? product.id : product) || [],
     ]
 
     const purchasedProductIDs = allIDs.filter((id, index) => allIDs.indexOf(id) === index);
