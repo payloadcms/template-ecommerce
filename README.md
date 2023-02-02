@@ -1,76 +1,76 @@
 # Payload E-Commerce Boilerplate
 
-A boilerplate for [Payload CMS](https://github.com/payloadcms/payload) to power e-commerce businesses that sell one-time products or services. There is a complete front-end website for this boilerplate which can be found [here](https://github.com/payloadcms/ecommerce-example-website).
+A boilerplate for [Payload CMS](https://github.com/payloadcms/payload) to power e-commerce businesses. There is a complete front-end website for this boilerplate which can be found [here](https://github.com/payloadcms/ecommerce-example-website).
 
 Core features:
 
-- [Pre-configured Payload config](#config)
-- [Customer authentication](#users)
-- [Role-based access control](#role-based-access-control)
-- [Shopping cart](#shopping-cart)
+- [Pre-configured Payload Config](#how-it-works)
+- [Authentication](#users)
+- [Access Control](#access-control)
+- [Shopping Cart](#shopping-cart)
 - [Checkout](#checkout)
 - [Paywall](#paywall)
-- [Layout builder](#layout-builder)
+- [Layout Builder](#layout-builder)
 - [SEO](#seo)
 
-## Config
+## How it works
 
-The Payload config is tailored to the needs of an e-commerce business. It is pre-configured in the following way:
+The Payload config is tailored specifically to the needs of an e-commerce business. It is pre-configured in the following ways:
 
 ### Collections
 
 - #### Users
 
-  Users encompass both admins and customers based on the value of their `roles` field. Only admins can access your admin panel to manage your store. Customers can authenticate on your front-end to create [shopping carts](#shopping-cart) and place [orders](#rders), but have limited access to the system. See [role based access control](#role-based-access-control) for more details.
+  Users are auth-enabled and encompass both admins and customers based on the value of their `roles` field. Only `admins` can access your admin panel to manage your store, whereas `customers` can authenticate on your front-end to create [shopping carts](#shopping-cart) and place [orders](#orders)—but have limited access to the platform, see [access control](#access-control) for more details.
 
 - #### Products
 
-  Each product is linked to Stripe via a select field that is dynamically populated in the products sidebar. This field fetches all available products in the background and displays them as options. Once a product has been selected, prices get automatically synced between Stripe and Payload. All products are page-builder enabled, so you can generate unique pages for each product using layout-building blocks. They can also [paywall their content](#paywall).
+  Each product is linked to Stripe via a select field that is dynamically populated in the sidebar. This field fetches all available products in the background and displays them as options. Once a product has been selected, prices get automatically synced between Stripe and Payload. All products are layout-builder enabled so you can generate unique pages for each product using layout-building blocks, see [Layout Builder](#layout-builder) for more details. Products can also [paywall their content](#paywall).
 
 - #### Orders
 
-  A static copy of customer and product data at the time of the order, because customers and products are subject to change over time.
+  When an order is placed in Stripe, a webhook is fired that Payload listens for. This webhook creates a new order in Payload with the same data as the invoice. See [Stripe Integration](#stripe-integration) for more details.
 
 - #### Pages
 
-  An arbitrary page of dynamic content using layout building blocks, i.e. home page.
+  All pages are layout-builder enabled so you can generate unique layouts for each page using layout-building blocks, see [Layout Builder](#layout-builder) for more details.
 
 - #### Media
 
-  An uploads-enabled collection used by products and pages.
+  This is the uploads-enabled collection used by products and page to contain media, etc.
 
 - #### Categories
 
-  A taxonomy used to group products together. Categories can be nested inside of one another, for example "Shirts > Red". See [Payload Nested Docs Plugin](https://github.com/payloadcms/plugin-nested-docs) for more details.
+  A taxonomy used to group products together. Categories can be nested inside of one another, for example "Shirts > Red". See the official [Payload Nested Docs Plugin](https://github.com/payloadcms/plugin-nested-docs) for more details.
 
 ### Globals
 
 - `Header`
 
-  The data required by the header on your front-end, i.e. an array of nav links.
+  The data required by the header on your front-end, i.e. nav links, etc.
 
 - `Footer`
 
-  Same as above but for the footer.
+  Same as above but for the footer of your site.
 
 ## Access control
 
-Basic role-based access control is setup using to determine what users can and cannot do based on their roles, which are:
+Basic role-based access control is setup to determine what users can and cannot do based on their roles, which are:
 
 - `admin`: They can access the Payload admin panel to manage your store. They can see all data and make all operations.
-- `customer`: They cannot access the Payload admin panel and have a limited access based on their user (see below).
+- `customer`: They cannot access the Payload admin panel and have a limited access to operations based on their user (see below).
 
 This applies to each collection in the following ways:
 
 - `users`: Only admins and the user themselves can access their profile. Anyone can create a user but only admins can delete users.
 - `orders`: Only admins and the user who placed the order can access it. Once placed, orders cannot be edited or deleted.
-- `products`: Everyone can access products, but only admins can create, update, or delete them. Products with a [paywall](#paywall) may also have content that is only accessible by customers who have purchased the product.
+- `products`: Everyone can access products, but only admins can create, update, or delete them. Paywall-enabled products may also have content that is only accessible by users who have purchased the product. See [Paywall](#paywall) for more details.
 
-See [Payload Access Control](https://payloadcms.com/docs/access-control/overview#access-control) for more details on how to extend this functionality.
+For more details on how to extend this functionality, see the [Payload Access Control](https://payloadcms.com/docs/access-control/overview#access-control) docs.
 
 ## Shopping cart
 
-Logged-in users can have their shopping carts saved to their profiles as they shop. This way they can continue shopping at a later date or on another device. When not logged in, the cart can be saved to local storage and synced to Payload upon logging in. A complete front-end solution for this can be found [here](https://github.com/payloadcms/ecommerce-example-website). It works by maintaining a `cart` field on the `user`:
+Logged-in users can have their shopping carts saved to their profiles as they shop. This way they can continue shopping at a later date or on another device. When not logged in, the cart can be saved to local storage and synced to Payload on the next login. This works by maintaining a `cart` field on the `user`:
 
 ```ts
 {
@@ -91,19 +91,34 @@ Logged-in users can have their shopping carts saved to their profiles as they sh
 }
 ```
 
+A complete front-end solution for this can be found [here](https://github.com/payloadcms/ecommerce-example-website).
+
 ## Stripe integration
 
-Payload itself handles no currency exchange. All payments are processed and billed using [Stripe](https://stripe.com). This means you must have your Stripe account via an API key (see the [Stripe](#stripe) section for how to do this). When you create a product in Payload, you must link it to a Stripe product using the pre-populated select field in the products sidebar. This field fetches all available products in the background and displays them for you to select. Once set, prices are automatically synced between Stripe and Payload. This means that if you change the price of a product in Stripe, it will automatically update in Payload. This is done by using the [Stripe Webhook](https://stripe.com/docs/webhooks) to listen for price updates and update the product in Payload, powered by the official [Payload Stripe Plugin](https://github.com/payloadcms/plugin-stripe).
+Payload itself handles no currency exchange. All payments are processed and billed using [Stripe](https://stripe.com). This means you must have access to a Stripe account via an API key, see [Connect Stripe](#connect-stripe) for how to get one. When you create a product in Payload that wish to sell, it must be connected to a Stripe product by selecting one from the field in the products sidebar. This field fetches all available products in the background and displays them as options, see [Products](#products) for more details. Once set, data is automatically synced between the two platforms in the following ways:
 
-After completing checkout on your front-end, Stripe fires a webhook that Payload picks up and uses to generate a record of the order.
+1. Stripe to Payload using [Stripe Webhooks](https://stripe.com/docs/webhooks):
+
+   - `invoice.created`
+   - `invoice.updated`
+   - `product.created`
+   - `product.updated`
+   - `price.updated`
+
+1. Payload to Stripe using [Payload Hooks](https://payloadcms.com/docs/hooks/overview):
+   - `product.create`
+   - `product.update`
+   - `product.delete`
+
+For more details on how to extend this functionality, see the the official [Payload Stripe Plugin](https://github.com/payloadcms/plugin-stripe).
 
 ## Checkout
 
-A custom endpoint is open at `/api/checkout` which initiates the checkout process. This endpoint creates a `PaymentIntent` with the items in the cart using the Stripe's Invoices API. An invoice is first drafted, then each item of your cart is appended as a line-item of that invoice, associated with its relative `stripeID`. We also lookup the original product price in Stripe and recalculate the total price of the invoice on the server for accuracy and security. Once completed, we pass the `client_secret` of the payment intent back to the client which can continue to process the payment.
+A custom endpoint is opened at `/api/checkout` which initiates the checkout process. This endpoint creates a [`PaymentIntent`](https://stripe.com/docs/payments/payment-intents) with the items in the cart using the Stripe's [Invoices API](https://stripe.com/docs/api/invoices). First, an invoice is drafted, then each item in your cart is appended as a line-item to the invoice. The total price is recalculated on the server to ensure accuracy and security, and once completed, passes the `client_secret` back in the response for your front-end to finalize the payment.
 
 ## Paywall
 
-Products can optionally gate content or assets behind a paywall. This will require the product to be purchased before it's resources are accessible. To do this, we add a `paywall` field to the `product` collection with `read` access control to check for associated purchases on each request. The purchases field is maintained each time an order is placed with a reference to the product. With this pattern you can adjust access through the paywall without adjusting orders themselves.
+Products can optionally gate content or assets behind a paywall. This will require the product to be purchased before it's resources are accessible. To do this, we add a `paywall` field to the `product` collection with `read` access control to check for associated purchases on each request. A `purchases` field is maintained on each user to determine their access which can be manually adjusted as needed.
 
 ```ts
 {
@@ -121,7 +136,7 @@ Products can optionally gate content or assets behind a paywall. This will requi
 
 ## Layout builder
 
-Products and pages can be built using a layout builder. This allows you to create unique layouts for each product or page. A complete front-end solution for this can be found [here](https://github.com/payloadcms/ecommerce-example-website). This boilerplate comes pre-configured with the following layout building blocks:
+Products and pages can be built using a powerful layout builder. This allows you to create unique layouts for each product or page. This boilerplate comes pre-configured with the following layout building blocks:
 
 - Hero
 - Content
@@ -129,9 +144,11 @@ Products and pages can be built using a layout builder. This allows you to creat
 - Call To Action
 - Archive
 
+A complete front-end solution for this can be found [here](https://github.com/payloadcms/ecommerce-example-website).
+
 ## SEO
 
-This boilerplate comes pre-configured with the official [Payload SEO Plugin](http://payloadcms.com/) to manage product and page SEO data. A complete front-end solution for this can be found [here](https://github.com/payloadcms/ecommerce-example-website).
+This boilerplate comes pre-configured with the official [Payload SEO Plugin](http://payloadcms.com/) for complete SEO control. A front-end solution for this can be found [here](https://github.com/payloadcms/ecommerce-example-website).
 
 ## Development
 
@@ -142,9 +159,9 @@ To spin up the boilerplate, follow these steps:
 1.  Now open `http://localhost:8000/admin` in your browser
 1.  Create your first admin user using the form on the page
 
-That's it! Changes made in `./src` will be reflected in your app. You can optionally seed the database with a few products and pages, more details on that [here](#seed).
+That's it! Changes made in `./src` will be reflected in your app—but your database is blank and your app is not yet connected to Stripe, more details on that [here](#stripe). You can optionally seed the database with a few products and pages, more details on that [here](#seed).
 
-### Stripe
+### Connect Stripe
 
 To integrate with Stripe, follow these steps:
 
@@ -162,6 +179,7 @@ To integrate with Stripe, follow these steps:
    ```bash
    STRIPE_WEBHOOKS_ENDPOINT_SECRET=
    ```
+1. Reboot Payload to ensure that Stripe connects and the webhooks are registered.
 
 See the official [Payload Stripe Plugin](https://github.com/payloadcms/plugin-stripe) for more details.
 
