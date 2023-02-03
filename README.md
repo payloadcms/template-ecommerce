@@ -25,7 +25,7 @@ The Payload config is tailored specifically to the needs of an e-commerce busine
 
 - #### Products
 
-  Each product is linked to Stripe via a select field that is dynamically populated in the sidebar. This field fetches all available products in the background and displays them as options. Once a product has been selected, prices get automatically synced between Stripe and Payload. All products are layout-builder enabled so you can generate unique pages for each product using layout-building blocks, see [Layout Builder](#layout-builder) for more details. Products can also [paywall their content](#paywall).
+  Each product is linked to Stripe via a select field that is dynamically populated in the sidebar. This field fetches all available products in the background and displays them as options. Once a product has been selected, prices get automatically synced between Stripe and Payload. All products are layout-builder enabled so you can generate unique pages for each product using layout-building blocks, see [Layout Builder](#layout-builder) for more details. Products can also gate their content or digital assets behind a paywall, see [Paywall](#paywall) for more details.
 
 - #### Orders
 
@@ -118,7 +118,7 @@ A custom endpoint is opened at `/api/checkout` which initiates the checkout proc
 
 ## Paywall
 
-Products can optionally gate content or assets behind a paywall. This will require the product to be purchased before it's resources are accessible. To do this, we add a `paywall` field to the `product` collection with `read` access control to check for associated purchases on each request. A `purchases` field is maintained on each user to determine their access which can be manually adjusted as needed.
+Products can optionally gate content or digital assets behind a paywall. This will require the product to be purchased before it's resources are accessible. To do this, we add a `paywall` field to the `product` collection with `read` access control to check for associated purchases on each request. A `purchases` field is maintained on each user to determine their access which can be manually adjusted as needed.
 
 ```ts
 {
