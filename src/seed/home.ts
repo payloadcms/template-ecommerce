@@ -23,7 +23,7 @@ export const home: Partial<Page> = {
           {
             "type": "link",
             "linkType": "custom",
-            "url": "https://github.com/payloadcms/template-ecommerce-website",
+            "url": "https://github.com/payloadcms/template-ecommerce-nextjs",
             "newTab": true,
             "children": [
               {

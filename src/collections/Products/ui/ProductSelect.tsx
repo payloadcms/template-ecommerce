@@ -33,7 +33,7 @@ export const ProductSelect: React.FC<TextField> = (props) => {
         const fetchedProducts = data.data.reduce(
           (acc, item) => {
             acc.push({
-              label: item.name,
+              label: item.name || item.id,
               value: item.id,
             })
             return acc
