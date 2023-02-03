@@ -3,6 +3,7 @@ import { admins } from '../../access/admins';
 import { anyone } from '../../access/anyone';
 import adminsAndUser from './access/adminsAndUser';
 import { checkRole } from './checkRole';
+import { createStripeCustomer } from './hooks/createStripeCustomer';
 import { loginAfterCreate } from './hooks/loginAfterCreate';
 import { protectRolesBeforeCreate } from './hooks/protectRolesBeforeCreate';
 import { CustomerSelect } from './ui/CustomerSelect';
@@ -128,6 +129,9 @@ const Users: CollectionConfig = {
     admin: ({ req: { user }}) => checkRole(['admin'], user)
   },
   hooks: {
+    beforeChange: [
+      createStripeCustomer
+    ],
     afterChange: [
       loginAfterCreate
     ],

@@ -35,6 +35,7 @@ export default buildConfig({
         alias: {
           ...config.resolve?.alias,
           [path.resolve(__dirname, 'collections/Products/hooks/beforeChange.ts')]: mockModulePath,
+          [path.resolve(__dirname, 'collections/Users/hooks/createStripeCustomer.ts')]: mockModulePath,
           [path.resolve(__dirname, 'routes/checkout.ts')]: mockModulePath,
           stripe: mockModulePath,
           express: mockModulePath,

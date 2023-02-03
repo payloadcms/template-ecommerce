@@ -106,9 +106,7 @@ Payload itself handles no currency exchange. All payments are processed and bill
    - `price.updated`
 
 1. Payload to Stripe using [Payload Hooks](https://payloadcms.com/docs/hooks/overview):
-   - `product.create`
-   - `product.update`
-   - `product.delete`
+   - `user.create`
 
 For more details on how to extend this functionality, see the the official [Payload Stripe Plugin](https://github.com/payloadcms/plugin-stripe).
 
