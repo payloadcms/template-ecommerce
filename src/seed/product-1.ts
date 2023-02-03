@@ -8,7 +8,7 @@ export const product1: Partial<Product> = {
   "layout": [
     {
       blockType: "content",
-      "contentBackgroundColor": "white",
+      "backgroundColor": "white",
       "columns": [
         {
           size: 'twoThirds',

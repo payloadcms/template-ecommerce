@@ -68,7 +68,7 @@ export interface Page {
         blockType: 'cta';
       }
     | {
-        contentBackgroundColor?: 'white' | 'black';
+        backgroundColor?: 'white' | 'black';
         columns: {
           size?: 'oneThird' | 'half' | 'twoThirds' | 'full';
           richText: {
@@ -211,7 +211,7 @@ export interface Product {
         blockType: 'cta';
       }
     | {
-        contentBackgroundColor?: 'white' | 'black';
+        backgroundColor?: 'white' | 'black';
         columns: {
           size?: 'oneThird' | 'half' | 'twoThirds' | 'full';
           richText: {
@@ -302,7 +302,7 @@ export interface Product {
         blockType: 'cta';
       }
     | {
-        contentBackgroundColor?: 'white' | 'black';
+        backgroundColor?: 'white' | 'black';
         columns: {
           size?: 'oneThird' | 'half' | 'twoThirds' | 'full';
           richText: {

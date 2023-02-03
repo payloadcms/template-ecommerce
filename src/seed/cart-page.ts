@@ -30,7 +30,7 @@ export const cartPage: Partial<Page> = {
   layout: [
     {
       blockType: "content",
-      "contentBackgroundColor": "white",
+      "backgroundColor": "white",
       "columns": [
         {
           size: 'twoThirds',

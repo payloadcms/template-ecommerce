@@ -8,6 +8,7 @@ import { product2 } from './product-2';
 import { product3 } from './product-3';
 import { cartPage } from './cart-page';
 import { courseImage } from './course';
+import { ebookImage } from './ebook';
 
 export const seed = async (payload: Payload) => {
   await payload.create({
@@ -23,12 +24,18 @@ export const seed = async (payload: Payload) => {
 
   const [
     shirtDoc,
-    courseDoc
+    ebookDoc,
+    courseDoc,
   ] = await Promise.all([
     payload.create({
       collection: 'media',
       filePath: path.resolve(__dirname, 'shirts.jpg'),
       data: shirtImage
+    }),
+    payload.create({
+      collection: 'media',
+      filePath: path.resolve(__dirname, 'ebook.jpg'),
+      data: ebookImage
     }),
     payload.create({
       collection: 'media',
@@ -70,7 +77,8 @@ export const seed = async (payload: Payload) => {
     }),
     payload.create({
       collection: 'products',
-      data: JSON.parse(JSON.stringify({...product2, categories: [ebooksCategory.id]})),
+      data: JSON.parse(JSON.stringify({...product2, categories: [ebooksCategory.id]})
+      .replace(/{{EBOOK_IMAGE}}/g, ebookDoc.id)),
     }),
     payload.create({
       collection: 'products',

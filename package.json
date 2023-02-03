@@ -1,6 +1,6 @@
 {
-  "name": "payload-ecommerce-boilerplate",
-  "description": "Payload project created from ts-blank template",
+  "name": "@payloadcms/template-ecommerce",
+  "description": "E-commerce template for Payload CMS",
   "version": "1.0.0",
   "main": "dist/server.js",
   "license": "MIT",

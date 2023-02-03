@@ -23,7 +23,7 @@ export const home: Partial<Page> = {
           {
             "type": "link",
             "linkType": "custom",
-            "url": "https://github.com/payloadcms/ecommerce-example-website",
+            "url": "https://github.com/payloadcms/template-ecommerce-website",
             "newTab": true,
             "children": [
               {
@@ -51,6 +51,16 @@ export const home: Partial<Page> = {
           url: ''
         }
       },
+      {
+        link: {
+          type: 'custom',
+          appearance: 'secondary',
+          reference: null,
+          label: 'View on GitHub',
+          url: 'https://github.com/payloadcms/template-ecommerce',
+          newTab: true
+        }
+      },
     ],
     "media": "{{SHIRTS_IMAGE}}"
   },
@@ -58,7 +68,7 @@ export const home: Partial<Page> = {
     {
       "blockName": "Content Block",
       "blockType": "content",
-      "contentBackgroundColor": "white",
+      "backgroundColor": "white",
       "columns": [
         {
           "size": "oneThird",

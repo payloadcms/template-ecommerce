@@ -8,7 +8,7 @@ export const product3: Partial<Product> = {
   "layout": [
     {
       blockType: "content",
-      "contentBackgroundColor": "white",
+      "backgroundColor": "white",
       "columns": [
         {
           size: 'twoThirds',
@@ -16,8 +16,15 @@ export const product3: Partial<Product> = {
             {
               "children": [
                 {
-                  text: "All content from this point is completely dynamic using custom layout building block configured in the CMS. This can be anything you'd like. Purchase this product to gain access to the gated content behind the paywall."
-                }
+                  text: "All content from this point is completely dynamic using custom layout building block configured in the CMS. This can be anything you'd like."
+                },
+              ]
+            },
+            {
+              "children": [
+                {
+                  text: "Purchase this product to gain access to the gated content behind the paywall which will appear below."
+                },
               ]
             }
           ],
@@ -36,7 +43,7 @@ export const product3: Partial<Product> = {
   paywall: [
     {
       blockType: "content",
-      "contentBackgroundColor": "white",
+      "backgroundColor": "white",
       "columns": [
         {
           size: 'twoThirds',
@@ -44,7 +51,11 @@ export const product3: Partial<Product> = {
             {
               "children": [
                 {
-                  text: "This paywall content and can be anything you'd like. It is only available to users who have purchased this product. If you are seeing this, you have purchased this product."
+                  "text": "This is paywall content!",
+                  "bold": true
+                },
+                {
+                  "text": " This can be anything from additional content and videos to download links and more. It is only available to users who have purchased this product. If you are seeing this, you have purchased this product."
                 }
               ]
             }

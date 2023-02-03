@@ -44,7 +44,7 @@ const columnFields: Field[] = [
 export const Content: Block = {
   slug: 'content',
   fields: [
-    backgroundColor({ overrides: { name: 'contentBackgroundColor' } }),
+    backgroundColor({}),
     {
       name: 'columns',
       type: 'array',

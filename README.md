@@ -1,6 +1,6 @@
-# Payload E-Commerce Boilerplate
+# Payload E-Commerce Template
 
-A boilerplate for [Payload CMS](https://github.com/payloadcms/payload) to power e-commerce businesses. There is a complete front-end website for this boilerplate which can be found [here](https://github.com/payloadcms/ecommerce-example-website).
+A template for [Payload CMS](https://github.com/payloadcms/payload) to power e-commerce businesses. There is a complete front-end website for this template which can be found [here](https://github.com/payloadcms/template-ecommerce-website).
 
 Core features:
 
@@ -91,7 +91,7 @@ Logged-in users can have their shopping carts saved to their profiles as they sh
 }
 ```
 
-A complete front-end solution for this can be found [here](https://github.com/payloadcms/ecommerce-example-website).
+A complete front-end solution for this can be found [here](https://github.com/payloadcms/template-ecommerce-website).
 
 ## Stripe integration
 
@@ -144,11 +144,11 @@ Products and pages can be built using a powerful layout builder. This allows you
 - Call To Action
 - Archive
 
-A complete front-end solution for this can be found [here](https://github.com/payloadcms/ecommerce-example-website).
+A complete front-end solution for this can be found [here](https://github.com/payloadcms/template-ecommerce-website).
 
 ## SEO
 
-This boilerplate comes pre-configured with the official [Payload SEO Plugin](http://payloadcms.com/) for complete SEO control. A front-end solution for this can be found [here](https://github.com/payloadcms/ecommerce-example-website).
+This boilerplate comes pre-configured with the official [Payload SEO Plugin](http://payloadcms.com/) for complete SEO control. A front-end solution for this can be found [here](https://github.com/payloadcms/template-ecommerce-website).
 
 ## Development
 
