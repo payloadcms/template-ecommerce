@@ -8,7 +8,7 @@ export const ProductSelect: React.FC<TextField> = (props) => {
   const [options, setOptions] = React.useState([])
 
   const { value: stripeProductID } = useFormFields(([fields]) => fields[name]);
-  
+
   React.useEffect(() => {
     const getStripeProducts = async () => {
       const productsFetch = await fetch('/api/stripe/rest', {
@@ -26,7 +26,7 @@ export const ProductSelect: React.FC<TextField> = (props) => {
       })
 
       const res = await productsFetch.json()
-      
+
       const { data } = res
 
       if ('data' in data) {
@@ -59,7 +59,7 @@ export const ProductSelect: React.FC<TextField> = (props) => {
       <p style={{marginBottom: '0'}}>
         {typeof label === 'string' ? label : 'Product'}
       </p>
-      <p 
+      <p
         style={{
           marginBottom: '0.75rem',
           color: 'var(--theme-elevation-400)'
@@ -76,13 +76,18 @@ export const ProductSelect: React.FC<TextField> = (props) => {
           </a>
         {'.'}
       </p>
-      <Select 
-        {...props} 
+      <Select
+        {...props}
         label=""
         options={options}
       />
       {stripeProductID && (
-        <div>
+        <div
+          style={{
+            marginTop: '-1rem',
+            marginBottom: '1.5rem',
+          }}
+        >
           <div>
             <span
               className="label"

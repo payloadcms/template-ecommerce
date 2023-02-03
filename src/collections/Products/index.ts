@@ -63,6 +63,7 @@ export const ProductFields: CollectionConfig['fields'] = [
             type: "textarea",
             admin: {
               readOnly: true,
+              hidden: true,
               rows: 10
             }
           },
