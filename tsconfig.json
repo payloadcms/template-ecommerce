@@ -12,7 +12,12 @@
     "skipLibCheck": true,
     "outDir": "./dist",
     "rootDir": "./src",
-    "jsx": "react"
+    "jsx": "react",
+    "paths": {
+      "stripe": [
+        "./node_modules/stripe"
+      ]
+    }
   },
   "include": [
     "src"
