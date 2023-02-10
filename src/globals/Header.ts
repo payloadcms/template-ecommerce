@@ -1,5 +1,5 @@
-import { GlobalConfig } from "payload/types";
-import link from "../fields/link";
+import type { GlobalConfig } from 'payload/types'
+import link from '../fields/link'
 
 export const Header: GlobalConfig = {
   slug: 'header',
@@ -15,7 +15,7 @@ export const Header: GlobalConfig = {
         link({
           appearances: false,
         }),
-      ]
-    }
-  ]
+      ],
+    },
+  ],
 }

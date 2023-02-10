@@ -1,7 +1,7 @@
-import { Block, Field } from "payload/types";
-import { backgroundColor } from "../../fields/backgroundColor";
-import link from "../../fields/link";
-import richText from "../../fields/richText";
+import type { Block, Field } from 'payload/types'
+import { backgroundColor } from '../../fields/backgroundColor'
+import link from '../../fields/link'
+import richText from '../../fields/richText'
 
 const columnFields: Field[] = [
   {
@@ -11,21 +11,21 @@ const columnFields: Field[] = [
     options: [
       {
         value: 'oneThird',
-        label: 'One Third'
+        label: 'One Third',
       },
       {
         value: 'half',
-        label: 'Half'
+        label: 'Half',
       },
       {
         value: 'twoThirds',
-        label: 'Two Thirds'
+        label: 'Two Thirds',
       },
       {
         value: 'full',
-        label: 'Full'
-      }
-    ]
+        label: 'Full',
+      },
+    ],
   },
   richText(),
   {
@@ -35,10 +35,10 @@ const columnFields: Field[] = [
   link({
     overrides: {
       admin: {
-        condition: (_, { enableLink }) => Boolean(enableLink)
-      }
-    }
-  })
+        condition: (_, { enableLink }) => Boolean(enableLink),
+      },
+    },
+  }),
 ]
 
 export const Content: Block = {
@@ -50,5 +50,5 @@ export const Content: Block = {
       type: 'array',
       fields: columnFields,
     },
-  ]
+  ],
 }

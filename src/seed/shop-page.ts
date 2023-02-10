@@ -1,54 +1,54 @@
 export const shopPage = {
-  "title": "Shop",
-  "hero": {
-    "type": "lowImpact",
-    "richText": [
+  title: 'Shop',
+  hero: {
+    type: 'lowImpact',
+    richText: [
       {
-        type: "h1",
+        type: 'h1',
         children: [
           {
-            text: "Shop"
-          }
-        ]
+            text: 'Shop',
+          },
+        ],
       },
       {
-        type: "p",
+        type: 'p',
         children: [
           {
-            text: "This page displays all or some of the products of your store—ranging from goods and services to digital assets and gated content. Each product is complete with a dynamic page layout builder for a completely custom shopping experience that you fully control from the CMS."
-          }
-        ]
-      }
+            text: 'This page displays all or some of the products of your store—ranging from goods and services to digital assets and gated content. Each product is complete with a dynamic page layout builder for a completely custom shopping experience that you fully control from the CMS.',
+          },
+        ],
+      },
     ],
   },
-  "layout": [
+  layout: [
     {
-      "blockName": "Archive Block",
-      "blockType": "archive",
-      "introContent": [
+      blockName: 'Archive Block',
+      blockType: 'archive',
+      introContent: [
         {
-          type: "h4",
+          type: 'h4',
           children: [
             {
-              text: "All products"
-            }
-          ]
+              text: 'All products',
+            },
+          ],
         },
         {
-          type: "p",
+          type: 'p',
           children: [
             {
-              text: "The products below are displayed in an \"Archive\" layout building block which is an extremely powerful way to display docs on a page. It can auto-populate by collection, filter by category, limit results, and much more—all configured in the CMS."
-            }
-          ]
-        }
+              text: 'The products below are displayed in an "Archive" layout building block which is an extremely powerful way to display docs on a page. It can auto-populate by collection, filter by category, limit results, and much more—all configured in the CMS.',
+            },
+          ],
+        },
       ],
-      "populateBy": "collection",
-      "relationTo": "products",
-      "limit": 10,
-      "categories": []
-    }
+      populateBy: 'collection',
+      relationTo: 'products',
+      limit: 10,
+      categories: [],
+    },
   ],
-  "slug": "shop",
-  "_status": "published",
+  slug: 'shop',
+  _status: 'published',
 }

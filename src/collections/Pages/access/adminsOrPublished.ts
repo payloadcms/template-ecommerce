@@ -1,4 +1,4 @@
-import { Access } from "payload/config";
+import type { Access } from 'payload/config'
 
 export const adminsOrPublished: Access = ({ req: { user } }) => {
   if (user && user.collection === 'admins') {
@@ -7,7 +7,7 @@ export const adminsOrPublished: Access = ({ req: { user } }) => {
 
   return {
     _status: {
-      equals: 'published'
+      equals: 'published',
     },
   }
 }

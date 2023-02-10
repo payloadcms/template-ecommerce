@@ -1,12 +1,12 @@
-import { CollectionConfig } from 'payload/types';
-import { admins } from '../../access/admins';
-import { anyone } from '../../access/anyone';
-import adminsAndUser from './access/adminsAndUser';
-import { checkRole } from './checkRole';
-import { createStripeCustomer } from './hooks/createStripeCustomer';
-import { loginAfterCreate } from './hooks/loginAfterCreate';
-import { protectRolesBeforeCreate } from './hooks/protectRolesBeforeCreate';
-import { CustomerSelect } from './ui/CustomerSelect';
+import type { CollectionConfig } from 'payload/types'
+import { admins } from '../../access/admins'
+import { anyone } from '../../access/anyone'
+import adminsAndUser from './access/adminsAndUser'
+import { checkRole } from './checkRole'
+import { createStripeCustomer } from './hooks/createStripeCustomer'
+import { loginAfterCreate } from './hooks/loginAfterCreate'
+import { protectRolesBeforeCreate } from './hooks/protectRolesBeforeCreate'
+import { CustomerSelect } from './ui/CustomerSelect'
 
 export const UserFields: CollectionConfig['fields'] = [
   {
@@ -20,45 +20,43 @@ export const UserFields: CollectionConfig['fields'] = [
     options: [
       {
         label: 'admin',
-        value: 'admin'
+        value: 'admin',
       },
       {
         label: 'customer',
-        value: 'customer'
-      }
+        value: 'customer',
+      },
     ],
     hooks: {
-      beforeChange: [
-        protectRolesBeforeCreate
-      ]
-    }
+      beforeChange: [protectRolesBeforeCreate],
+    },
   },
   {
     name: 'purchases',
     label: 'Purchases',
     type: 'relationship',
     relationTo: 'products',
-    hasMany: true
+    hasMany: true,
   },
   {
     name: 'stripeCustomerID',
     label: 'Stripe Customer',
     type: 'text',
     access: {
-      read: ({ req: { user} }) => checkRole(['admin'], user)
+      read: ({ req: { user } }) => checkRole(['admin'], user),
     },
     admin: {
       position: 'sidebar',
       components: {
-        Field: CustomerSelect
-      }
-    }
+        Field: CustomerSelect,
+      },
+    },
   },
   {
     label: 'Cart',
     name: 'cart',
     type: 'group',
-    fields:  [
+    fields: [
       {
         name: 'items',
         label: 'Items',
@@ -74,10 +72,10 @@ export const UserFields: CollectionConfig['fields'] = [
             type: 'number',
             min: 1,
             admin: {
-              step: 1
-            }
+              step: 1,
+            },
           },
-        ]
+        ],
       },
       // If you wanted to maintain a 'created on'
       // or 'last modified' date for the cart
@@ -101,14 +99,14 @@ export const UserFields: CollectionConfig['fields'] = [
     ],
   },
   {
-    name: "skipSync",
-    label: "Skip Sync",
-    type: "checkbox",
+    name: 'skipSync',
+    label: 'Skip Sync',
+    type: 'checkbox',
     admin: {
       position: 'sidebar',
       readOnly: true,
       hidden: true,
-    }
+    },
   },
 ]
 
@@ -116,29 +114,22 @@ const Users: CollectionConfig = {
   slug: 'users',
   admin: {
     useAsTitle: 'name',
-    defaultColumns: [
-      'name',
-      'email',
-    ],
+    defaultColumns: ['name', 'email'],
   },
   access: {
     read: adminsAndUser,
     create: anyone,
     update: adminsAndUser,
     delete: admins,
-    admin: ({ req: { user }}) => checkRole(['admin'], user)
+    admin: ({ req: { user } }) => checkRole(['admin'], user),
   },
   hooks: {
-    beforeChange: [
-      createStripeCustomer
-    ],
-    afterChange: [
-      loginAfterCreate
-    ],
+    beforeChange: [createStripeCustomer],
+    afterChange: [loginAfterCreate],
   },
   auth: true,
   fields: UserFields,
   timestamps: true,
 }
 
-export default Users;
+export default Users

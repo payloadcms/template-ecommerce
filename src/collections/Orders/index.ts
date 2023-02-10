@@ -1,15 +1,13 @@
-import { CollectionConfig } from 'payload/types';
-import { admins } from '../../access/admins';
-import { adminsAndOrderedBy } from './access/adminsAndOrderedBy';
-import { syncUser } from './hooks/syncUser';
+import type { CollectionConfig } from 'payload/types'
+import { admins } from '../../access/admins'
+import { adminsAndOrderedBy } from './access/adminsAndOrderedBy'
+import { syncUser } from './hooks/syncUser'
 
 const Orders: CollectionConfig = {
   slug: 'orders',
   admin: {
     useAsTitle: 'createdAt',
-    defaultColumns: [
-      'createdAt',
-    ]
+    defaultColumns: ['createdAt'],
   },
   access: {
     read: adminsAndOrderedBy,
@@ -18,9 +16,7 @@ const Orders: CollectionConfig = {
     delete: admins,
   },
   hooks: {
-    afterChange: [
-      syncUser
-    ]
+    afterChange: [syncUser],
   },
   timestamps: true,
   fields: [
@@ -50,8 +46,8 @@ const Orders: CollectionConfig = {
           name: 'stripeCustomerID',
           label: 'Stripe Customer ID',
           type: 'text',
-        }
-      ]
+        },
+      ],
     },
     {
       name: 'items',
@@ -82,13 +78,13 @@ const Orders: CollectionConfig = {
           admin: {
             readOnly: true,
             position: 'sidebar',
-          }
+          },
         },
         {
           name: 'quantity',
           type: 'number',
         },
-      ]
+      ],
     },
     {
       name: 'stripeInvoiceID',
@@ -96,7 +92,7 @@ const Orders: CollectionConfig = {
       admin: {
         readOnly: true,
         position: 'sidebar',
-      }
+      },
     },
     {
       name: 'stripePaymentIntentID',
@@ -104,9 +100,9 @@ const Orders: CollectionConfig = {
       admin: {
         readOnly: true,
         position: 'sidebar',
-      }
+      },
     },
   ],
 }
 
-export default Orders;
+export default Orders

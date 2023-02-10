@@ -1,95 +1,95 @@
-import { Page } from "../payload-types";
+import type { Page } from '../payload-types'
 
 export const cartPage: Partial<Page> = {
-  "title": "Cart",
-  "slug": "cart",
-  "_status": "published",
+  title: 'Cart',
+  slug: 'cart',
+  _status: 'published',
   hero: {
-    type: "lowImpact",
+    type: 'lowImpact',
     links: [],
-    media: "",
+    media: '',
     richText: [
       {
-        type: "h1",
+        type: 'h1',
         children: [
           {
-            text: "Cart"
-          }
-        ]
+            text: 'Cart',
+          },
+        ],
       },
       {
-        type: "p",
+        type: 'p',
         children: [
           {
-            text: "This cart saves to local storage so you can continue shopping later, then when you authenticate with Payload, it syncs to your user profile so you can continue shopping from any device. This hero and the content below the cart are completely dynamic and configured in the CMS."
+            text: 'This cart saves to local storage so you can continue shopping later, then when you authenticate with Payload, it syncs to your user profile so you can continue shopping from any device. This hero and the content below the cart are completely dynamic and configured in the CMS.',
           },
-        ]
-      }
+        ],
+      },
     ],
   },
   layout: [
     {
-      blockType: "content",
-      "backgroundColor": "white",
-      "columns": [
+      blockType: 'content',
+      backgroundColor: 'white',
+      columns: [
         {
           size: 'twoThirds',
           link: {
-            type: "reference",
+            type: 'reference',
             url: '',
             reference: {
               relationTo: 'pages',
-              value: ''
+              value: '',
             },
-            label: ''
+            label: '',
           },
           richText: [
             {
-              "children": [
+              children: [
                 {
-                  text: "This is a custom layout building block configurable in the CMS—this can be anything you want. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                }
-              ]
-            }
-          ]
-        }
-      ]
+                  text: 'This is a custom layout building block configurable in the CMS—this can be anything you want. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                },
+              ],
+            },
+          ],
+        },
+      ],
     },
     {
-      "ctaBackgroundColor": "white",
-      "richText": [
+      ctaBackgroundColor: 'white',
+      richText: [
         {
-          "children": [
+          children: [
             {
-              "text": "Continue shopping"
-            }
+              text: 'Continue shopping',
+            },
           ],
-          "type": "h4"
+          type: 'h4',
         },
         {
-          "children": [
+          children: [
             {
-              "text": "This is a custom layout building block configurable in the CMS."
-            }
-          ]
-        }
+              text: 'This is a custom layout building block configurable in the CMS.',
+            },
+          ],
+        },
       ],
-      "links": [
+      links: [
         {
           link: {
-            type: "reference",
+            type: 'reference',
             url: '',
             reference: {
               relationTo: 'pages',
-              value: "{{SHOP_PAGE_ID}}"
+              value: '{{SHOP_PAGE_ID}}',
             },
-            "label": "Continue shopping",
-            "appearance": "primary"
-          }
+            label: 'Continue shopping',
+            appearance: 'primary',
+          },
         },
       ],
-      "blockName": "CTA",
-      "blockType": "cta"
-    }
+      blockName: 'CTA',
+      blockType: 'cta',
+    },
   ],
 }

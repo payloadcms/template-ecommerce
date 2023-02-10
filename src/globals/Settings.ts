@@ -1,5 +1,4 @@
-import { GlobalConfig } from "payload/types";
-import link from "../fields/link";
+import type { GlobalConfig } from 'payload/types'
 
 export const Settings: GlobalConfig = {
   slug: 'settings',
@@ -18,6 +17,6 @@ export const Settings: GlobalConfig = {
       type: 'relationship',
       relationTo: 'pages',
       label: 'Shop page',
-    }
-  ]
+    },
+  ],
 }

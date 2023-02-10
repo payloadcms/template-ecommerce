@@ -1,5 +1,5 @@
-import { Block } from 'payload/types';
-import richText from "../../fields/richText";
+import type { Block } from 'payload/types'
+import richText from '../../fields/richText'
 
 export const Archive: Block = {
   slug: 'archive',
@@ -19,28 +19,28 @@ export const Archive: Block = {
       options: [
         {
           label: 'Collection',
-          value: 'collection'
+          value: 'collection',
         },
         {
           label: 'Individual Selection',
-          value: 'selection'
-        }
-      ]
+          value: 'selection',
+        },
+      ],
     },
     {
       type: 'select',
       name: 'relationTo',
       label: 'Collections To Show',
       defaultValue: 'products',
-      admin:{
-        condition: (_, siblingData) => siblingData.populateBy === 'collection'
+      admin: {
+        condition: (_, siblingData) => siblingData.populateBy === 'collection',
       },
       options: [
         {
           label: 'Products',
           value: 'products',
         },
-      ]
+      ],
     },
     {
       type: 'relationship',
@@ -48,8 +48,8 @@ export const Archive: Block = {
       label: 'Categories To Show',
       relationTo: 'categories',
       hasMany: true,
-      admin:{
-        condition: (_, siblingData) => siblingData.populateBy === 'collection'
+      admin: {
+        condition: (_, siblingData) => siblingData.populateBy === 'collection',
       },
     },
     {
@@ -57,9 +57,9 @@ export const Archive: Block = {
       name: 'limit',
       label: 'Limit',
       defaultValue: 10,
-      admin:{
+      admin: {
         condition: (_, siblingData) => siblingData.populateBy === 'collection',
-        step: 1
+        step: 1,
       },
     },
     {
@@ -68,8 +68,8 @@ export const Archive: Block = {
       label: 'Selection',
       relationTo: ['products'],
       hasMany: true,
-      admin:{
-        condition: (_, siblingData) => siblingData.populateBy === 'selection'
+      admin: {
+        condition: (_, siblingData) => siblingData.populateBy === 'selection',
       },
     },
     {
@@ -80,9 +80,9 @@ export const Archive: Block = {
       hasMany: true,
       admin: {
         disabled: true,
-        description: "This field is auto-populated after-read",
-        condition: (_, siblingData) => siblingData.populateBy === 'collection'
-      }
+        description: 'This field is auto-populated after-read',
+        condition: (_, siblingData) => siblingData.populateBy === 'collection',
+      },
     },
     {
       type: 'number',
@@ -91,9 +91,9 @@ export const Archive: Block = {
       admin: {
         step: 1,
         disabled: true,
-        description: "This field is auto-populated after-read",
-        condition: (_, siblingData) => siblingData.populateBy === 'collection'
-      }
+        description: 'This field is auto-populated after-read',
+        condition: (_, siblingData) => siblingData.populateBy === 'collection',
+      },
     },
   ],
-};
+}

@@ -1,16 +1,16 @@
-import { Payload } from 'payload';
-import path from 'path';
-import { home } from './home';
-import { shopPage } from './shop-page';
-import { product1 } from './product-1';
-import { shirtImage } from './shirt-image';
-import { product2 } from './product-2';
-import { product3 } from './product-3';
-import { cartPage } from './cart-page';
-import { courseImage } from './course';
-import { ebookImage } from './ebook';
+import type { Payload } from 'payload'
+import path from 'path'
+import { home } from './home'
+import { shopPage } from './shop-page'
+import { product1 } from './product-1'
+import { shirtImage } from './shirt-image'
+import { product2 } from './product-2'
+import { product3 } from './product-3'
+import { cartPage } from './cart-page'
+import { courseImage } from './course'
+import { ebookImage } from './ebook'
 
-export const seed = async (payload: Payload) => {
+export const seed = async (payload: Payload): Promise<void> => {
   await payload.create({
     collection: 'users',
     data: {
@@ -18,78 +18,82 @@ export const seed = async (payload: Payload) => {
       name: 'Payload Dev',
       password: 'test',
       roles: ['admin'],
-      stripeCustomerID: 'cus_NHipnQo3MDPVkq'
-    }
-  });
+      stripeCustomerID: 'cus_NHipnQo3MDPVkq',
+    },
+  })
 
-  const [
-    shirtDoc,
-    ebookDoc,
-    courseDoc,
-  ] = await Promise.all([
+  const [shirtDoc, ebookDoc, courseDoc] = await Promise.all([
     payload.create({
       collection: 'media',
       filePath: path.resolve(__dirname, 'shirts.jpg'),
-      data: shirtImage
+      data: shirtImage,
     }),
     payload.create({
       collection: 'media',
       filePath: path.resolve(__dirname, 'ebook.jpg'),
-      data: ebookImage
+      data: ebookImage,
     }),
     payload.create({
       collection: 'media',
       filePath: path.resolve(__dirname, 'course.jpg'),
-      data: courseImage
+      data: courseImage,
     }),
   ])
 
-  const [
-    apparelCategory,
-    ebooksCategory,
-    coursesCategory,
-  ]= await Promise.all([
+  const [apparelCategory, ebooksCategory, coursesCategory] = await Promise.all([
     payload.create({
       collection: 'categories',
       data: {
-        title: 'Apparel'
+        title: 'Apparel',
       },
     }),
     payload.create({
       collection: 'categories',
       data: {
-        title: 'E-books'
+        title: 'E-books',
       },
     }),
     payload.create({
       collection: 'categories',
       data: {
-        title: 'Online courses'
+        title: 'Online courses',
       },
-    })
-  ]);
+    }),
+  ])
 
   Promise.all([
     payload.create({
       collection: 'products',
-      data: JSON.parse(JSON.stringify({...product1, categories: [apparelCategory.id]})
-        .replace(/{{SHIRTS_IMAGE}}/g, shirtDoc.id)),
+      data: JSON.parse(
+        JSON.stringify({ ...product1, categories: [apparelCategory.id] }).replace(
+          /{{SHIRTS_IMAGE}}/g,
+          shirtDoc.id,
+        ),
+      ),
     }),
     payload.create({
       collection: 'products',
-      data: JSON.parse(JSON.stringify({...product2, categories: [ebooksCategory.id]})
-      .replace(/{{EBOOK_IMAGE}}/g, ebookDoc.id)),
+      data: JSON.parse(
+        JSON.stringify({ ...product2, categories: [ebooksCategory.id] }).replace(
+          /{{EBOOK_IMAGE}}/g,
+          ebookDoc.id,
+        ),
+      ),
     }),
     payload.create({
       collection: 'products',
-      data: JSON.parse(JSON.stringify({...product3, categories: [coursesCategory.id]})
-        .replace(/{{COURSE_IMAGE}}/g, courseDoc.id)),
-    })
-  ]);
+      data: JSON.parse(
+        JSON.stringify({ ...product3, categories: [coursesCategory.id] }).replace(
+          /{{COURSE_IMAGE}}/g,
+          courseDoc.id,
+        ),
+      ),
+    }),
+  ])
 
-  const shopPageJSON = JSON.parse(JSON.stringify(shopPage)
-    .replace(/{{SHIRTS_IMAGE}}/g, shirtDoc.id)
-  );
+  const shopPageJSON = JSON.parse(
+    JSON.stringify(shopPage).replace(/{{SHIRTS_IMAGE}}/g, shirtDoc.id),
+  )
 
   const { id: shopPageID } = await payload.create({
     collection: 'pages',
@@ -98,25 +102,24 @@ export const seed = async (payload: Payload) => {
 
   await payload.create({
     collection: 'pages',
-    data: JSON.parse(JSON.stringify(home)
-      .replace(/{{SHIRTS_IMAGE}}/g, shirtDoc.id)
-      .replace(/{{COURSE_IMAGE}}/g, courseDoc.id)
-      .replace(/{{SHOP_PAGE_ID}}/g, shopPageID),
-    )
+    data: JSON.parse(
+      JSON.stringify(home)
+        .replace(/{{SHIRTS_IMAGE}}/g, shirtDoc.id)
+        .replace(/{{COURSE_IMAGE}}/g, courseDoc.id)
+        .replace(/{{SHOP_PAGE_ID}}/g, shopPageID),
+    ),
   })
 
   await payload.create({
     collection: 'pages',
-    data: JSON.parse(JSON.stringify(cartPage)
-      .replace(/{{SHOP_PAGE_ID}}/g, shopPageID),
-    )
+    data: JSON.parse(JSON.stringify(cartPage).replace(/{{SHOP_PAGE_ID}}/g, shopPageID)),
   })
 
   await payload.updateGlobal({
     slug: 'settings',
     data: {
-      shopPage: shopPageID
-    }
+      shopPage: shopPageID,
+    },
   })
 
   await payload.updateGlobal({
@@ -128,12 +131,12 @@ export const seed = async (payload: Payload) => {
             type: 'reference',
             reference: {
               relationTo: 'pages',
-              value: shopPageID
+              value: shopPageID,
             },
             label: 'Shop',
-          }
-        }
-      ]
-    }
+          },
+        },
+      ],
+    },
   })
 }

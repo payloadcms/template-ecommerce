@@ -1,16 +1,16 @@
-import { CollectionConfig } from 'payload/types';
-import { ProductSelect } from './ui/ProductSelect';
-import { slugField } from '../../fields/slug';
-import { CallToAction } from '../../blocks/CallToAction';
-import { Content } from '../../blocks/Content';
-import { MediaBlock } from '../../blocks/Media';
-import { checkUserPurchases } from './access/checkUserPurchases';
-import { beforeProductChange } from './hooks/beforeChange';
-import { admins } from '../../access/admins';
-import { Archive } from '../../blocks/Archive';
-import { populateArchiveBlock } from '../../hooks/populateArchiveBlock';
-import { populatePublishedDate } from '../../hooks/populatePublishedDate';
-import { deleteProductFromCarts } from './hooks/deleteProductFromCarts';
+import type { CollectionConfig } from 'payload/types'
+import { ProductSelect } from './ui/ProductSelect'
+import { slugField } from '../../fields/slug'
+import { CallToAction } from '../../blocks/CallToAction'
+import { Content } from '../../blocks/Content'
+import { MediaBlock } from '../../blocks/Media'
+import { checkUserPurchases } from './access/checkUserPurchases'
+import { beforeProductChange } from './hooks/beforeChange'
+import { admins } from '../../access/admins'
+import { Archive } from '../../blocks/Archive'
+import { populateArchiveBlock } from '../../hooks/populateArchiveBlock'
+import { populatePublishedDate } from '../../hooks/populatePublishedDate'
+import { deleteProductFromCarts } from './hooks/deleteProductFromCarts'
 
 export const ProductFields: CollectionConfig['fields'] = [
   {
@@ -35,14 +35,9 @@ export const ProductFields: CollectionConfig['fields'] = [
             name: 'layout',
             type: 'blocks',
             required: true,
-            blocks: [
-              CallToAction,
-              Content,
-              MediaBlock,
-              Archive
-            ]
-          }
-        ]
+            blocks: [CallToAction, Content, MediaBlock, Archive],
+          },
+        ],
       },
       {
         label: 'Product Details',
@@ -53,19 +48,19 @@ export const ProductFields: CollectionConfig['fields'] = [
             type: 'text',
             admin: {
               components: {
-                Field: ProductSelect
-              }
-            }
+                Field: ProductSelect,
+              },
+            },
           },
           {
-            name: "priceJSON",
-            label: "Price JSON",
-            type: "textarea",
+            name: 'priceJSON',
+            label: 'Price JSON',
+            type: 'textarea',
             admin: {
               readOnly: true,
               hidden: true,
-              rows: 10
-            }
+              rows: 10,
+            },
           },
           {
             name: 'paywall',
@@ -74,14 +69,9 @@ export const ProductFields: CollectionConfig['fields'] = [
             access: {
               read: checkUserPurchases,
             },
-            blocks: [
-              CallToAction,
-              Content,
-              MediaBlock,
-              Archive
-            ]
+            blocks: [CallToAction, Content, MediaBlock, Archive],
           },
-        ]
+        ],
       },
     ],
   },
@@ -92,18 +82,18 @@ export const ProductFields: CollectionConfig['fields'] = [
     hasMany: true,
     admin: {
       position: 'sidebar',
-    }
+    },
   },
   slugField(),
   {
-    name: "skipSync",
-    label: "Skip Sync",
-    type: "checkbox",
+    name: 'skipSync',
+    label: 'Skip Sync',
+    type: 'checkbox',
     admin: {
       position: 'sidebar',
       readOnly: true,
       hidden: true,
-    }
+    },
   },
 ]
 
@@ -111,34 +101,23 @@ const Products: CollectionConfig = {
   slug: 'products',
   admin: {
     useAsTitle: 'title',
-    defaultColumns: [
-      'title',
-      'stripeProductID',
-      '_status'
-    ]
+    defaultColumns: ['title', 'stripeProductID', '_status'],
   },
   hooks: {
-    beforeChange: [
-      populatePublishedDate,
-      beforeProductChange,
-    ],
-    afterRead: [
-      populateArchiveBlock
-    ],
-    afterDelete: [
-      deleteProductFromCarts
-    ],
+    beforeChange: [populatePublishedDate, beforeProductChange],
+    afterRead: [populateArchiveBlock],
+    afterDelete: [deleteProductFromCarts],
   },
   versions: {
-    drafts: true
+    drafts: true,
   },
   access: {
     read: () => true,
     create: admins,
     update: admins,
-    delete: admins
+    delete: admins,
   },
   fields: ProductFields,
 }
 
-export default Products;
+export default Products

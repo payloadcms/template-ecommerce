@@ -1,5 +1,5 @@
 import type { FieldAccess } from 'payload/types'
-import { User, Product } from '../../../payload-types'
+import type { Product } from '../../../payload-types'
 import { checkRole } from '../../Users/checkRole'
 
 // we need to prevent access to documents behind a paywall
@@ -14,7 +14,9 @@ export const checkUserPurchases: FieldAccess<Product> = async ({ req: { user }, 
   }
 
   if (doc && user && typeof user === 'object' && user?.purchases?.length > 0) {
-    return user.purchases?.some((purchase) => doc.id === (typeof purchase === 'object' ? purchase.id : purchase))
+    return user.purchases?.some(
+      purchase => doc.id === (typeof purchase === 'object' ? purchase.id : purchase),
+    )
   }
 
   return false

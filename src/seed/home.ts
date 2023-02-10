@@ -1,55 +1,55 @@
-import { Page } from "../payload-types";
+import type { Page } from '../payload-types'
 
 export const home: Partial<Page> = {
-  "title": "Home",
-  "slug": "home",
-  "_status": "published",
-  "hero": {
-    "type": "highImpact",
-    "richText": [
+  title: 'Home',
+  slug: 'home',
+  _status: 'published',
+  hero: {
+    type: 'highImpact',
+    richText: [
       {
-        "children": [
+        children: [
           {
-            "text": "E-Commerce Store with Payload + Next.js"
-          }
+            text: 'E-Commerce Store with Payload + Next.js',
+          },
         ],
-        "type": "h1"
+        type: 'h1',
       },
       {
-        "children": [
+        children: [
           {
-            "text": "The code for this website is completely open-source and can be found "
+            text: 'The code for this website is completely open-source and can be found ',
           },
           {
-            "type": "link",
-            "linkType": "custom",
-            "url": "https://github.com/payloadcms/template-ecommerce-nextjs",
-            "newTab": true,
-            "children": [
+            type: 'link',
+            linkType: 'custom',
+            url: 'https://github.com/payloadcms/template-ecommerce-nextjs',
+            newTab: true,
+            children: [
               {
-                "text": "here"
-              }
-            ]
+                text: 'here',
+              },
+            ],
           },
           {
-            "text": "."
-          }
+            text: '.',
+          },
         ],
-        "type": "large-body"
+        type: 'large-body',
       },
     ],
-    "links": [
+    links: [
       {
         link: {
           type: 'reference',
           appearance: 'primary',
           reference: {
             relationTo: 'pages',
-            value: "{{SHOP_PAGE_ID}}"
+            value: '{{SHOP_PAGE_ID}}',
           },
           label: 'Shop now',
-          url: ''
-        }
+          url: '',
+        },
       },
       {
         link: {
@@ -58,255 +58,255 @@ export const home: Partial<Page> = {
           reference: null,
           label: 'View on GitHub',
           url: 'https://github.com/payloadcms/template-ecommerce',
-          newTab: true
-        }
+          newTab: true,
+        },
       },
     ],
-    "media": "{{SHIRTS_IMAGE}}"
+    media: '{{SHIRTS_IMAGE}}',
   },
-  "layout": [
+  layout: [
     {
-      "blockName": "Content Block",
-      "blockType": "content",
-      "backgroundColor": "white",
-      "columns": [
+      blockName: 'Content Block',
+      blockType: 'content',
+      backgroundColor: 'white',
+      columns: [
         {
-          "size": "oneThird",
-          "richText": [
+          size: 'oneThird',
+          richText: [
             {
-              "children": [
+              children: [
                 {
-                  "text": "Authentication"
-                }
+                  text: 'Authentication',
+                },
               ],
-              "type": "h3"
+              type: 'h3',
             },
             {
-              "children": [
+              children: [
                 {
-                  "text": "Customers can create an account and login to view their order history and more."
-                }
-              ]
-            }
+                  text: 'Customers can create an account and login to view their order history and more.',
+                },
+              ],
+            },
           ],
           enableLink: false,
           link: {
             reference: {
               value: '',
-              relationTo: 'pages'
+              relationTo: 'pages',
             },
             url: '',
-            label: ''
-          }
+            label: '',
+          },
         },
         {
-          "size": "oneThird",
-          "richText": [
+          size: 'oneThird',
+          richText: [
             {
-              "children": [
+              children: [
                 {
-                  "text": "Shopping cart"
-                }
+                  text: 'Shopping cart',
+                },
               ],
-              "type": "h3"
+              type: 'h3',
             },
             {
-              "children": [
+              children: [
                 {
-                  "text": "Shopping carts persist between sessions and can be accessed from any device."
-                }
-              ]
-            }
+                  text: 'Shopping carts persist between sessions and can be accessed from any device.',
+                },
+              ],
+            },
           ],
           enableLink: false,
           link: {
             reference: {
               value: '',
-              relationTo: 'pages'
+              relationTo: 'pages',
             },
             url: '',
-            label: ''
-          }
+            label: '',
+          },
         },
         {
-          "size": "oneThird",
-          "richText": [
+          size: 'oneThird',
+          richText: [
             {
-              "children": [
+              children: [
                 {
-                  "text": "Checkout"
-                }
+                  text: 'Checkout',
+                },
               ],
-              "type": "h3"
+              type: 'h3',
             },
             {
-              "children": [
+              children: [
                 {
-                  "text": "Secure in-app checkout powered by Stripe so your customers never leave your site."
-                }
-              ]
-            }
+                  text: 'Secure in-app checkout powered by Stripe so your customers never leave your site.',
+                },
+              ],
+            },
           ],
           enableLink: false,
           link: {
             reference: {
               value: '',
-              relationTo: 'pages'
+              relationTo: 'pages',
             },
             url: '',
-            label: ''
-          }
+            label: '',
+          },
         },
         {
-          "size": "oneThird",
-          "richText": [
+          size: 'oneThird',
+          richText: [
             {
-              "children": [
+              children: [
                 {
-                  "text": "Page builder"
-                }
+                  text: 'Page builder',
+                },
               ],
-              "type": "h3"
+              type: 'h3',
             },
             {
-              "children": [
+              children: [
                 {
-                  "text": 'Custom page builder allows you to create any page or product layout imaginable.'
-                }
-              ]
-            }
+                  text: 'Custom page builder allows you to create any page or product layout imaginable.',
+                },
+              ],
+            },
           ],
           enableLink: false,
           link: {
             reference: {
               value: '',
-              relationTo: 'pages'
+              relationTo: 'pages',
             },
             url: '',
-            label: ''
-          }
+            label: '',
+          },
         },
         {
-          "size": "oneThird",
-          "richText": [
+          size: 'oneThird',
+          richText: [
             {
-              "children": [
+              children: [
                 {
-                  "text": "SEO"
-                }
+                  text: 'SEO',
+                },
               ],
-              "type": "h3"
+              type: 'h3',
             },
             {
-              "children": [
+              children: [
                 {
-                  "text": "Editors have complete control over SEO data directly from the CMS."
-                }
-              ]
-            }
+                  text: 'Editors have complete control over SEO data directly from the CMS.',
+                },
+              ],
+            },
           ],
           enableLink: false,
           link: {
             reference: {
               value: '',
-              relationTo: 'pages'
+              relationTo: 'pages',
             },
             url: '',
-            label: ''
-          }
+            label: '',
+          },
         },
         {
-          "size": "oneThird",
-          "richText": [
+          size: 'oneThird',
+          richText: [
             {
-              "children": [
+              children: [
                 {
-                  "text": "CMS"
-                }
+                  text: 'CMS',
+                },
               ],
-              "type": "h3"
+              type: 'h3',
             },
             {
-              "children": [
+              children: [
                 {
-                  "text": "Instant setup with "
+                  text: 'Instant setup with ',
                 },
                 {
-                  "type": "link",
-                  "linkType": "custom",
+                  type: 'link',
+                  linkType: 'custom',
                   url: 'https://github.com/payloadcms/ecommerce-example-cms',
-                  "newTab": true,
-                  "children": [
+                  newTab: true,
+                  children: [
                     {
-                      "text": "Payload CMS"
-                    }
-                  ]
+                      text: 'Payload CMS',
+                    },
+                  ],
                 },
                 {
-                  text: " tailored specifically for this front-end."
-                }
-              ]
-            }
+                  text: ' tailored specifically for this front-end.',
+                },
+              ],
+            },
           ],
           enableLink: false,
           link: {
             reference: {
               value: '',
-              relationTo: 'pages'
+              relationTo: 'pages',
             },
             url: '',
-            label: ''
-          }
+            label: '',
+          },
         },
-      ]
+      ],
     },
     {
-      "mediaBlockBackgroundColor": "white",
-      "position": "default",
-      "media": "{{COURSE_IMAGE}}",
-      "blockName": "Media Block",
-      "blockType": "mediaBlock"
+      mediaBlockBackgroundColor: 'white',
+      position: 'default',
+      media: '{{COURSE_IMAGE}}',
+      blockName: 'Media Block',
+      blockType: 'mediaBlock',
     },
     {
-      "ctaBackgroundColor": "white",
-      "richText": [
+      ctaBackgroundColor: 'white',
+      richText: [
         {
-          "children": [
+          children: [
             {
-              "text": "Shop now"
-            }
+              text: 'Shop now',
+            },
           ],
-          "type": "h4"
+          type: 'h4',
         },
         {
-          "children": [
+          children: [
             {
-              "text": "This is a custom layout building block configurable in the CMS."
-            }
-          ]
-        }
-      ],
-      "links": [
-        {
-          "link": {
-            "type": "reference",
-            "url": "",
-            "label": "Shop now",
-            "appearance": "primary",
-            reference: {
-              value: "{{SHOP_PAGE_ID}}",
-              relationTo: 'pages'
-            }
-          }
+              text: 'This is a custom layout building block configurable in the CMS.',
+            },
+          ],
         },
       ],
-      "blockName": "CTA",
-      "blockType": "cta"
-    }
+      links: [
+        {
+          link: {
+            type: 'reference',
+            url: '',
+            label: 'Shop now',
+            appearance: 'primary',
+            reference: {
+              value: '{{SHOP_PAGE_ID}}',
+              relationTo: 'pages',
+            },
+          },
+        },
+      ],
+      blockName: 'CTA',
+      blockType: 'cta',
+    },
   ],
-  "meta": {
-    "title": "Store ABC",
-    "description": "E-Commerce Store with Payload + Next.js",
-    "image": "{{SHIRTS_IMAGE}}"
-  }
+  meta: {
+    title: 'Store ABC',
+    description: 'E-Commerce Store with Payload + Next.js',
+    image: '{{SHIRTS_IMAGE}}',
+  },
 }
