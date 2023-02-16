@@ -1,4 +1,5 @@
 import type { Field, SelectField } from 'payload/types'
+
 import deepMerge from '../utilities/deepMerge'
 
 interface Args {

@@ -1,5 +1,6 @@
 import express from 'express'
 import payload from 'payload'
+
 import { seed } from './seed'
 
 // eslint-disable-next-line

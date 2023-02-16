@@ -1,4 +1,5 @@
 import type { Block } from 'payload/types'
+
 import { backgroundColor } from '../../fields/backgroundColor'
 
 export const MediaBlock: Block = {

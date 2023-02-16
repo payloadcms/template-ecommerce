@@ -1,4 +1,5 @@
 import type { RichTextElement } from 'payload/dist/fields/config/types'
+
 import label from './label'
 import largeBody from './largeBody'
 

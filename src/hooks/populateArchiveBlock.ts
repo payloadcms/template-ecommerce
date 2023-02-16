@@ -1,4 +1,5 @@
 import type { AfterReadHook } from 'payload/dist/globals/config/types'
+
 import type { Page, Product } from '../payload-types'
 
 export const populateArchiveBlock: AfterReadHook = async ({ doc, req: { payload } }) => {

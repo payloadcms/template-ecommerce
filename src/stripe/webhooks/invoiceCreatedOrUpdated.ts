@@ -1,5 +1,6 @@
 import type { StripeWebhookHandler } from '@payloadcms/plugin-stripe/dist/types'
 import type Stripe from 'stripe'
+
 import type { Order } from '../../payload-types'
 
 const logs = true

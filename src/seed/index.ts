@@ -1,14 +1,15 @@
-import type { Payload } from 'payload'
 import path from 'path'
-import { home } from './home'
-import { shopPage } from './shop-page'
-import { product1 } from './product-1'
-import { shirtImage } from './shirt-image'
-import { product2 } from './product-2'
-import { product3 } from './product-3'
+import type { Payload } from 'payload'
+
 import { cartPage } from './cart-page'
 import { courseImage } from './course'
 import { ebookImage } from './ebook'
+import { home } from './home'
+import { product1 } from './product-1'
+import { product2 } from './product-2'
+import { product3 } from './product-3'
+import { shirtImage } from './shirt-image'
+import { shopPage } from './shop-page'
 
 export const seed = async (payload: Payload): Promise<void> => {
   await payload.create({

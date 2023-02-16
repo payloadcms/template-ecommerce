@@ -1,16 +1,17 @@
 import type { CollectionConfig } from 'payload/types'
-import { ProductSelect } from './ui/ProductSelect'
-import { slugField } from '../../fields/slug'
+
+import { admins } from '../../access/admins'
+import { Archive } from '../../blocks/Archive'
 import { CallToAction } from '../../blocks/CallToAction'
 import { Content } from '../../blocks/Content'
 import { MediaBlock } from '../../blocks/Media'
-import { checkUserPurchases } from './access/checkUserPurchases'
-import { beforeProductChange } from './hooks/beforeChange'
-import { admins } from '../../access/admins'
-import { Archive } from '../../blocks/Archive'
+import { slugField } from '../../fields/slug'
 import { populateArchiveBlock } from '../../hooks/populateArchiveBlock'
 import { populatePublishedDate } from '../../hooks/populatePublishedDate'
+import { checkUserPurchases } from './access/checkUserPurchases'
+import { beforeProductChange } from './hooks/beforeChange'
 import { deleteProductFromCarts } from './hooks/deleteProductFromCarts'
+import { ProductSelect } from './ui/ProductSelect'
 
 export const ProductFields: CollectionConfig['fields'] = [
   {

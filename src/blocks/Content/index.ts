@@ -1,4 +1,5 @@
 import type { Block, Field } from 'payload/types'
+
 import { backgroundColor } from '../../fields/backgroundColor'
 import link from '../../fields/link'
 import richText from '../../fields/richText'

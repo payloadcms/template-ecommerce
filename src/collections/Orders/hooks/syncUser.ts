@@ -1,4 +1,5 @@
 import type { AfterChangeHook } from 'payload/dist/collections/config/types'
+
 import type { Order, User } from '../../../payload-types'
 
 // sync user purchases and delete their cart when they place an order
