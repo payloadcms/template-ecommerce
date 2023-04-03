@@ -18,6 +18,7 @@
     "lint:fix": "eslint --fix --ext .ts,.tsx src"
   },
   "dependencies": {
+    "@payloadcms/plugin-cloud": "^0.0.10",
     "@payloadcms/plugin-nested-docs": "^1.0.4",
     "@payloadcms/plugin-seo": "^1.0.10",
     "@payloadcms/plugin-stripe": "^0.0.11",
@@ -27,12 +28,12 @@
     "stripe": "^11.6.0"
   },
   "devDependencies": {
+    "@payloadcms/eslint-config": "^0.0.1",
+    "@types/express": "^4.17.9",
     "@types/node": "18.11.3",
     "@types/react": "18.0.21",
-    "@types/express": "^4.17.9",
     "@typescript-eslint/eslint-plugin": "^5.51.0",
     "@typescript-eslint/parser": "^5.51.0",
-    "@payloadcms/eslint-config": "^0.0.1",
     "copyfiles": "^2.4.1",
     "cross-env": "^7.0.3",
     "eslint": "^8.19.0",

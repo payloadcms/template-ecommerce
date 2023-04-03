@@ -29,7 +29,7 @@ const start = async (): Promise<void> => {
     payload.logger.info('Done.')
   }
 
-  app.listen(8000)
+  app.listen(3000)
 }
 
 start()

@@ -26,7 +26,6 @@ const generateTitle: GenerateTitle = () => {
 const mockModulePath = path.resolve(__dirname, './emptyModuleMock.js')
 
 export default buildConfig({
-  serverURL: 'http://localhost:8000',
   admin: {
     user: Users.slug,
     webpack: config => ({
@@ -35,10 +34,9 @@ export default buildConfig({
         ...config.resolve,
         alias: {
           ...config.resolve?.alias,
-          [path.resolve(__dirname, 'collections/Products/hooks/beforeChange.ts')]: mockModulePath,
-          [path.resolve(__dirname, 'collections/Users/hooks/createStripeCustomer.ts')]:
-            mockModulePath,
-          [path.resolve(__dirname, 'routes/checkout.ts')]: mockModulePath,
+          [path.resolve(__dirname, 'collections/Products/hooks/beforeChange')]: mockModulePath,
+          [path.resolve(__dirname, 'collections/Users/hooks/createStripeCustomer')]: mockModulePath,
+          [path.resolve(__dirname, 'routes/checkout')]: mockModulePath,
           stripe: mockModulePath,
           express: mockModulePath,
         },
