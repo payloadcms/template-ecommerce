@@ -1,3 +1,4 @@
+import { payloadCloud } from '@payloadcms/plugin-cloud'
 import nestedDocs from '@payloadcms/plugin-nested-docs'
 import seo from '@payloadcms/plugin-seo'
 import type { GenerateTitle } from '@payloadcms/plugin-seo/types'
@@ -80,5 +81,6 @@ export default buildConfig({
       generateTitle,
       uploadsCollection: 'media',
     }),
+    payloadCloud(),
   ],
 })
