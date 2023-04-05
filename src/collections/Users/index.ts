@@ -1,4 +1,5 @@
-import type { CollectionConfig } from 'payload/types'
+import payload from 'payload'
+import type { CollectionConfig, FieldHook } from 'payload/types'
 
 import { admins } from '../../access/admins'
 import { anyone } from '../../access/anyone'
@@ -8,6 +9,14 @@ import { createStripeCustomer } from './hooks/createStripeCustomer'
 import { loginAfterCreate } from './hooks/loginAfterCreate'
 import { protectRolesBeforeCreate } from './hooks/protectRolesBeforeCreate'
 import { CustomerSelect } from './ui/CustomerSelect'
+
+const checkFirstUser: FieldHook = async ({ siblingData }) => {
+  const users = await payload.find({ collection: 'users' })
+  if (users.totalDocs > 0) return null
+  if (users.totalDocs === 0) {
+    siblingData.roles = ['admin']
+  }
+}
 
 export const UserFields: CollectionConfig['fields'] = [
   {
@@ -29,7 +38,12 @@ export const UserFields: CollectionConfig['fields'] = [
       },
     ],
     hooks: {
-      beforeChange: [protectRolesBeforeCreate],
+      beforeChange: [checkFirstUser, protectRolesBeforeCreate],
+    },
+    access: {
+      read: admins,
+      create: admins,
+      update: admins,
     },
   },
   {
