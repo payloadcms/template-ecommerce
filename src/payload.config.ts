@@ -52,7 +52,7 @@ export default buildConfig({
   graphQL: {
     schemaOutputFile: path.resolve(__dirname, 'generated-schema.graphql'),
   },
-  cors: ['https://checkout.stripe.com'],
+  cors: ['https://checkout.stripe.com', 'http://localhost:3000'],
   endpoints: [
     {
       path: '/checkout',

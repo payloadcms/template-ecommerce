@@ -13,6 +13,19 @@ Core features:
 - [Layout Builder](#layout-builder)
 - [SEO](#seo)
 
+## Getting started
+To get up and running locally with this demo you'll need to do the following:
+```bash
+# Copy the environment variables
+cp .env.example .env
+
+# Install dependencies
+yarn
+
+# Start the server (defaults to http://localhost:8000)
+yarn dev
+```
+
 ## How it works
 
 The Payload config is tailored specifically to the needs of an e-commerce business. It is pre-configured in the following ways:

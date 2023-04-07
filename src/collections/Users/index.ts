@@ -10,9 +10,9 @@ import { loginAfterCreate } from './hooks/loginAfterCreate'
 import { protectRolesBeforeCreate } from './hooks/protectRolesBeforeCreate'
 import { CustomerSelect } from './ui/CustomerSelect'
 
-const checkFirstUser: FieldHook = async ({ siblingData }) => {
+const checkFirstUser: FieldHook = async ({ siblingData, data, value }) => {
   const users = await payload.find({ collection: 'users' })
-  if (users.totalDocs > 0) return null
+  if (users.totalDocs > 0) return data?.role || value
   if (users.totalDocs === 0) {
     siblingData.roles = ['admin']
   }
@@ -41,7 +41,6 @@ export const UserFields: CollectionConfig['fields'] = [
       beforeChange: [checkFirstUser, protectRolesBeforeCreate],
     },
     access: {
-      read: admins,
       create: admins,
       update: admins,
     },
