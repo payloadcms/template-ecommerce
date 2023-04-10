@@ -44,6 +44,7 @@ export default buildConfig({
       },
     }),
   },
+  serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
   collections: [Users, Products, Categories, Orders, Pages, Media],
   globals: [Settings, Header, Footer],
   typescript: {
