@@ -13,18 +13,7 @@ Core features:
 - [Layout Builder](#layout-builder)
 - [SEO](#seo)
 
-## Getting started
-To get up and running locally with this demo you'll need to do the following:
-```bash
-# Copy the environment variables
-cp .env.example .env
-
-# Install dependencies
-yarn
-
-# Start the server (defaults to http://localhost:8000)
-yarn dev
-```
+For more details on how to get this template up and running locally, see the [development](#development) section.
 
 ## How it works
 
@@ -165,10 +154,11 @@ This template comes pre-configured with the official [Payload SEO Plugin](http:/
 
 To spin up the template locally, follow these steps:
 
-1.  First clone the repo
-1.  Then, `cd YOUR_PROJECT_REPO && yarn && yarn dev`
-1.  Now open `http://localhost:8000/admin` in your browser
-1.  Create your first admin user using the form on the page
+1. First clone the repo
+1. Then `cd YOUR_PROJECT_REPO && cp .env.example .env`
+1. Next `yarn && yarn dev`
+1. Now open `http://localhost:8000/admin` in your browser
+1. Create your first admin user using the form on the page
 
 That's it! Changes made in `./src` will be reflected in your app—but your database is blank and your app is not yet connected to Stripe, more details on that [here](#stripe). You can optionally seed the database with a few products and pages, more details on that [here](#seed).
 
