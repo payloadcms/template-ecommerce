@@ -34,7 +34,7 @@ The Payload config is tailored specifically to the needs of an e-commerce busine
 
 - #### Users
 
-  Users are auth-enabled and encompass both admins and customers based on the value of their `roles` field. Only `admins` can access your admin panel to manage your store, whereas `customers` can authenticate on your front-end to create [shopping carts](#shopping-cart) and place [orders](#orders)—but have limited access to the platform, see [access control](#access-control) for more details.
+  Users are auth-enabled and encompass both admins and customers based on the value of their `roles` field. Only `admin` can access your admin panel to manage your store, whereas `customer` can authenticate on your front-end to create [shopping carts](#shopping-cart) and place [orders](#orders)—but have limited access to the platform, see [access control](#access-control) for more details.
 
 - #### Products
 
@@ -50,7 +50,7 @@ The Payload config is tailored specifically to the needs of an e-commerce busine
 
 - #### Media
 
-  This is the uploads-enabled collection used by products and page to contain media, etc.
+  This is the uploads-enabled collection used by products and pages to contain media, etc.
 
 - #### Categories
 
@@ -147,7 +147,7 @@ Products can optionally gate content or digital assets behind a paywall. This wi
 
 ## Layout builder
 
-Products and pages can be built using a powerful layout builder. This allows you to create unique layouts for each product or page. This boilerplate comes pre-configured with the following layout building blocks:
+Products and pages can be built using a powerful layout builder. This allows you to create unique layouts for each product or page. This template comes pre-configured with the following layout building blocks:
 
 - Hero
 - Content
@@ -159,11 +159,11 @@ A complete front-end solution for this can be found [here](https://github.com/pa
 
 ## SEO
 
-This boilerplate comes pre-configured with the official [Payload SEO Plugin](http://payloadcms.com/) for complete SEO control. A front-end solution for this can be found [here](https://github.com/payloadcms/template-ecommerce-nextjs).
+This template comes pre-configured with the official [Payload SEO Plugin](http://payloadcms.com/plugin-seo) for complete SEO control. A front-end solution for this can be found [here](https://github.com/payloadcms/template-ecommerce-nextjs).
 
 ## Development
 
-To spin up the boilerplate, follow these steps:
+To spin up the template locally, follow these steps:
 
 1.  First clone the repo
 1.  Then, `cd YOUR_PROJECT_REPO && yarn && yarn dev`
@@ -184,7 +184,7 @@ To integrate with Stripe, follow these steps:
 1. In another terminal, listen for webhooks:
    ```bash
    stripe login # follow the prompts
-   stripe listen --forward-to localhost:8000/stripe/webhooks
+   yarn stripe:webhooks
    ```
 1. Paste the given webhook signing secret into your `env`:
    ```bash
