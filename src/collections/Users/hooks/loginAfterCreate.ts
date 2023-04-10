@@ -6,7 +6,7 @@ export const loginAfterCreate: AfterChangeHook = async ({
   req: { payload, body = {}, res },
   operation,
 }) => {
-  if (operation === 'create') {
+  if (operation === 'create' && !req.user) {
     const { email, password } = body
 
     if (email && password) {
