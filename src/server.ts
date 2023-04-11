@@ -1,10 +1,10 @@
 import express from 'express'
 import payload from 'payload'
 
-import { seed } from './seed'
-
 // eslint-disable-next-line
 require('dotenv').config()
+
+import { seed } from './seed'
 
 const app = express()
 
