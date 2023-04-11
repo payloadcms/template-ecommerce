@@ -18,6 +18,7 @@ export const UserFields: CollectionConfig['fields'] = [
     name: 'roles',
     type: 'select',
     hasMany: true,
+    defaultValue: ['customer'],
     options: [
       {
         label: 'admin',
@@ -32,6 +33,7 @@ export const UserFields: CollectionConfig['fields'] = [
       beforeChange: [ensureFirstUserIsAdmin],
     },
     access: {
+      read: admins,
       create: admins,
       update: admins,
     },
