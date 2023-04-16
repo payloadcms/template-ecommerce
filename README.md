@@ -148,7 +148,7 @@ A complete front-end solution for this can be found [here](https://github.com/pa
 
 ## SEO
 
-This template comes pre-configured with the official [Payload SEO Plugin](http://payloadcms.com/plugin-seo) for complete SEO control. A front-end solution for this can be found [here](https://github.com/payloadcms/template-ecommerce-nextjs).
+This template comes pre-configured with the official [Payload SEO Plugin](https://github.com/payloadcms/plugin-seo) for complete SEO control. A front-end solution for this can be found [here](https://github.com/payloadcms/template-ecommerce-nextjs).
 
 ## Development
 
