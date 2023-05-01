@@ -1,11 +1,11 @@
 # Payload E-Commerce Template
 
-A template for [Payload CMS](https://github.com/payloadcms/payload) to power e-commerce businesses. There is a complete front-end website for this template which can be found [here](https://github.com/payloadcms/template-ecommerce-nextjs).
+A template for [Payload](https://github.com/payloadcms/payload) to power e-commerce businesses. There is a complete front-end website made explicitly for this template which can be found [here](https://github.com/payloadcms/template-ecommerce-nextjs).
 
 Core features:
 
 - [Pre-configured Payload Config](#how-it-works)
-- [Authentication](#users)
+- [Authentication](#users-authentication)
 - [Access Control](#access-control)
 - [Shopping Cart](#shopping-cart)
 - [Checkout](#checkout)
@@ -13,7 +13,7 @@ Core features:
 - [Layout Builder](#layout-builder)
 - [SEO](#seo)
 
-For more details on how to get this template up and running locally, see the [development](#development) section.
+For details on how to get this template up and running locally, see the [development](#development) section.
 
 ## How it works
 
@@ -21,9 +21,13 @@ The Payload config is tailored specifically to the needs of an e-commerce busine
 
 ### Collections
 
-- #### Users
+See the [collections documentation](https://payloadcms.com/docs/configuration/collections) for details on how to extend this functionality.
 
-  Users are auth-enabled and encompass both admins and customers based on the value of their `roles` field. Only `admin` can access your admin panel to manage your store, whereas `customer` can authenticate on your front-end to create [shopping carts](#shopping-cart) and place [orders](#orders)—but have limited access to the platform, see [access control](#access-control) for more details.
+- #### Users (Authentication)
+
+  Users are auth-enabled and encompass both admins and customers based on the value of their `roles` field. Only `admin` users can access your admin panel to manage your store whereas `customer` can authenticate on your front-end to create [shopping carts](#shopping-cart) and place [orders](#orders) but have limited access to the platform, see [Access Control](#access-control) for more details.
+
+  For additional help, see the official [Auth Example](https://github.com/payloadcms/payload/tree/master/examples/auth/cms#readme) or the [authentication docs](https://payloadcms.com/docs/authentication/overview#authentication-overview).
 
 - #### Products
 
@@ -31,7 +35,7 @@ The Payload config is tailored specifically to the needs of an e-commerce busine
 
 - #### Orders
 
-  When an order is placed in Stripe, a webhook is fired that Payload listens for. This webhook creates a new order in Payload with the same data as the invoice. See [Stripe Integration](#stripe-integration) for more details.
+  When an order is placed in Stripe, a webhook is fired that Payload listens for. This webhook creates a new order in Payload with the same data as the invoice. See the [Stripe section](#stripe) for more details.
 
 - #### Pages
 
@@ -46,6 +50,8 @@ The Payload config is tailored specifically to the needs of an e-commerce busine
   A taxonomy used to group products together. Categories can be nested inside of one another, for example "Shirts > Red". See the official [Payload Nested Docs Plugin](https://github.com/payloadcms/plugin-nested-docs) for more details.
 
 ### Globals
+
+See the [globals documentation](https://payloadcms.com/docs/configuration/globals) for details on how to extend this functionality.
 
 - `Header`
 
@@ -95,7 +101,7 @@ Logged-in users can have their shopping carts saved to their profiles as they sh
 
 A complete front-end solution for this can be found [here](https://github.com/payloadcms/template-ecommerce-nextjs).
 
-## Stripe integration
+## Stripe
 
 Payload itself handles no currency exchange. All payments are processed and billed using [Stripe](https://stripe.com). This means you must have access to a Stripe account via an API key, see [Connect Stripe](#connect-stripe) for how to get one. When you create a product in Payload that wish to sell, it must be connected to a Stripe product by selecting one from the field in the products sidebar. This field fetches all available products in the background and displays them as options, see [Products](#products) for more details. Once set, data is automatically synced between the two platforms in the following ways:
 
@@ -150,14 +156,14 @@ A complete front-end solution for this can be found [here](https://github.com/pa
 
 This template comes pre-configured with the official [Payload SEO Plugin](https://github.com/payloadcms/plugin-seo) for complete SEO control. A front-end solution for this can be found [here](https://github.com/payloadcms/template-ecommerce-nextjs).
 
-## Development
+##  Development
 
 To spin up the template locally, follow these steps:
 
 1. First clone the repo
 1. Then `cd YOUR_PROJECT_REPO && cp .env.example .env`
-1. Next `yarn && yarn dev` (or `docker-compose up -d`, see [Docker](#docker))
-1. Now open `http://localhost:8000/admin` in your browser
+1. Next `yarn && yarn dev` (or `docker-compose up`, see [Docker](#docker))
+1. Now `open http://localhost:8000/admin` to access the admin panel
 1. Create your first admin user using the form on the page
 
 That's it! Changes made in `./src` will be reflected in your app—but your database is blank and your app is not yet connected to Stripe, more details on that [here](#stripe). You can optionally seed the database with a few products and pages, more details on that [here](#seed).
@@ -166,7 +172,7 @@ That's it! Changes made in `./src` will be reflected in your app—but your data
 
 To integrate with Stripe, follow these steps:
 
-1. You will first need to create a [Stripe](https://stripe.com/) account if you do not already have one.
+1. You will first need to create a [Stripe](https://stripe.com) account if you do not already have one.
 1. Retrieve your Stripe Secret Key from the Stripe admin panel and paste it into your `env`:
    ```bash
    STRIPE_SECRET_KEY=
@@ -189,7 +195,7 @@ See the official [Payload Stripe Plugin](https://github.com/payloadcms/plugin-st
 Alternatively, you can use [Docker](https://www.docker.com) to spin up this template locally. To do so, follow these steps:
 
 1. Follow [steps 1 and 2 from above](#development), the docker-compose file will automatically use the `.env` file in your project root
-1. Next run `docker-compose up -d`
+1. Next run `docker-compose up`
 1. Follow [steps 4 and 5 from above](#development) to login and create your first admin user
 
 That's it! The Docker instance will help you get up and running quickly while also standardizing the development environment across your teams.
@@ -199,3 +205,14 @@ That's it! The Docker instance will help you get up and running quickly while al
 To seed the database with a few products and pages you can run `yarn seed`.
 
 > NOTICE: seeding the database is destructive because it drops your current database to populate a fresh one from the seed template. Only run this command if you are starting a new project or can afford to lose your current data.
+
+## Production
+
+To run Payload in production, you need to build and serve the Admin panel. To do so, follow these steps:
+
+1. First invoke the `payload build` script by running `yarn build` or `npm run build` in your project root. This creates a `./build` directory with a production-ready admin bundle.
+1. Then run `yarn serve` or `npm run serve` to run Node in production and serve Payload from the `./build` directory.
+
+### Deployment
+
+The easiest way to deploy your project is to use [Payload Cloud](https://payloadcms.com/new/import), a one-click hosting solution to deploy production-ready instances of your Payload apps directly from your GitHub repo. You can also deploy your app manually, check out the [deployment documentation](https://payloadcms.com/docs/production/deployment) for full details.
