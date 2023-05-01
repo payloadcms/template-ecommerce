@@ -13,11 +13,8 @@ services:
     command: sh -c "yarn install && yarn dev"
     depends_on:
       - mongo
-    environment:
-      MONGODB_URI: mongodb://mongo:27017/payload
-      PORT: 3000
-      NODE_ENV: development
-      PAYLOAD_SECRET: TESTING
+    env_file:
+      - .env
 
   mongo:
     image: mongo:latest
