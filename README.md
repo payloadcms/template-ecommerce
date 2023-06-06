@@ -25,7 +25,7 @@ See the [collections documentation](https://payloadcms.com/docs/configuration/co
 
 - #### Users (Authentication)
 
-  Users are auth-enabled and encompass both admins and customers based on the value of their `roles` field. Only `admin` users can access your admin panel to manage your store whereas `customer` can authenticate on your front-end to create [shopping carts](#shopping-cart) and place [orders](#orders) but have limited access to the platform, see [Access Control](#access-control) for more details.
+  Users are auth-enabled and encompass both admins and customers based on the value of their `roles` field. Only `admin` users can access your admin panel to manage your store whereas `customer` can authenticate on your front-end to create [shopping carts](#shopping-cart) and place [orders](#orders) but have limited access to the platform. See [Access Control](#access-control) for more details.
 
   For additional help, see the official [Auth Example](https://github.com/payloadcms/payload/tree/master/examples/auth/cms#readme) or the [authentication docs](https://payloadcms.com/docs/authentication/overview#authentication-overview).
 
@@ -103,7 +103,7 @@ A complete front-end solution for this can be found [here](https://github.com/pa
 
 ## Stripe
 
-Payload itself handles no currency exchange. All payments are processed and billed using [Stripe](https://stripe.com). This means you must have access to a Stripe account via an API key, see [Connect Stripe](#connect-stripe) for how to get one. When you create a product in Payload that wish to sell, it must be connected to a Stripe product by selecting one from the field in the products sidebar. This field fetches all available products in the background and displays them as options, see [Products](#products) for more details. Once set, data is automatically synced between the two platforms in the following ways:
+Payload itself handles no currency exchange. All payments are processed and billed using [Stripe](https://stripe.com). This means you must have access to a Stripe account via an API key, see [Connect Stripe](#connect-stripe) for how to get one. When you create a product in Payload that wish to sell, it must be connected to a Stripe product by selecting one from the field in the product's sidebar. This field fetches all available products in the background and displays them as options, see [Products](#products) for more details. Once set, data is automatically synced between the two platforms in the following ways:
 
 1. Stripe to Payload using [Stripe Webhooks](https://stripe.com/docs/webhooks):
 
@@ -216,3 +216,7 @@ To run Payload in production, you need to build and serve the Admin panel. To do
 ### Deployment
 
 The easiest way to deploy your project is to use [Payload Cloud](https://payloadcms.com/new/import), a one-click hosting solution to deploy production-ready instances of your Payload apps directly from your GitHub repo. You can also deploy your app manually, check out the [deployment documentation](https://payloadcms.com/docs/production/deployment) for full details.
+
+## Questions
+
+If you have any issues or questions, reach out to us on [Discord](https://discord.com/invite/payload) or start a [GitHub discussion](https://github.com/payloadcms/payload/discussions).
