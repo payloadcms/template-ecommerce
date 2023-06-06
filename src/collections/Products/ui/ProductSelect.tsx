@@ -1,13 +1,13 @@
-import { Select, useFormFields, useWatchForm } from 'payload/components/forms'
 import * as React from 'react'
-import { TextField } from 'payload/dist/fields/config/types';
-import CopyToClipboard from 'payload/dist/admin/components/elements/CopyToClipboard';
+import { Select, useFormFields } from 'payload/components/forms'
+import CopyToClipboard from 'payload/dist/admin/components/elements/CopyToClipboard'
+import { TextField } from 'payload/dist/fields/config/types'
 
-export const ProductSelect: React.FC<TextField> = (props) => {
+export const ProductSelect: React.FC<TextField> = props => {
   const { name, label } = props
   const [options, setOptions] = React.useState([])
 
-  const { value: stripeProductID } = useFormFields(([fields]) => fields[name]);
+  const { value: stripeProductID } = useFormFields(([fields]) => fields[name])
 
   React.useEffect(() => {
     const getStripeProducts = async () => {
@@ -19,9 +19,11 @@ export const ProductSelect: React.FC<TextField> = (props) => {
         },
         body: JSON.stringify({
           stripeMethod: 'products.list',
-          stripeArgs: [{
-            limit: 100,
-          }]
+          stripeArgs: [
+            {
+              limit: 100,
+            },
+          ],
         }),
       })
 
@@ -52,35 +54,33 @@ export const ProductSelect: React.FC<TextField> = (props) => {
     getStripeProducts()
   }, [])
 
-  const href = `https://dashboard.stripe.com/test/products/${stripeProductID}` // TODO: remove "test" from URL in production
+  const href = `https://dashboard.stripe.com/${
+    process.env.PAYLOAD_PUBLIC_STRIPE_IS_TEST_KEY ? 'test/' : ''
+  }/products/${stripeProductID}`
 
   return (
     <div>
-      <p style={{marginBottom: '0'}}>
-        {typeof label === 'string' ? label : 'Product'}
-      </p>
+      <p style={{ marginBottom: '0' }}>{typeof label === 'string' ? label : 'Product'}</p>
       <p
         style={{
           marginBottom: '0.75rem',
-          color: 'var(--theme-elevation-400)'
+          color: 'var(--theme-elevation-400)',
         }}
       >
         {`Select the related Stripe product or `}
         <a
-          href="https://dashboard.stripe.com/test/products/create" // TODO: remove "test" from URL in production
+          href={`https://dashboard.stripe.com/${
+            process.env.PAYLOAD_PUBLIC_STRIPE_IS_TEST_KEY ? 'test/' : ''
+          }products/create`}
           target="_blank"
           rel="noopener noreferrer"
           style={{ color: 'var(--theme-text' }}
         >
-            create a new one
-          </a>
+          create a new one
+        </a>
         {'.'}
       </p>
-      <Select
-        {...props}
-        label=""
-        options={options}
-      />
+      <Select {...props} label="" options={options} />
       {stripeProductID && (
         <div
           style={{
@@ -92,24 +92,26 @@ export const ProductSelect: React.FC<TextField> = (props) => {
             <span
               className="label"
               style={{
-                color: '#9A9A9A'
+                color: '#9A9A9A',
               }}
             >
-              {`Manage "${options.find((option) => option.value === stripeProductID)?.label}" in Stripe`}
+              {`Manage "${
+                options.find(option => option.value === stripeProductID)?.label
+              }" in Stripe`}
             </span>
-            <CopyToClipboard
-              value={href}
-            />
+            <CopyToClipboard value={href} />
           </div>
           <div
             style={{
               overflow: 'hidden',
               textOverflow: 'ellipsis',
-              fontWeight: '600'
+              fontWeight: '600',
             }}
           >
             <a
-              href={`https://dashboard.stripe.com/test/products/${stripeProductID}`} // TODO: remove "test" from URL in production
+              href={`https://dashboard.stripe.com/${
+                process.env.PAYLOAD_PUBLIC_STRIPE_IS_TEST_KEY ? 'test/' : ''
+              }products/${stripeProductID}`}
               target="_blank"
               rel="noreferrer noopener"
             >

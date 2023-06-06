@@ -1,6 +1,6 @@
 {
   "name": "@payloadcms/template-ecommerce",
-  "description": "E-commerce template for Payload CMS",
+  "description": "E-commerce template for Payload",
   "version": "1.0.0",
   "main": "dist/server.js",
   "license": "MIT",
@@ -22,7 +22,7 @@
     "@payloadcms/plugin-cloud": "^2.0.0",
     "@payloadcms/plugin-nested-docs": "^1.0.4",
     "@payloadcms/plugin-seo": "^1.0.10",
-    "@payloadcms/plugin-stripe": "^0.0.11",
+    "@payloadcms/plugin-stripe": "^0.0.13",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "payload": "^1.8.2",
