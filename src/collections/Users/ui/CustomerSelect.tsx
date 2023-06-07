@@ -114,7 +114,7 @@ export const CustomerSelect: React.FC<TextField> = props => {
             <a
               href={`https://dashboard.stripe.com/${
                 process.env.PAYLOAD_PUBLIC_STRIPE_IS_TEST_KEY ? 'test/' : ''
-              }/customers/${stripeCustomerID}`}
+              }customers/${stripeCustomerID}`}
               target="_blank"
               rel="noreferrer noopener"
             >

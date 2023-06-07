@@ -56,7 +56,7 @@ export const ProductSelect: React.FC<TextField> = props => {
 
   const href = `https://dashboard.stripe.com/${
     process.env.PAYLOAD_PUBLIC_STRIPE_IS_TEST_KEY ? 'test/' : ''
-  }/products/${stripeProductID}`
+  }products/${stripeProductID}`
 
   return (
     <div>
