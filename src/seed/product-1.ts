@@ -36,6 +36,6 @@ export const product1: Partial<Product> = {
   meta: {
     title: 'Cotton T-Shirt',
     description: 'One-time purchase for a product or service',
-    image: '{{SHIRTS_IMAGE}}',
+    image: '{{PRODUCT_IMAGE}}',
   },
 }

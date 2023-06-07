@@ -49,6 +49,10 @@ export const shopPage = {
       categories: [],
     },
   ],
+  meta: {
+    title: 'Shop',
+    description: 'Shop page',
+  },
   slug: 'shop',
   _status: 'published',
 }

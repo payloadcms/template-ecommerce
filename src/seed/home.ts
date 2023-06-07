@@ -62,7 +62,7 @@ export const home: Partial<Page> = {
         },
       },
     ],
-    media: '{{SHIRTS_IMAGE}}',
+    media: '{{PRODUCT1_IMAGE}}',
   },
   layout: [
     {
@@ -234,7 +234,7 @@ export const home: Partial<Page> = {
                 {
                   type: 'link',
                   linkType: 'custom',
-                  url: 'https://github.com/payloadcms/ecommerce-example-cms',
+                  url: 'https://github.com/payloadcms/template-ecommerce',
                   newTab: true,
                   children: [
                     {
@@ -263,7 +263,7 @@ export const home: Partial<Page> = {
     {
       mediaBlockBackgroundColor: 'white',
       position: 'default',
-      media: '{{COURSE_IMAGE}}',
+      media: '{{PRODUCT2_IMAGE}}',
       blockName: 'Media Block',
       blockType: 'mediaBlock',
     },
@@ -307,6 +307,6 @@ export const home: Partial<Page> = {
   meta: {
     title: 'Store ABC',
     description: 'E-Commerce Store with Payload + Next.js',
-    image: '{{SHIRTS_IMAGE}}',
+    image: '{{PRODUCT1_IMAGE}}',
   },
 }

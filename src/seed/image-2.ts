@@ -1,4 +1,4 @@
-export const ebookImage = {
+export const image2 = {
   alt: 'E-Book',
   caption: [
     {

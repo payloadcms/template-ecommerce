@@ -1,4 +1,4 @@
-export const courseImage = {
+export const image3 = {
   alt: 'Online Course',
   caption: [
     {

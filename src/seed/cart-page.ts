@@ -92,4 +92,8 @@ export const cartPage: Partial<Page> = {
       blockType: 'cta',
     },
   ],
+  meta: {
+    title: 'Cart',
+    description: 'Your cart',
+  },
 }

@@ -2,13 +2,13 @@ import path from 'path'
 import type { Payload } from 'payload'
 
 import { cartPage } from './cart-page'
-import { courseImage } from './course'
-import { ebookImage } from './ebook'
 import { home } from './home'
+import { image1 } from './image-1'
+import { image2 } from './image-2'
+import { image3 } from './image-3'
 import { product1 } from './product-1'
 import { product2 } from './product-2'
 import { product3 } from './product-3'
-import { shirtImage } from './shirt-image'
 import { shopPage } from './shop-page'
 
 export const seed = async (payload: Payload): Promise<void> => {
@@ -23,21 +23,21 @@ export const seed = async (payload: Payload): Promise<void> => {
     },
   })
 
-  const [shirtDoc, ebookDoc, courseDoc] = await Promise.all([
+  const [image1Doc, image2Doc, image3Doc] = await Promise.all([
     payload.create({
       collection: 'media',
-      filePath: path.resolve(__dirname, 'shirts.jpg'),
-      data: shirtImage,
+      filePath: path.resolve(__dirname, 'image-1.jpg'),
+      data: image1,
     }),
     payload.create({
       collection: 'media',
-      filePath: path.resolve(__dirname, 'ebook.jpg'),
-      data: ebookImage,
+      filePath: path.resolve(__dirname, 'image-2.jpg'),
+      data: image2,
     }),
     payload.create({
       collection: 'media',
-      filePath: path.resolve(__dirname, 'course.jpg'),
-      data: courseImage,
+      filePath: path.resolve(__dirname, 'image-3.jpg'),
+      data: image3,
     }),
   ])
 
@@ -67,8 +67,8 @@ export const seed = async (payload: Payload): Promise<void> => {
       collection: 'products',
       data: JSON.parse(
         JSON.stringify({ ...product1, categories: [apparelCategory.id] }).replace(
-          /{{SHIRTS_IMAGE}}/g,
-          shirtDoc.id,
+          /{{PRODUCT_IMAGE}}/g,
+          image1Doc.id,
         ),
       ),
     }),
@@ -76,8 +76,8 @@ export const seed = async (payload: Payload): Promise<void> => {
       collection: 'products',
       data: JSON.parse(
         JSON.stringify({ ...product2, categories: [ebooksCategory.id] }).replace(
-          /{{EBOOK_IMAGE}}/g,
-          ebookDoc.id,
+          /{{PRODUCT_IMAGE}}/g,
+          image2Doc.id,
         ),
       ),
     }),
@@ -85,28 +85,24 @@ export const seed = async (payload: Payload): Promise<void> => {
       collection: 'products',
       data: JSON.parse(
         JSON.stringify({ ...product3, categories: [coursesCategory.id] }).replace(
-          /{{COURSE_IMAGE}}/g,
-          courseDoc.id,
+          /{{PRODUCT_IMAGE}}/g,
+          image3Doc.id,
         ),
       ),
     }),
   ])
 
-  const shopPageJSON = JSON.parse(
-    JSON.stringify(shopPage).replace(/{{SHIRTS_IMAGE}}/g, shirtDoc.id),
-  )
-
   const { id: shopPageID } = await payload.create({
     collection: 'pages',
-    data: shopPageJSON,
+    data: shopPage,
   })
 
   await payload.create({
     collection: 'pages',
     data: JSON.parse(
       JSON.stringify(home)
-        .replace(/{{SHIRTS_IMAGE}}/g, shirtDoc.id)
-        .replace(/{{COURSE_IMAGE}}/g, courseDoc.id)
+        .replace(/{{PRODUCT1_IMAGE}}/g, image1Doc.id)
+        .replace(/{{PRODUCT2_IMAGE}}/g, image2Doc.id)
         .replace(/{{SHOP_PAGE_ID}}/g, shopPageID),
     ),
   })

@@ -75,6 +75,6 @@ export const product2: Partial<Product> = {
   meta: {
     title: 'E-Book',
     description: 'One-time purchase for a digital asset',
-    image: '{{EBOOK_IMAGE}}',
+    image: '{{PRODUCT_IMAGE}}',
   },
 }

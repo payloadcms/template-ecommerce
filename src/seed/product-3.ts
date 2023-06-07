@@ -75,6 +75,6 @@ export const product3: Partial<Product> = {
   meta: {
     title: 'Online Course',
     description: 'One-time purchase for gated content',
-    image: '{{COURSE_IMAGE}}',
+    image: '{{PRODUCT_IMAGE}}',
   },
 }
